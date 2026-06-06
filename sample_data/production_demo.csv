@@ -1,0 +1,4 @@
+line,product_code,production_qty,scrap_qty,work_date
+Line 6,FG-6006-A,60,2,2026-07-01
+Line 7,FG-6006-B,45,1,2026-07-01
+Line 3,FG-6205-A,25,0,2026-07-01

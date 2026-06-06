@@ -1,0 +1,3 @@
+supplier,material_code,material_name,planned_qty,promise_date
+Demo Supplier 1,MAT-1002,Seal,300,2026-07-08
+Demo Supplier 2,MAT-1003,Cage,100,2026-07-10

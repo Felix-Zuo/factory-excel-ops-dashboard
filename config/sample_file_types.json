@@ -1,0 +1,27 @@
+{
+  "inventory": {
+    "headers": ["item_code", "item_name", "warehouse", "available_qty", "stock_qty"],
+    "values": ["warehouse", "available", "stock"],
+    "filename": ["inventory", "stock", "wms"]
+  },
+  "sales_order": {
+    "headers": ["order_no", "customer", "product_code", "demand_qty", "required_date"],
+    "values": ["sales", "order", "customer"],
+    "filename": ["order", "sales"]
+  },
+  "shipment": {
+    "headers": ["shipment_no", "invoice_no", "customer", "ship_date", "shipment_qty"],
+    "values": ["shipment", "delivered", "booked"],
+    "filename": ["shipment", "delivery"]
+  },
+  "purchase_plan": {
+    "headers": ["supplier", "material_code", "planned_qty", "promise_date"],
+    "values": ["purchase", "supplier", "promise"],
+    "filename": ["purchase", "procurement"]
+  },
+  "production": {
+    "headers": ["line", "product_code", "production_qty", "scrap_qty", "work_date"],
+    "values": ["assembly", "production", "line"],
+    "filename": ["production", "assembly"]
+  }
+}

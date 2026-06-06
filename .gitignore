@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local output
+output/
+*.log
+*.tmp
+*.bak
+
+# Private business data - keep real exports out of Git
+input/
+dropbox/
+backup/
+diagnostics/
+*.xls
+*.xlsx
+*.xlsm
+*.csv
+*.tsv
+*.zip
+*.7z
+*.rar
+*.exe
+
+# Keep the public demo fixtures
+!sample_data/*.csv
+!sample_data/README.md
+
+# Secrets and local config
+.env
+*.env
+secrets.*
+local_settings.*
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "factory-excel-ops-dashboard"
+version = "0.1.0"
+description = "Local-first spreadsheet ingestion and manufacturing operations dashboard toolkit."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["openpyxl>=3.1.0"]
+
+[project.scripts]
+factory-excel-ops = "factory_excel_ops.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

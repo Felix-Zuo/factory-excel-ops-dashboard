@@ -1,0 +1,62 @@
+{
+  "name": "Factory Excel Ops Dashboard",
+  "version": "0.1.0",
+  "purpose": "Classify manufacturing spreadsheets, normalize fields, compute operational summaries, and export a local dashboard.",
+  "entrypoints": [
+    {
+      "name": "run_pipeline",
+      "command": "python -m factory_excel_ops.cli run --input <input_dir> --output <output_dir>",
+      "inputs": {
+        "input_dir": "Folder containing CSV or XLSX files.",
+        "output_dir": "Folder where summary.json and dashboard.html will be written.",
+        "file_types": "Optional JSON file type signature config.",
+        "field_mapping": "Optional JSON field mapping config."
+      },
+      "outputs": {
+        "summary_json": "output/summary.json",
+        "dashboard_html": "output/dashboard.html"
+      }
+    },
+    {
+      "name": "export_agent_spec",
+      "command": "python -m factory_excel_ops.cli agent-spec --output <path>",
+      "outputs": {
+        "agent_interface": "Machine-readable integration contract."
+      }
+    },
+    {
+      "name": "package_project",
+      "command": "python scripts/package_project.py --name <package_name> --output <output_dir>",
+      "outputs": {
+        "zip_file": "Portable source package without cache, output, or local runtime folders."
+      }
+    }
+  ],
+  "supported_file_extensions": [".csv", ".xlsx", ".xlsm"],
+  "source_types": [
+    "inventory",
+    "sales_order",
+    "shipment",
+    "purchase_plan",
+    "production"
+  ],
+  "standard_fields": [
+    "item_code",
+    "item_name",
+    "available_qty",
+    "demand_qty",
+    "shipment_qty",
+    "purchase_qty",
+    "production_qty",
+    "customer",
+    "supplier",
+    "source_date"
+  ],
+  "packaging_notes": [
+    "Keep adapters separate from the core package.",
+    "Load local field mappings from config before running.",
+    "Use sample_data only for demos and tests.",
+    "Write generated reports to output or another ignored folder.",
+    "Use scripts/package_project.py to create a clean handoff package."
+  ]
+}
