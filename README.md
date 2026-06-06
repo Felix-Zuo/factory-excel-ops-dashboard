@@ -19,11 +19,25 @@ records, compute operational summaries, and export a standalone dashboard.
 - Provides an agent interface so automation tools can inspect capabilities and
   run the pipeline without reading project internals.
 
-## Boundaries
+## Visual Overview
 
-- It does not connect to ERP, WMS, MES, or email systems.
-- It does not upload data to any server.
-- It does not create purchase orders or modify external systems.
+![Dashboard preview](docs/assets/dashboard-preview.svg)
+
+![Data flow](docs/assets/data-flow.svg)
+
+![Operations analysis loop](docs/assets/ai-analysis-loop.svg)
+
+## Integration Direction
+
+The current demo starts from local spreadsheet exports and keeps the processing
+pipeline easy to run on a single workstation. The same contract can be extended
+with ERP, WMS, MES, supplier, shipment, or reporting adapters by adding new file
+signatures and field mappings.
+
+For production deployments, adapters can be placed around the core pipeline:
+source connectors feed standardized records into the engine, and reporting or
+workflow layers consume the generated summaries, dashboards, and analysis
+context.
 
 ## Quick Start
 
@@ -54,6 +68,12 @@ Automation tools can inspect the project contract:
 
 ```powershell
 python -m factory_excel_ops.cli agent-spec --output output\agent_interface.json
+```
+
+Generate structured context for an operations analysis assistant:
+
+```powershell
+python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json
 ```
 
 The static interface file is also available at:

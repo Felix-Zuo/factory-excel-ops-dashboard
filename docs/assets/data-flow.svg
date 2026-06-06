@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img" aria-label="Data flow from spreadsheet exports to operational dashboard">
+  <defs>
+    <linearGradient id="line" x1="0" x2="1"><stop stop-color="#10b9d4"/><stop offset="1" stop-color="#0f7dd7"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-opacity=".16"/></filter>
+  </defs>
+  <rect width="1100" height="420" rx="32" fill="#f4f7fb"/>
+  <g font-family="Segoe UI, Arial">
+    <text x="56" y="62" font-size="30" font-weight="800" fill="#142033">Spreadsheet-to-dashboard pipeline</text>
+    <text x="56" y="92" font-size="16" fill="#64748b">Classify sources, normalize fields, compute metrics, and hand off structured context for analysis.</text>
+  </g>
+  <g filter="url(#shadow)" font-family="Segoe UI, Arial">
+    <rect x="56" y="150" width="160" height="110" rx="20" fill="#ffffff" stroke="#d8e1ee"/>
+    <text x="136" y="193" text-anchor="middle" font-size="18" font-weight="800" fill="#142033">Exports</text>
+    <text x="136" y="222" text-anchor="middle" font-size="13" fill="#64748b">ERP / WMS / MES</text>
+    <path d="M224 205 H310" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <rect x="320" y="150" width="160" height="110" rx="20" fill="#ffffff" stroke="#d8e1ee"/>
+    <text x="400" y="193" text-anchor="middle" font-size="18" font-weight="800" fill="#142033">Classifier</text>
+    <text x="400" y="222" text-anchor="middle" font-size="13" fill="#64748b">content profile</text>
+    <path d="M488 205 H574" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <rect x="584" y="150" width="160" height="110" rx="20" fill="#ffffff" stroke="#d8e1ee"/>
+    <text x="664" y="193" text-anchor="middle" font-size="18" font-weight="800" fill="#142033">Model</text>
+    <text x="664" y="222" text-anchor="middle" font-size="13" fill="#64748b">standard fields</text>
+    <path d="M752 205 H838" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <rect x="848" y="150" width="196" height="110" rx="20" fill="#10233f"/>
+    <text x="946" y="193" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">Dashboard</text>
+    <text x="946" y="222" text-anchor="middle" font-size="13" fill="#b9c7dc">HTML + JSON</text>
+  </g>
+  <path d="M664 270 C664 338 820 342 946 270" fill="none" stroke="#26b981" stroke-width="5" stroke-dasharray="10 12"/>
+  <text x="760" y="350" font-family="Segoe UI, Arial" font-size="16" font-weight="700" fill="#26b981">analysis context for intelligent review</text>
+</svg>

@@ -24,6 +24,15 @@ python -m factory_excel_ops.cli agent-spec --output output/agent_interface.json
 The exported JSON describes supported file extensions, source types, standard
 fields, and command entrypoints.
 
+## Analysis Context
+
+```powershell
+python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json
+```
+
+This command turns the computed summary into a structured payload for an
+analysis agent, reporting assistant, or workflow orchestrator.
+
 ## Adapter Pattern
 
 An external automation tool can prepare a folder with:
