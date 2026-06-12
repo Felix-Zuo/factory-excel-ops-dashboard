@@ -1,6 +1,6 @@
 {
   "name": "Factory Excel Ops Dashboard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "purpose": "Classify manufacturing spreadsheets, normalize fields, compute operational summaries, and export a local dashboard.",
   "entrypoints": [
     {

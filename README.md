@@ -8,6 +8,10 @@ ERP, MES, order tracking, procurement, and production reports. It provides a
 small but complete processing pipeline: classify files, map fields, normalize
 records, compute operational summaries, and export a standalone dashboard.
 
+The public repository is a synthetic-data demo. Keep production exports,
+customer lists, supplier lists, BOM files, shipment plans, and logs outside the
+source tree unless they have been intentionally sanitized.
+
 ## Highlights
 
 - Classifies spreadsheet-like files by content, not just by file name.
@@ -61,6 +65,15 @@ For a quick Windows demo after installation:
 ```powershell
 .\scripts\run_demo.cmd
 ```
+
+## Validation
+
+```powershell
+python -m pytest -q
+```
+
+The test suite can run directly from a fresh checkout because `pyproject.toml`
+adds `src` to the pytest import path.
 
 ## Agent Interface
 
