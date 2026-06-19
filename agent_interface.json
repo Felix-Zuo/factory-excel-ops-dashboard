@@ -1,7 +1,7 @@
 {
   "name": "Factory Excel Ops Dashboard",
-  "version": "0.1.1",
-  "purpose": "Classify manufacturing spreadsheets, normalize fields, compute operational summaries, and export a local dashboard.",
+  "version": "0.2.0",
+  "purpose": "Classify spreadsheet exports, normalize fields, compute configurable operations metrics, and export a local dashboard.",
   "entrypoints": [
     {
       "name": "run_pipeline",
@@ -9,8 +9,9 @@
       "inputs": {
         "input_dir": "Folder containing CSV or XLSX files.",
         "output_dir": "Folder where summary.json and dashboard.html will be written.",
-        "file_types": "Optional JSON file type signature config.",
-        "field_mapping": "Optional JSON field mapping config."
+        "file_types": "Optional JSON source signature config.",
+        "field_mapping": "Optional JSON field alias config.",
+        "metrics": "Optional JSON metric profile config."
       },
       "outputs": {
         "summary_json": "output/summary.json",
@@ -45,34 +46,39 @@
   "supported_file_extensions": [".csv", ".xlsx", ".xlsm"],
   "source_types": [
     "inventory",
-    "sales_order",
-    "shipment",
-    "purchase_plan",
-    "production"
+    "demand",
+    "fulfillment",
+    "replenishment",
+    "work_output"
   ],
   "standard_fields": [
     "item_code",
     "item_name",
     "available_qty",
     "demand_qty",
-    "shipment_qty",
-    "purchase_qty",
-    "production_qty",
-    "customer",
-    "supplier",
+    "fulfilled_qty",
+    "replenishment_qty",
+    "output_qty",
+    "account",
+    "partner",
     "source_date"
   ],
+  "config_files": [
+    "config/sample_file_types.json",
+    "config/sample_field_mapping.json",
+    "config/sample_metrics.json"
+  ],
   "packaging_notes": [
-    "Keep adapters separate from the core package.",
-    "Load local field mappings from config before running.",
+    "Keep private adapters separate from the core package.",
+    "Load local field mappings and metric profiles from config before running.",
     "Use sample_data only for demos and tests.",
     "Write generated reports to output or another ignored folder.",
     "Use scripts/package_project.py to create a clean handoff package."
   ],
   "integration_targets": [
-    "ERP adapter",
-    "WMS adapter",
-    "MES adapter",
+    "spreadsheet drop folder adapter",
+    "business system export adapter",
+    "service operations export adapter",
     "operations analysis agent",
     "executive reporting bot"
   ]

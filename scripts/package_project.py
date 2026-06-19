@@ -16,16 +16,27 @@ EXCLUDED_DIRS = {
     ".venv",
     "__pycache__",
     "build",
+    "backup",
     "dist",
+    "diagnostics",
+    "dropbox",
+    "input",
     "output",
     "venv",
 }
 
 EXCLUDED_SUFFIXES = {
+    ".7z",
+    ".exe",
+    ".rar",
+    ".xls",
+    ".xlsm",
+    ".xlsx",
     ".log",
     ".pyc",
     ".pyo",
     ".tmp",
+    ".tsv",
     ".zip",
 }
 
@@ -39,7 +50,13 @@ def should_include(path: Path, root: Path) -> bool:
     rel = path.relative_to(root)
     if any(part.lower().startswith(".git") for part in rel.parts):
         return False
+    if any(part.lower().startswith("output") for part in rel.parts):
+        return False
+    if any(part.lower().endswith(".egg-info") for part in rel.parts):
+        return False
     if any(part in EXCLUDED_DIRS for part in rel.parts):
+        return False
+    if path.suffix.lower() == ".csv" and rel.parts[:1] != ("sample_data",):
         return False
     if path.suffix.lower() in EXCLUDED_SUFFIXES:
         return False

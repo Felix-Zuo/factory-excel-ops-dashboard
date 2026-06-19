@@ -1,3 +1,0 @@
-shipment_no,invoice_no,customer,product_code,shipment_qty,ship_date,status
-SHIP-001,INV-001,Demo Customer A,FG-6006-A,40,2026-07-03,BOOKED
-SHIP-002,INV-002,Demo Customer B,FG-6006-B,10,2026-07-09,DELIVERED

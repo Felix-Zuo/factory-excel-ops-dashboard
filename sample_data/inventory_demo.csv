@@ -1,5 +1,5 @@
-item_code,item_name,warehouse,available_qty,stock_qty
-MAT-1001,Ring blank,Main Warehouse,120,120
-MAT-1002,Seal,Main Warehouse,0,0
-MAT-1003,Cage,Main Warehouse,45,45
-MAT-1004,Grease,Oil Room,18,18
+item_code,item_name,storage_location,available_qty,stock_qty
+SKU-1001,Standard service kit,Central Store,120,120
+SKU-1002,Priority replacement pack,Central Store,0,0
+SKU-1003,Reusable fixture set,North Store,45,45
+SKU-1004,Consumable support pack,South Store,18,18

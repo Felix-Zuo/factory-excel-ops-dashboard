@@ -16,30 +16,30 @@ from .models import ClassifiedFile
 
 DEFAULT_SIGNATURES: dict[str, dict[str, list[str]]] = {
     "inventory": {
-        "headers": ["item_code", "item_name", "available_qty", "warehouse", "stock_qty"],
-        "values": ["warehouse", "stock", "available"],
+        "headers": ["item_code", "item_name", "available_qty", "warehouse", "stock_qty", "storage_location"],
+        "values": ["warehouse", "stock", "available", "inventory"],
     },
-    "sales_order": {
-        "headers": ["order_no", "customer", "product_code", "demand_qty", "required_date"],
-        "values": ["order", "customer"],
+    "demand": {
+        "headers": ["order_no", "order_id", "account", "customer", "item_code", "demand_qty", "required_date", "due_date"],
+        "values": ["order", "demand", "account", "customer"],
     },
-    "shipment": {
-        "headers": ["shipment_no", "invoice_no", "customer", "ship_date", "qty"],
-        "values": ["shipment", "invoice", "delivered"],
+    "fulfillment": {
+        "headers": ["fulfillment_id", "shipment_no", "invoice_no", "account", "ship_date", "fulfilled_qty"],
+        "values": ["shipment", "fulfillment", "delivered", "completed"],
     },
-    "purchase_plan": {
-        "headers": ["supplier", "material_code", "planned_qty", "promise_date"],
-        "values": ["purchase", "supplier"],
+    "replenishment": {
+        "headers": ["partner", "supplier", "item_code", "material_code", "planned_qty", "promise_date"],
+        "values": ["replenishment", "purchase", "supplier", "vendor"],
     },
-    "production": {
-        "headers": ["line", "product_code", "production_qty", "scrap_qty", "work_date"],
-        "values": ["assembly", "production"],
+    "work_output": {
+        "headers": ["work_center", "line", "item_code", "completed_qty", "output_qty", "work_date"],
+        "values": ["production", "assembly", "work center", "completed"],
     },
 }
 
 
 class FileClassifier:
-    """Classify spreadsheets into generic manufacturing source types."""
+    """Classify spreadsheets into configured operations source types."""
 
     def __init__(self, signatures: dict[str, dict[str, list[str]]] | None = None) -> None:
         self.signatures = signatures or DEFAULT_SIGNATURES

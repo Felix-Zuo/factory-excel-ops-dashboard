@@ -1,27 +1,27 @@
 {
   "inventory": {
-    "headers": ["item_code", "item_name", "warehouse", "available_qty", "stock_qty"],
-    "values": ["warehouse", "available", "stock"],
-    "filename": ["inventory", "stock", "wms"]
+    "headers": ["item_code", "item_name", "storage_location", "available_qty", "stock_qty"],
+    "values": ["warehouse", "available", "stock", "inventory"],
+    "filename": ["inventory", "stock", "assets"]
   },
-  "sales_order": {
-    "headers": ["order_no", "customer", "product_code", "demand_qty", "required_date"],
-    "values": ["sales", "order", "customer"],
-    "filename": ["order", "sales"]
+  "demand": {
+    "headers": ["order_id", "account", "item_code", "demand_qty", "due_date"],
+    "values": ["order", "demand", "account"],
+    "filename": ["demand", "order", "sales"]
   },
-  "shipment": {
-    "headers": ["shipment_no", "invoice_no", "customer", "ship_date", "shipment_qty"],
-    "values": ["shipment", "delivered", "booked"],
-    "filename": ["shipment", "delivery"]
+  "fulfillment": {
+    "headers": ["fulfillment_id", "account", "item_code", "fulfilled_qty", "fulfillment_date"],
+    "values": ["shipment", "fulfillment", "delivered", "completed"],
+    "filename": ["fulfillment", "shipment", "delivery"]
   },
-  "purchase_plan": {
-    "headers": ["supplier", "material_code", "planned_qty", "promise_date"],
-    "values": ["purchase", "supplier", "promise"],
-    "filename": ["purchase", "procurement"]
+  "replenishment": {
+    "headers": ["partner", "item_code", "planned_qty", "promise_date"],
+    "values": ["replenishment", "purchase", "supplier", "vendor"],
+    "filename": ["replenishment", "purchase", "procurement"]
   },
-  "production": {
-    "headers": ["line", "product_code", "production_qty", "scrap_qty", "work_date"],
-    "values": ["assembly", "production", "line"],
-    "filename": ["production", "assembly"]
+  "work_output": {
+    "headers": ["work_center", "item_code", "completed_qty", "defect_qty", "work_date"],
+    "values": ["work center", "completed", "production", "assembly"],
+    "filename": ["work_output", "production", "capacity"]
   }
 }

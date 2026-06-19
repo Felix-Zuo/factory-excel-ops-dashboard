@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Factory Excel Ops Dashboard</title>
+  <title>Factory Excel Ops Dashboard | Operations Data Workbench</title>
   <style>
     :root {
       --bg: #f5f8fc;
@@ -43,7 +43,7 @@
       place-items: center;
       width: 54px;
       height: 54px;
-      border-radius: 14px;
+      border-radius: 8px;
       background: #14b8d4;
       color: #031421;
       font-weight: 900;
@@ -55,7 +55,7 @@
       background: rgba(255,255,255,.12);
       color: white;
       padding: 10px 14px;
-      border-radius: 999px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 700;
     }
@@ -71,7 +71,7 @@
       max-width: 820px;
       font-size: clamp(40px, 6vw, 74px);
       line-height: .98;
-      letter-spacing: -.04em;
+      letter-spacing: 0;
     }
     .lead {
       margin: 22px 0 0;
@@ -82,7 +82,7 @@
     }
     .hero img {
       width: 100%;
-      border-radius: 24px;
+      border-radius: 8px;
       box-shadow: 0 24px 70px rgba(0,0,0,.28);
     }
     main { padding: 42px clamp(24px, 5vw, 72px) 72px; }
@@ -96,7 +96,7 @@
     .card {
       padding: 22px;
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 8px;
       background: var(--card);
       box-shadow: 0 10px 30px rgba(16,32,51,.06);
     }
@@ -105,7 +105,7 @@
     .visual {
       margin: 16px 0 44px;
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: 8px;
       overflow: hidden;
       background: white;
       box-shadow: 0 12px 34px rgba(16,32,51,.07);
@@ -122,7 +122,7 @@
       display: block;
       margin-top: 12px;
       padding: 14px;
-      border-radius: 12px;
+      border-radius: 8px;
       background: #0b1220;
       color: #d7e6f8;
       white-space: pre-wrap;
@@ -146,10 +146,10 @@
     </nav>
     <section class="hero">
       <div>
-        <h1 class="zh">制造业 Excel 数据驾驶舱</h1>
-        <h1 class="en">Manufacturing Excel Operations Dashboard</h1>
-        <p class="lead zh">面向库存、订单、发货、采购和生产数据的本地化处理工具。它把分散的表格导出转换为统一数据模型、运营指标、可视化看板和智能分析上下文。</p>
-        <p class="lead en">A local-first toolkit that turns inventory, order, shipment, purchase, and production spreadsheets into a unified model, operational metrics, visual dashboards, and analysis-ready context.</p>
+        <h1 class="zh">通用表格运营工作台</h1>
+        <h1 class="en">Spreadsheet Operations Data Workbench</h1>
+        <p class="lead zh">面向库存、需求、履约、补给和产出等运营数据的本地化处理工具。它把分散表格转换为统一数据模型、可配置指标、可视化看板和智能分析上下文。</p>
+        <p class="lead en">A local-first toolkit that turns inventory, demand, fulfillment, replenishment, and work-output spreadsheets into a unified model, configurable metrics, dashboards, and analysis-ready context.</p>
       </div>
       <img src="assets/dashboard-preview.svg" alt="Dashboard preview">
     </section>
@@ -166,8 +166,8 @@
       </article>
       <article class="card">
         <h3 class="zh">统一字段模型</h3><h3 class="en">Unified field model</h3>
-        <p class="zh">把不同系统导出的物料、数量、日期、客户、供应商等字段映射为标准结构。</p>
-        <p class="en">Maps item, quantity, date, customer, and supplier fields into a standard data contract.</p>
+        <p class="zh">把不同系统导出的项目、数量、日期、账户、伙伴等字段映射为标准结构。</p>
+        <p class="en">Maps item, quantity, date, account, and partner fields into a standard data contract.</p>
       </article>
       <article class="card">
         <h3 class="zh">运营看板输出</h3><h3 class="en">Operations dashboard</h3>
@@ -190,8 +190,8 @@
         <h2 class="section-title zh">智能分析闭环</h2>
         <h2 class="section-title en">Intelligent Analysis Loop</h2>
         <article class="card">
-          <p class="zh">看板摘要可以转换为分析上下文，交给外部智能体、报告助手或调度工作流使用。该接口适合扩展库存风险说明、订单履约解释、采购压力提示和下一步检查建议。</p>
-          <p class="en">Dashboard summaries can be converted into analysis context for external agents, reporting assistants, or workflow orchestrators. The interface supports inventory risk explanation, fulfillment review, procurement pressure notes, and next-step checks.</p>
+          <p class="zh">看板摘要可以转换为分析上下文，交给外部智能体、报告助手或调度工作流使用。该接口适合扩展数据覆盖解释、指标异常说明、履约差距提示和下一步检查建议。</p>
+          <p class="en">Dashboard summaries can be converted into analysis context for external agents, reporting assistants, or workflow orchestrators. The interface supports coverage review, metric anomaly notes, fulfillment-gap review, and next-step checks.</p>
           <code>python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</code>
         </article>
       </div>
@@ -202,14 +202,14 @@
     <h2 class="section-title en">Expansion Path</h2>
     <section class="grid">
       <article class="card">
-        <h3 class="zh">ERP / WMS / MES 适配</h3><h3 class="en">ERP / WMS / MES adapters</h3>
+        <h3 class="zh">表格导出适配</h3><h3 class="en">Export adapters</h3>
         <p class="zh">当前以表格导入为入口，后续可通过适配器接入系统接口、数据库视图或定时导出目录。</p>
         <p class="en">The demo starts from spreadsheets and can be extended with adapters for APIs, database views, or scheduled export folders.</p>
       </article>
       <article class="card">
         <h3 class="zh">规则配置化</h3><h3 class="en">Configurable rules</h3>
-        <p class="zh">文件识别、字段别名和业务口径都可以沉淀到配置文件，方便不同工厂或不同业务域复用。</p>
-        <p class="en">Classification signatures, field aliases, and business rules can be moved into config for reuse across teams.</p>
+        <p class="zh">文件识别、字段别名和指标口径都可以沉淀到配置文件，方便不同团队、场景或业务域复用。</p>
+        <p class="en">Classification signatures, field aliases, and metric rules can be moved into config for reuse across teams.</p>
       </article>
       <article class="card">
         <h3 class="zh">定制打包</h3><h3 class="en">Custom packaging</h3>

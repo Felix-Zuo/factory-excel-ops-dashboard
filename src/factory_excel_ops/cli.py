@@ -7,16 +7,17 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 
-from .classifier import FileClassifier
 from .agent_interface import write_agent_interface
 from .analysis_agent import build_analysis_context
+from .classifier import FileClassifier
 from .dashboard import export_dashboard
 from .field_mapper import FieldMapper
 from .ingest import ingest_paths, summarize
+from .metrics import DEFAULT_METRIC_SPECS, load_metric_specs
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the Factory Excel Ops demo pipeline.")
+    parser = argparse.ArgumentParser(description="Run the spreadsheet operations demo pipeline.")
     subcommands = parser.add_subparsers(dest="command", required=True)
 
     run = subcommands.add_parser("run", help="Ingest files and export dashboard.")
@@ -24,6 +25,7 @@ def main() -> int:
     run.add_argument("--output", required=True, type=Path, help="Output folder.")
     run.add_argument("--file-types", type=Path, default=Path("config/sample_file_types.json"))
     run.add_argument("--field-mapping", type=Path, default=Path("config/sample_field_mapping.json"))
+    run.add_argument("--metrics", type=Path, default=Path("config/sample_metrics.json"))
 
     spec = subcommands.add_parser("agent-spec", help="Export machine-readable integration contract.")
     spec.add_argument("--output", required=True, type=Path, help="JSON output path.")
@@ -49,14 +51,19 @@ def main() -> int:
 def _run(args: argparse.Namespace) -> int:
     input_dir: Path = args.input
     output_dir: Path = args.output
+    if not input_dir.exists() or not input_dir.is_dir():
+        print(f"Input folder not found: {input_dir}")
+        return 2
+
     paths = sorted(
         path for path in input_dir.iterdir()
         if path.suffix.lower() in {".csv", ".xlsx", ".xlsm"}
     )
     classifier = FileClassifier.from_json(args.file_types) if args.file_types.exists() else FileClassifier()
     mapper = FieldMapper.from_json(args.field_mapping) if args.field_mapping.exists() else FieldMapper()
+    metric_specs = load_metric_specs(args.metrics) if args.metrics.exists() else DEFAULT_METRIC_SPECS
     records, warnings = ingest_paths(paths, classifier, mapper)
-    summary = summarize(records, file_count=len(paths), warnings=warnings)
+    summary = summarize(records, file_count=len(paths), warnings=warnings, metric_specs=metric_specs)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "summary.json").write_text(json.dumps(asdict(summary), ensure_ascii=False, indent=2), encoding="utf-8")

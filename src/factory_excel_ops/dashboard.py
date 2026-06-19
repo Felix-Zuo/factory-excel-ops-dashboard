@@ -15,16 +15,20 @@ def export_dashboard(summary: DashboardSummary, output_path: Path) -> Path:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(asdict(summary), ensure_ascii=False, indent=2)
-    cards = [
-        ("Files", summary.file_count),
-        ("Records", summary.record_count),
-        ("Inventory Items", summary.inventory_items),
-        ("Out of Stock", summary.out_of_stock_items),
-        ("Order Demand", f"{summary.order_demand_qty:,.0f}"),
-        ("Shipment Qty", f"{summary.shipment_qty:,.0f}"),
-        ("Purchase Plan", f"{summary.purchase_qty:,.0f}"),
-        ("Production Qty", f"{summary.production_qty:,.0f}"),
-    ]
+    cards = [("Files", summary.file_count), ("Records", summary.record_count)]
+    if summary.metrics:
+        cards.extend((metric.label, _format_metric_value(metric.value, metric.unit)) for metric in summary.metrics)
+    else:
+        cards.extend(
+            [
+                ("Tracked Items", summary.inventory_items),
+                ("Zero / Negative Stock", summary.out_of_stock_items),
+                ("Demand Qty", f"{summary.order_demand_qty:,.0f}"),
+                ("Fulfilled Qty", f"{summary.shipment_qty:,.0f}"),
+                ("Replenishment Qty", f"{summary.purchase_qty:,.0f}"),
+                ("Work Output Qty", f"{summary.production_qty:,.0f}"),
+            ]
+        )
     card_html = "\n".join(
         f"<section class='card'><span>{html.escape(label)}</span><strong>{html.escape(str(value))}</strong></section>"
         for label, value in cards
@@ -41,7 +45,7 @@ def export_dashboard(summary: DashboardSummary, output_path: Path) -> Path:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Factory Excel Ops Dashboard</title>
+  <title>Excel Operations Data Workbench</title>
   <style>
     body {{ margin: 0; font-family: Segoe UI, Arial, sans-serif; background: #f5f7fb; color: #172033; }}
     header {{ padding: 32px 44px; background: #10233f; color: white; }}
@@ -59,8 +63,8 @@ def export_dashboard(summary: DashboardSummary, output_path: Path) -> Path:
 </head>
 <body>
   <header>
-    <h1>Factory Excel Ops Dashboard</h1>
-    <p>Local-first demo using synthetic manufacturing spreadsheet data.</p>
+    <h1>Excel Operations Data Workbench</h1>
+    <p>Local-first demo using synthetic spreadsheet operations data.</p>
   </header>
   <main>
     <div class="grid">{card_html}</div>
@@ -83,3 +87,8 @@ def export_dashboard(summary: DashboardSummary, output_path: Path) -> Path:
         encoding="utf-8",
     )
     return output_path
+
+
+def _format_metric_value(value: float | int, unit: str = "") -> str:
+    formatted = f"{value:,.0f}" if isinstance(value, (float, int)) else str(value)
+    return f"{formatted} {unit}".strip()

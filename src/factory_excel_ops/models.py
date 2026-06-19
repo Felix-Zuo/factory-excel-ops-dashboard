@@ -42,8 +42,24 @@ class StandardRecord:
 
 
 @dataclass(frozen=True)
+class SummaryMetric:
+    """One configured metric exported to dashboards and analysis agents."""
+
+    key: str
+    label: str
+    value: float | int
+    unit: str = ""
+    source_type: str = ""
+    description: str = ""
+
+
+@dataclass(frozen=True)
 class DashboardSummary:
-    """Minimal computed result exported to JSON and HTML."""
+    """Computed result exported to JSON and HTML.
+
+    The named quantity fields remain for compatibility with earlier demo
+    versions. New profiles should read the configured ``metrics`` list.
+    """
 
     file_count: int
     record_count: int
@@ -54,4 +70,5 @@ class DashboardSummary:
     purchase_qty: float
     production_qty: float
     by_source_type: dict[str, int]
+    metrics: list[SummaryMetric] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)

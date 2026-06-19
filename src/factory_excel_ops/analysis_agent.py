@@ -11,29 +11,31 @@ def build_analysis_context(summary_path: Path, output_path: Path) -> dict[str, A
     """Convert a dashboard summary into a compact analysis-agent payload."""
 
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    metrics = summary.get("metrics") or []
+    metric_keys = [metric.get("key") for metric in metrics if metric.get("key")]
     context = {
         "schema": "factory_excel_ops.analysis_context.v1",
         "role": "operations_analysis_agent",
-        "objective": "Explain operational risk, summarize changes, and recommend follow-up checks.",
+        "objective": "Explain operational signals, data quality risks, and recommended follow-up checks.",
         "input_summary": summary,
         "analysis_sections": [
             {
-                "id": "inventory_risk",
-                "title": "Inventory Risk",
-                "signals": ["inventory_items", "out_of_stock_items"],
-                "expected_output": "Highlight out-of-stock exposure and suggest the next inventory validation step.",
+                "id": "data_coverage",
+                "title": "Data Coverage",
+                "signals": ["file_count", "record_count", "by_source_type", "warnings"],
+                "expected_output": "Explain which source types were recognized and which inputs need validation.",
             },
             {
-                "id": "demand_fulfillment",
-                "title": "Demand and Fulfillment",
-                "signals": ["order_demand_qty", "shipment_qty", "production_qty"],
-                "expected_output": "Compare demand, shipment, and production quantities at a high level.",
+                "id": "configured_metrics",
+                "title": "Configured Metrics",
+                "signals": metric_keys,
+                "expected_output": "Summarize the configured metrics without assuming a fixed industry workflow.",
             },
             {
-                "id": "procurement_pressure",
-                "title": "Procurement Pressure",
-                "signals": ["purchase_qty", "warnings"],
-                "expected_output": "Identify purchase-plan pressure and incomplete source data.",
+                "id": "next_checks",
+                "title": "Next Checks",
+                "signals": ["warnings", "metrics"],
+                "expected_output": "Recommend the next spreadsheet, mapping, or metric checks to improve confidence.",
             },
         ],
         "guardrails": [

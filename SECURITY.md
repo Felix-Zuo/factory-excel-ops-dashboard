@@ -10,5 +10,6 @@ a vulnerability that could expose local files, secrets, or business data.
 
 ## Data Handling
 
-Never publish real WMS, ERP, MES, customer, supplier, order, BOM, shipment,
-production, or procurement exports in this repository.
+Never publish real WMS, ERP, MES, customer, supplier, employee, order, BOM,
+shipment, finance, HR, production, procurement, or service exports in this
+repository.

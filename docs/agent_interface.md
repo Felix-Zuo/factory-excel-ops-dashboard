@@ -22,7 +22,7 @@ python -m factory_excel_ops.cli agent-spec --output output/agent_interface.json
 ```
 
 The exported JSON describes supported file extensions, source types, standard
-fields, and command entrypoints.
+fields, config files, integration targets, and command entrypoints.
 
 ## Analysis Context
 
@@ -40,11 +40,23 @@ An external automation tool can prepare a folder with:
 ```text
 config/sample_file_types.json
 config/sample_field_mapping.json
+config/sample_metrics.json
 sample_data or real_input_folder
 ```
 
 Then call the pipeline and read `summary.json` for downstream reporting or
 packaging.
+
+Custom configs can be passed directly:
+
+```powershell
+python -m factory_excel_ops.cli run `
+  --input <input_dir> `
+  --output <output_dir> `
+  --file-types <file_types.json> `
+  --field-mapping <field_mapping.json> `
+  --metrics <metrics.json>
+```
 
 ## Packaging
 

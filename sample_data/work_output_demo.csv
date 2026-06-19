@@ -1,0 +1,4 @@
+work_center,item_code,completed_qty,defect_qty,work_date
+Cell 6,SKU-1001,60,2,2026-07-01
+Cell 7,SKU-1002,45,1,2026-07-01
+Cell 3,SKU-1003,25,0,2026-07-01

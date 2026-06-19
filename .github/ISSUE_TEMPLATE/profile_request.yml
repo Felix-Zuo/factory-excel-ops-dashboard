@@ -1,0 +1,34 @@
+name: Profile request
+description: Request or discuss a generic source, field, or metric profile.
+title: "[Profile]: "
+labels: ["profile", "enhancement"]
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow
+      description: Describe the workflow using generic terms.
+      placeholder: Example: maintenance demand, replenishment plan, service fulfillment.
+    validations:
+      required: true
+  - type: textarea
+    id: source_types
+    attributes:
+      label: Source types
+      description: List the source types and representative synthetic headers.
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics
+      description: Which summary cards or JSON metrics should be produced?
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Boundary
+      options:
+        - label: All examples are synthetic or anonymized.
+          required: true
+        - label: No private workbook names or company-specific identifiers are included.
+          required: true

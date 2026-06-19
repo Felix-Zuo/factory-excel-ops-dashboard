@@ -21,7 +21,7 @@
     <text x="550" y="242" text-anchor="middle" font-size="13" fill="#cce6f5">sections, signals, guardrails</text>
     <rect x="798" y="174" width="210" height="112" rx="22" fill="#111d33" stroke="#31496d"/>
     <text x="903" y="218" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">Agent Output</text>
-    <text x="903" y="248" text-anchor="middle" font-size="13" fill="#9fb6d1">risk notes + actions</text>
+    <text x="903" y="248" text-anchor="middle" font-size="13" fill="#9fb6d1">findings + actions</text>
     <path d="M304 230 H430" stroke="#10b9d4" stroke-width="5" stroke-linecap="round"/>
     <path d="M670 230 H790" stroke="#10b9d4" stroke-width="5" stroke-linecap="round"/>
     <path d="M903 294 C884 380 220 380 197 294" fill="none" stroke="#26b981" stroke-width="5" stroke-dasharray="10 12"/>

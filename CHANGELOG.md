@@ -1,0 +1,60 @@
+# Changelog
+
+All notable public changes to Factory Excel Ops Dashboard are recorded here.
+The project uses semantic versions while it is still pre-1.0.
+
+## [0.2.0] - 2026-06-19
+
+### Added
+
+- Added configurable metric profiles through `config/sample_metrics.json`.
+- Added generic operations source types: `inventory`, `demand`,
+  `fulfillment`, `replenishment`, and `work_output`.
+- Added summary metric objects to `summary.json` for dashboards and analysis
+  agents.
+- Added public product materials: evolution history, architecture,
+  configuration cookbook, roadmap, and data safety checklist.
+- Added GitHub issue templates and a pull request template.
+
+### Changed
+
+- Reframed the demo from a fixed manufacturing dashboard into a reusable
+  spreadsheet operations workbench.
+- Updated sample data to use synthetic SKU, account, partner, and work-center
+  terminology instead of private-product-shaped examples.
+- Updated dashboard cards to render configured metrics instead of fixed labels.
+- Updated analysis-agent context so it does not assume one industry workflow.
+- Improved header matching for spacing, separators, casing, and unit suffixes.
+
+### Fixed
+
+- Prevented the packaging helper from including ignored private data folders,
+  executable packages, Excel workbooks, or non-sample CSV files.
+- Removed a risky default alias overlap where `completed_qty` could be treated
+  as both fulfillment and work output in the public config.
+
+### Verified
+
+- `python -m pytest -q`
+- `python -m factory_excel_ops.cli run --input sample_data --output output`
+- `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json`
+
+## [0.1.1] - 2026-06-13
+
+### Fixed
+
+- Added `pythonpath = ["src"]` to pytest config so tests pass from a fresh
+  checkout without requiring editable installation first.
+
+### Verified
+
+- `python -m pytest -q`
+
+## [0.1.0] - 2026-06-09
+
+### Added
+
+- Initial sanitized public toolkit baseline.
+- CSV/XLSX ingestion, content-based file classification, field mapping,
+  summary generation, HTML dashboard export, and agent interface.
+- Synthetic sample data and public privacy boundaries.

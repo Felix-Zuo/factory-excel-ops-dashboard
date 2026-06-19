@@ -1,47 +1,35 @@
 # Factory Excel Ops Dashboard
 
-A local-first toolkit for turning manufacturing spreadsheet exports into a
-clean inventory, shipment, purchase, production, and operations dashboard.
+Local-first spreadsheet operations workbench for teams that still run critical
+processes through Excel, CSV exports, shared folders, and manual reporting.
 
-The project is designed for teams that still rely on Excel exports from WMS,
-ERP, MES, order tracking, procurement, and production reports. It provides a
-small but complete processing pipeline: classify files, map fields, normalize
-records, compute operational summaries, and export a standalone dashboard.
+The project classifies incoming files, maps noisy headers into a standard data
+model, computes configurable metrics, and exports a standalone HTML dashboard
+plus JSON summaries that automation agents can read. The public repository uses
+synthetic data and generic operations terminology so it can be adapted beyond a
+single factory, product line, or private workbook template.
 
-The public repository is a synthetic-data demo. Keep production exports,
-customer lists, supplier lists, BOM files, shipment plans, and logs outside the
-source tree unless they have been intentionally sanitized.
+## What It Does
 
-## Highlights
+- Classifies spreadsheet-like files by content, not only by filename.
+- Normalizes headers with case, spacing, separator, and unit noise.
+- Supports configurable source types, field aliases, and metric profiles.
+- Computes stock, demand, fulfillment, replenishment, and work-output metrics.
+- Exports a local HTML dashboard and machine-readable `summary.json`.
+- Provides an agent interface for reporting bots or workflow assistants.
+- Keeps private adapters, real exports, logs, and packages outside Git.
 
-- Classifies spreadsheet-like files by content, not just by file name.
-- Maps common headers into a standard manufacturing data model.
-- Ingests inventory, sales order, shipment, purchase, and production records.
-- Computes operational summaries such as stock risk, order demand, shipment
-  backlog, purchase plan volume, and production output.
-- Exports a standalone HTML dashboard that can be opened locally.
-- Provides an agent interface so automation tools can inspect capabilities and
-  run the pipeline without reading project internals.
+## Public Boundary
 
-## Visual Overview
+This repository is a sanitized showcase and reusable toolkit. It is informed by
+private spreadsheet-operations work, but it does not contain private workbooks,
+customer names, supplier names, BOMs, production logs, desktop binaries, or
+company-specific adapter rules.
 
-![Dashboard preview](docs/assets/dashboard-preview.svg)
-
-![Data flow](docs/assets/data-flow.svg)
-
-![Operations analysis loop](docs/assets/ai-analysis-loop.svg)
-
-## Integration Direction
-
-The current demo starts from local spreadsheet exports and keeps the processing
-pipeline easy to run on a single workstation. The same contract can be extended
-with ERP, WMS, MES, supplier, shipment, or reporting adapters by adding new file
-signatures and field mappings.
-
-For production deployments, adapters can be placed around the core pipeline:
-source connectors feed standardized records into the engine, and reporting or
-workflow layers consume the generated summaries, dashboards, and analysis
-context.
+The version history documents public productization decisions and sanitized
+capabilities that were folded into this generic toolkit. It is not meant to
+pretend that every private feature, operator workflow, or internal deployment is
+present in this public repository.
 
 ## Quick Start
 
@@ -66,14 +54,27 @@ For a quick Windows demo after installation:
 .\scripts\run_demo.cmd
 ```
 
-## Validation
+## Configuration Profile
+
+The default public profile is intentionally generic:
+
+- `config/sample_file_types.json`: source signatures for `inventory`,
+  `demand`, `fulfillment`, `replenishment`, and `work_output`.
+- `config/sample_field_mapping.json`: header aliases such as `Item Code`,
+  `Available Qty (EA)`, `Ship Qty`, and `Due-Date`.
+- `config/sample_metrics.json`: metric definitions for dashboard cards and
+  analysis context.
+
+Run with a custom profile:
 
 ```powershell
-python -m pytest -q
+python -m factory_excel_ops.cli run `
+  --input sample_data `
+  --output output `
+  --file-types config\sample_file_types.json `
+  --field-mapping config\sample_field_mapping.json `
+  --metrics config\sample_metrics.json
 ```
-
-The test suite can run directly from a fresh checkout because `pyproject.toml`
-adds `src` to the pytest import path.
 
 ## Agent Interface
 
@@ -89,67 +90,58 @@ Generate structured context for an operations analysis assistant:
 python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json
 ```
 
-The static interface file is also available at:
+The static interface file is also available at `agent_interface.json`.
 
-```text
-agent_interface.json
-```
-
-## Bilingual Showcase
-
-Open the overview page for a Chinese and English product explanation:
+## Validation
 
 ```powershell
-start docs\showcase.html
+python -m pytest -q
+python -m factory_excel_ops.cli run --input sample_data --output output
+python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json
 ```
 
-## Packaging
+The test suite can run directly from a fresh checkout because `pyproject.toml`
+adds `src` to the pytest import path.
 
-Create a clean package for another workstation or an adapter build:
+## Product Materials
 
-```powershell
-python scripts\package_project.py --name factory-excel-ops-dashboard --output output
-```
+- [Public evolution](docs/product_evolution.md)
+- [Architecture](docs/architecture.md)
+- [Configuration cookbook](docs/configuration_cookbook.md)
+- [Data safety checklist](docs/data_safety_checklist.md)
+- [Roadmap](docs/roadmap.md)
+- [Private adapter guide](docs/private_adapter_guide.md)
+- [Agent interface guide](docs/agent_interface.md)
+- [Bilingual showcase](docs/showcase.html)
 
 ## Project Structure
 
 ```text
 factory-excel-ops-dashboard/
   agent_interface.json     Machine-readable integration contract
-  config/                 Example classification and field mapping config
-  docs/                   Product overview and adapter notes
+  config/                 Example source, field, and metric profiles
+  docs/                   Product, adapter, architecture, and safety notes
   sample_data/            Synthetic demo data only
   scripts/                Demo runner and clean package helper
   src/factory_excel_ops/  Reusable Python package
   tests/                  Regression tests for the public demo
 ```
 
-## Data Flow
+## Packaging
 
-```mermaid
-flowchart LR
-  A["Spreadsheet files"] --> B["File classifier"]
-  B --> C["Field mapper"]
-  C --> D["Standard records"]
-  D --> E["Summary engine"]
-  E --> F["HTML dashboard"]
+Create a clean package for another workstation or adapter build:
+
+```powershell
+python scripts\package_project.py --name factory-excel-ops-dashboard --output output
 ```
 
-## Configuration
+Generated packages belong in `output/` or another ignored folder.
 
-The project uses JSON configuration files:
+## Current Version
 
-- `config/sample_file_types.json` describes file type signatures.
-- `config/sample_field_mapping.json` maps source headers to standard fields.
-
-Teams can copy these files into their own adapter folder and replace the sample
-signatures with their own workbook rules.
-
-## Security and Privacy
-
-Use demo or masked data for examples. Keep production exports, customer lists,
-supplier lists, BOM files, shipment schedules, logs, and packaged executables
-outside the source tree unless they are intentionally prepared as examples.
+`0.2.0` turns the showcase from a fixed manufacturing demo into a configurable
+operations data workbench with metric profiles, generic source naming, stronger
+header normalization, refreshed docs, and GitHub collaboration templates.
 
 ## License
 

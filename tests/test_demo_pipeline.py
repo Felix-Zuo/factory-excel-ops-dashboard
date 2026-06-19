@@ -4,6 +4,7 @@ from pathlib import Path
 from factory_excel_ops.classifier import FileClassifier
 from factory_excel_ops.field_mapper import FieldMapper
 from factory_excel_ops.ingest import ingest_paths, summarize
+from factory_excel_ops.metrics import load_metric_specs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,10 +14,11 @@ class DemoPipelineTest(unittest.TestCase):
     def test_demo_files_classify_and_summarize(self):
         classifier = FileClassifier.from_json(ROOT / "config" / "sample_file_types.json")
         mapper = FieldMapper.from_json(ROOT / "config" / "sample_field_mapping.json")
+        metric_specs = load_metric_specs(ROOT / "config" / "sample_metrics.json")
         paths = sorted((ROOT / "sample_data").glob("*.csv"))
 
         records, warnings = ingest_paths(paths, classifier, mapper)
-        summary = summarize(records, file_count=len(paths), warnings=warnings)
+        summary = summarize(records, file_count=len(paths), warnings=warnings, metric_specs=metric_specs)
 
         self.assertEqual(warnings, [])
         self.assertEqual(summary.file_count, 5)
@@ -27,6 +29,37 @@ class DemoPipelineTest(unittest.TestCase):
         self.assertEqual(summary.shipment_qty, 50)
         self.assertEqual(summary.purchase_qty, 400)
         self.assertEqual(summary.production_qty, 130)
+        self.assertEqual(
+            summary.by_source_type,
+            {
+                "demand": 3,
+                "fulfillment": 2,
+                "inventory": 4,
+                "replenishment": 2,
+                "work_output": 3,
+            },
+        )
+        self.assertEqual([metric.key for metric in summary.metrics], [
+            "inventory_items",
+            "out_of_stock_items",
+            "order_demand_qty",
+            "shipment_qty",
+            "purchase_qty",
+            "production_qty",
+        ])
+
+    def test_field_mapping_normalizes_common_header_noise(self):
+        mapper = FieldMapper.from_json(ROOT / "config" / "sample_field_mapping.json")
+
+        normalized = mapper.normalize({
+            "Item Code": "SKU-9001",
+            "Available Qty (EA)": "12",
+            "Due-Date": "2026-07-20",
+        })
+
+        self.assertEqual(normalized["item_code"], "SKU-9001")
+        self.assertEqual(normalized["available_qty"], "12")
+        self.assertEqual(normalized["source_date"], "2026-07-20")
 
 
 if __name__ == "__main__":

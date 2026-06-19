@@ -1,4 +1,0 @@
-order_no,customer,product_code,demand_qty,required_date
-SO-001,Demo Customer A,FG-6006-A,80,2026-07-05
-SO-002,Demo Customer B,FG-6006-B,35,2026-07-12
-SO-003,Demo Customer C,FG-6205-A,20,2026-07-15

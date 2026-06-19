@@ -11,7 +11,7 @@
   <g filter="url(#shadow)" font-family="Segoe UI, Arial">
     <rect x="56" y="150" width="160" height="110" rx="20" fill="#ffffff" stroke="#d8e1ee"/>
     <text x="136" y="193" text-anchor="middle" font-size="18" font-weight="800" fill="#142033">Exports</text>
-    <text x="136" y="222" text-anchor="middle" font-size="13" fill="#64748b">ERP / WMS / MES</text>
+    <text x="136" y="222" text-anchor="middle" font-size="13" fill="#64748b">CSV / XLSX exports</text>
     <path d="M224 205 H310" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
     <rect x="320" y="150" width="160" height="110" rx="20" fill="#ffffff" stroke="#d8e1ee"/>
     <text x="400" y="193" text-anchor="middle" font-size="18" font-weight="800" fill="#142033">Classifier</text>

@@ -6,7 +6,8 @@ safe for public use.
 ## Rules
 
 - Do not commit real company exports.
-- Do not commit customer, supplier, order, BOM, shipment, or production data.
+- Do not commit customer, supplier, employee, order, BOM, shipment, finance,
+  HR, production, procurement, or service data.
 - Add synthetic fixtures for tests.
 - Keep private adapters outside this public repository.
 - Add a regression test when changing classification or field mapping behavior.

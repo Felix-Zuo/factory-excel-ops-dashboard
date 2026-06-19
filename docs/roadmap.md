@@ -1,0 +1,35 @@
+# Roadmap
+
+This roadmap keeps public core work separate from private adapter work.
+
+## Now: 0.2.x Stabilization
+
+- Keep the default profile generic and synthetic.
+- Add tests for any new metric type.
+- Improve warning messages for unknown or low-confidence files.
+- Keep package safety checks strict.
+- Document adapter patterns instead of committing private adapters.
+
+## Next: 0.3.x Profile Maturity
+
+- Add a profile validator for file type, field mapping, and metric JSON.
+- Export a source audit table that shows matched headers and missing fields.
+- Add confidence thresholds to warn on ambiguous file classification.
+- Add optional CSV export for metric cards and source counts.
+- Add a small HTML table explorer based only on normalized public records.
+
+## Later: 0.4.x Workflow Readiness
+
+- Add an adapter test harness with synthetic fixture generation.
+- Support multi-sheet workbook selection rules.
+- Add local-only dashboard serving for environments that block `file://` links.
+- Add bounded run logs that avoid storing raw row values by default.
+- Add a release checklist command that runs tests, packaging, and leak scans.
+
+## Out Of Scope For Public Core
+
+- Private ERP/WMS/MES credentials.
+- Company-specific workbook templates.
+- Desktop binaries and bundled Python runtimes.
+- Remote upload or SaaS synchronization.
+- Customer, supplier, employee, order, BOM, shipment, finance, or HR data.

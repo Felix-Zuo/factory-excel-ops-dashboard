@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
 from .classifier import FileClassifier
 from .field_mapper import FieldMapper
 from .io import read_table
+from .metrics import DEFAULT_METRIC_SPECS, compute_metrics, metric_value
 from .models import DashboardSummary, SourceRef, StandardRecord
 
 
@@ -36,48 +37,27 @@ def ingest_paths(paths: Iterable[Path], classifier: FileClassifier, mapper: Fiel
     return records, warnings
 
 
-def summarize(records: list[StandardRecord], file_count: int, warnings: list[str] | None = None) -> DashboardSummary:
+def summarize(
+    records: list[StandardRecord],
+    file_count: int,
+    warnings: list[str] | None = None,
+    metric_specs: list[dict[str, object]] | None = None,
+) -> DashboardSummary:
     """Compute a compact operational summary for the dashboard."""
 
     by_source = Counter(record.source_type for record in records)
-    inventory_by_item: dict[str, float] = defaultdict(float)
-    order_demand = 0.0
-    shipment_qty = 0.0
-    purchase_qty = 0.0
-    production_qty = 0.0
-
-    for record in records:
-        fields = record.fields
-        item_code = str(fields.get("item_code", "")).strip()
-        if record.source_type == "inventory" and item_code:
-            inventory_by_item[item_code] += _to_float(fields.get("available_qty"))
-        elif record.source_type == "sales_order":
-            order_demand += _to_float(fields.get("demand_qty"))
-        elif record.source_type == "shipment":
-            shipment_qty += _to_float(fields.get("shipment_qty"))
-        elif record.source_type == "purchase_plan":
-            purchase_qty += _to_float(fields.get("purchase_qty"))
-        elif record.source_type == "production":
-            production_qty += _to_float(fields.get("production_qty"))
+    metrics = compute_metrics(records, metric_specs or DEFAULT_METRIC_SPECS)
 
     return DashboardSummary(
         file_count=file_count,
         record_count=len(records),
-        inventory_items=len(inventory_by_item),
-        out_of_stock_items=sum(1 for qty in inventory_by_item.values() if qty <= 0),
-        order_demand_qty=order_demand,
-        shipment_qty=shipment_qty,
-        purchase_qty=purchase_qty,
-        production_qty=production_qty,
+        inventory_items=int(metric_value(metrics, "inventory_items")),
+        out_of_stock_items=int(metric_value(metrics, "out_of_stock_items")),
+        order_demand_qty=metric_value(metrics, "order_demand_qty"),
+        shipment_qty=metric_value(metrics, "shipment_qty"),
+        purchase_qty=metric_value(metrics, "purchase_qty"),
+        production_qty=metric_value(metrics, "production_qty"),
         by_source_type=dict(sorted(by_source.items())),
+        metrics=metrics,
         warnings=warnings or [],
     )
-
-
-def _to_float(value: object) -> float:
-    if value in (None, ""):
-        return 0.0
-    try:
-        return float(str(value).replace(",", ""))
-    except ValueError:
-        return 0.0

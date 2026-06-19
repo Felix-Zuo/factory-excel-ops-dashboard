@@ -1,0 +1,55 @@
+{
+  "profile": "operations-data-workbench.v1",
+  "metrics": [
+    {
+      "key": "inventory_items",
+      "label": "Tracked Items",
+      "type": "distinct_count",
+      "source_type": "inventory",
+      "field": "item_code",
+      "description": "Distinct items present in the inventory or asset snapshot."
+    },
+    {
+      "key": "out_of_stock_items",
+      "label": "Zero / Negative Stock",
+      "type": "count_group_lte",
+      "source_type": "inventory",
+      "group_by": "item_code",
+      "value_field": "available_qty",
+      "threshold": 0,
+      "description": "Item groups whose summed available quantity is zero or below."
+    },
+    {
+      "key": "order_demand_qty",
+      "label": "Demand Qty",
+      "type": "sum",
+      "source_type": "demand",
+      "field": "demand_qty",
+      "unit": "units"
+    },
+    {
+      "key": "shipment_qty",
+      "label": "Fulfilled Qty",
+      "type": "sum",
+      "source_type": "fulfillment",
+      "field": "fulfilled_qty",
+      "unit": "units"
+    },
+    {
+      "key": "purchase_qty",
+      "label": "Replenishment Qty",
+      "type": "sum",
+      "source_type": "replenishment",
+      "field": "replenishment_qty",
+      "unit": "units"
+    },
+    {
+      "key": "production_qty",
+      "label": "Work Output Qty",
+      "type": "sum",
+      "source_type": "work_output",
+      "field": "output_qty",
+      "unit": "units"
+    }
+  ]
+}
