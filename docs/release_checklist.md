@@ -14,6 +14,7 @@ Use this checklist before tagging or pushing a public showcase update.
 
 ```powershell
 python -m pytest -q
+python -m factory_excel_ops.cli validate-config
 python -m factory_excel_ops.cli run --input sample_data --output output
 python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json
 python scripts\package_project.py --name factory-excel-ops-dashboard-release-check --output output

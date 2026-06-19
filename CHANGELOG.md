@@ -3,6 +3,38 @@
 All notable public changes to Factory Excel Ops Dashboard are recorded here.
 The project uses semantic versions while it is still pre-1.0.
 
+## [0.2.1] - 2026-06-19
+
+### Added
+
+- Added `validate-config` CLI command for source, field, and metric profile
+  validation.
+- Added GitHub Actions CI for tests, config validation, demo generation,
+  analysis-context generation, package creation, and package safety checks.
+- Added Dependabot configuration for Python and GitHub Actions dependencies.
+- Added `.editorconfig` and Python `dev` optional dependencies.
+
+### Changed
+
+- Classification now normalizes header tokens before scoring, so headers such
+  as `Item Code` and `Available Qty (EA)` match public profile signatures.
+- The run command now validates config before processing and prints data
+  warnings directly in CLI output.
+- File ingestion now skips low-confidence classifications by default.
+
+### Fixed
+
+- Unsupported metric types now fail explicitly instead of silently returning
+  zero.
+
+### Verified
+
+- `python -m pytest -q`
+- `python -m factory_excel_ops.cli validate-config`
+- `python -m factory_excel_ops.cli run --input sample_data --output output`
+- `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json`
+- `python scripts\package_project.py --name factory-excel-ops-dashboard-release-check --output output`
+
 ## [0.2.0] - 2026-06-19
 
 ### Added

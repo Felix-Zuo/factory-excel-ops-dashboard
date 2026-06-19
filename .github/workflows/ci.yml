@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test and package safety
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Validate config
+        run: python -m factory_excel_ops.cli validate-config
+
+      - name: Test
+        run: python -m pytest -q
+
+      - name: Run demo pipeline
+        run: python -m factory_excel_ops.cli run --input sample_data --output output
+
+      - name: Build analysis context
+        run: python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json
+
+      - name: Build package
+        run: python scripts/package_project.py --name ci-package --output output
+
+      - name: Check package contents
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          package = Path("output/ci-package.zip")
+          forbidden_suffixes = {".7z", ".exe", ".rar", ".xls", ".xlsm", ".xlsx", ".zip"}
+          forbidden_parts = {"input", "dropbox", "backup", "diagnostics"}
+          with ZipFile(package) as archive:
+              names = archive.namelist()
+          bad = []
+          for name in names:
+              path = Path(name)
+              lowered_parts = {part.lower() for part in path.parts}
+              if lowered_parts & forbidden_parts:
+                  bad.append(name)
+              if any(part.lower().startswith("output") for part in path.parts):
+                  bad.append(name)
+              if any(part.lower().endswith(".egg-info") for part in path.parts):
+                  bad.append(name)
+              if path.suffix.lower() in forbidden_suffixes:
+                  bad.append(name)
+              if path.suffix.lower() == ".csv" and path.parts[:1] != ("sample_data",):
+                  bad.append(name)
+          if bad:
+              raise SystemExit("Forbidden package entries: " + ", ".join(sorted(set(bad))))
+          print(f"Checked {len(names)} package entries")
+          PY

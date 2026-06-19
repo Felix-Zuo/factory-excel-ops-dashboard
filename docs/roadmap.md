@@ -6,15 +6,13 @@ This roadmap keeps public core work separate from private adapter work.
 
 - Keep the default profile generic and synthetic.
 - Add tests for any new metric type.
-- Improve warning messages for unknown or low-confidence files.
+- Improve source audit visibility for unknown or low-confidence files.
 - Keep package safety checks strict.
 - Document adapter patterns instead of committing private adapters.
 
 ## Next: 0.3.x Profile Maturity
 
-- Add a profile validator for file type, field mapping, and metric JSON.
 - Export a source audit table that shows matched headers and missing fields.
-- Add confidence thresholds to warn on ambiguous file classification.
 - Add optional CSV export for metric cards and source counts.
 - Add a small HTML table explorer based only on normalized public records.
 

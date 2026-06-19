@@ -9,6 +9,8 @@ venv/
 
 # Local output
 output/
+output*/
+*.egg-info/
 *.log
 *.tmp
 *.bak

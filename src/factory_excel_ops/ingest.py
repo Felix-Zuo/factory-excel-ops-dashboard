@@ -13,7 +13,12 @@ from .metrics import DEFAULT_METRIC_SPECS, compute_metrics, metric_value
 from .models import DashboardSummary, SourceRef, StandardRecord
 
 
-def ingest_paths(paths: Iterable[Path], classifier: FileClassifier, mapper: FieldMapper) -> tuple[list[StandardRecord], list[str]]:
+def ingest_paths(
+    paths: Iterable[Path],
+    classifier: FileClassifier,
+    mapper: FieldMapper,
+    min_confidence: float = 0.2,
+) -> tuple[list[StandardRecord], list[str]]:
     """Classify and normalize the given spreadsheet paths."""
 
     records: list[StandardRecord] = []
@@ -22,6 +27,12 @@ def ingest_paths(paths: Iterable[Path], classifier: FileClassifier, mapper: Fiel
         classification = classifier.classify(path)
         if classification.source_type == "unknown":
             warnings.append(f"{path.name}: unknown file type")
+            continue
+        if classification.confidence < min_confidence:
+            warnings.append(
+                f"{path.name}: low classification confidence "
+                f"({classification.confidence:.2f}) for {classification.source_type}"
+            )
             continue
         for row_index, row in enumerate(read_table(path), start=2):
             fields = mapper.normalize(row)

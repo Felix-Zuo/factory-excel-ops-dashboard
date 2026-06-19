@@ -1,5 +1,10 @@
 # Factory Excel Ops Dashboard
 
+[![CI](https://github.com/Felix-Zuo/factory-excel-ops-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/Felix-Zuo/factory-excel-ops-dashboard/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-3776AB)
+![License](https://img.shields.io/badge/license-MIT-0f766e)
+![Mode](https://img.shields.io/badge/mode-local--first-334155)
+
 Local-first spreadsheet operations workbench for teams that still run critical
 processes through Excel, CSV exports, shared folders, and manual reporting.
 
@@ -37,6 +42,7 @@ present in this public repository.
 py -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.txt
 .\.venv\Scripts\python -m pip install -e .
+.\.venv\Scripts\python -m factory_excel_ops.cli validate-config
 .\.venv\Scripts\python -m factory_excel_ops.cli run --input sample_data --output output
 ```
 
@@ -96,6 +102,7 @@ The static interface file is also available at `agent_interface.json`.
 
 ```powershell
 python -m pytest -q
+python -m factory_excel_ops.cli validate-config
 python -m factory_excel_ops.cli run --input sample_data --output output
 python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json
 ```
@@ -109,6 +116,9 @@ adds `src` to the pytest import path.
 - [Architecture](docs/architecture.md)
 - [Configuration cookbook](docs/configuration_cookbook.md)
 - [Data safety checklist](docs/data_safety_checklist.md)
+- [Quality gates](docs/quality_gates.md)
+- [Threat model](docs/threat_model.md)
+- [GitHub maintenance](docs/github_maintenance.md)
 - [Roadmap](docs/roadmap.md)
 - [Private adapter guide](docs/private_adapter_guide.md)
 - [Agent interface guide](docs/agent_interface.md)
@@ -139,9 +149,8 @@ Generated packages belong in `output/` or another ignored folder.
 
 ## Current Version
 
-`0.2.0` turns the showcase from a fixed manufacturing demo into a configurable
-operations data workbench with metric profiles, generic source naming, stronger
-header normalization, refreshed docs, and GitHub collaboration templates.
+`0.2.1` adds config validation, CI, Dependabot, safer classification confidence
+handling, richer project governance, and a cleaner GitHub maintenance surface.
 
 ## License
 

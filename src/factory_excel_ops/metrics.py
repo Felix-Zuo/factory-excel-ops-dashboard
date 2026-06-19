@@ -107,7 +107,7 @@ def compute_metrics(records: list[StandardRecord], specs: list[dict[str, Any]] |
         elif metric_type == "count_group_gte":
             value = _count_group_threshold(records, spec, operator="gte")
         else:
-            value = 0
+            raise ValueError(f"Unsupported metric type: {metric_type}")
 
         metrics.append(
             SummaryMetric(

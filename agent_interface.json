@@ -1,6 +1,6 @@
 {
   "name": "Factory Excel Ops Dashboard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "purpose": "Classify spreadsheet exports, normalize fields, compute configurable operations metrics, and export a local dashboard.",
   "entrypoints": [
     {
@@ -11,11 +11,20 @@
         "output_dir": "Folder where summary.json and dashboard.html will be written.",
         "file_types": "Optional JSON source signature config.",
         "field_mapping": "Optional JSON field alias config.",
-        "metrics": "Optional JSON metric profile config."
+        "metrics": "Optional JSON metric profile config.",
+        "min_confidence": "Minimum file classification confidence. Defaults to 0.2.",
+        "max_file_mb": "Maximum input file size in MB. Defaults to 25. Use 0 to disable."
       },
       "outputs": {
         "summary_json": "output/summary.json",
         "dashboard_html": "output/dashboard.html"
+      }
+    },
+    {
+      "name": "validate_config",
+      "command": "python -m factory_excel_ops.cli validate-config --file-types <file_types_json> --field-mapping <field_mapping_json> --metrics <metrics_json>",
+      "outputs": {
+        "status": "Exit code 0 when config is valid, 2 when errors are found."
       }
     },
     {

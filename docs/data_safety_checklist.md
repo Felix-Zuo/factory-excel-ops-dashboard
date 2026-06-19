@@ -41,6 +41,8 @@ Open the generated zip and confirm it contains no:
 - `dropbox/`
 - `backup/`
 - `diagnostics/`
+- `output*`
+- `*.egg-info`
 - Excel workbooks
 - executable packages
 - non-sample CSV files
@@ -50,6 +52,7 @@ Open the generated zip and confirm it contains no:
 Before pushing:
 
 - `python -m pytest -q`
+- `python -m factory_excel_ops.cli validate-config`
 - `python -m factory_excel_ops.cli run --input sample_data --output output`
 - `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json`
 - `git status -sb`

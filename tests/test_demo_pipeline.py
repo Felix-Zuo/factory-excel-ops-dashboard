@@ -5,6 +5,7 @@ from factory_excel_ops.classifier import FileClassifier
 from factory_excel_ops.field_mapper import FieldMapper
 from factory_excel_ops.ingest import ingest_paths, summarize
 from factory_excel_ops.metrics import load_metric_specs
+from factory_excel_ops.validation import validate_profile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,6 +61,50 @@ class DemoPipelineTest(unittest.TestCase):
         self.assertEqual(normalized["item_code"], "SKU-9001")
         self.assertEqual(normalized["available_qty"], "12")
         self.assertEqual(normalized["source_date"], "2026-07-20")
+
+    def test_classifier_normalizes_header_noise(self):
+        path = ROOT / "sample_data" / "inventory_demo.csv"
+        classifier = FileClassifier({
+            "inventory": {
+                "headers": ["Item Code", "Available Qty (EA)"],
+                "values": [],
+                "filename": [],
+            }
+        })
+
+        result = classifier.classify(path)
+
+        self.assertEqual(result.source_type, "inventory")
+        self.assertGreaterEqual(result.confidence, 0.6)
+
+    def test_low_confidence_files_are_warned_and_skipped(self):
+        classifier = FileClassifier({
+            "weak_match": {
+                "headers": [],
+                "values": [],
+                "filename": ["inventory"],
+            }
+        })
+        mapper = FieldMapper.from_json(ROOT / "config" / "sample_field_mapping.json")
+
+        records, warnings = ingest_paths(
+            [ROOT / "sample_data" / "inventory_demo.csv"],
+            classifier,
+            mapper,
+            min_confidence=0.2,
+        )
+
+        self.assertEqual(records, [])
+        self.assertIn("low classification confidence", warnings[0])
+
+    def test_public_profile_validates(self):
+        result = validate_profile(
+            ROOT / "config" / "sample_file_types.json",
+            ROOT / "config" / "sample_field_mapping.json",
+            ROOT / "config" / "sample_metrics.json",
+        )
+
+        self.assertTrue(result.ok, result.errors)
 
 
 if __name__ == "__main__":

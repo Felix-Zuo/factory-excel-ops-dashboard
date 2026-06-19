@@ -8,6 +8,7 @@ handle.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from .io import read_table_preview
@@ -52,7 +53,7 @@ class FileClassifier:
     def classify(self, path: Path) -> ClassifiedFile:
         rows = read_table_preview(path)
         headers = list(rows[0].keys()) if rows else []
-        header_text = " ".join(headers).lower()
+        header_text = " ".join(_normalize_token(header) for header in headers)
         value_text = " ".join(
             str(value).lower()
             for row in rows[:15]
@@ -69,7 +70,7 @@ class FileClassifier:
             score = 0
             reasons: list[str] = []
             for token in signature.get("headers", []):
-                if token.lower() in header_text:
+                if _normalize_token(token) in header_text:
                     score += 4
                     reasons.append(f"header:{token}")
             for token in signature.get("values", []):
@@ -96,3 +97,10 @@ class FileClassifier:
             reasons=best_reasons,
             headers=headers,
         )
+
+
+def _normalize_token(raw: str) -> str:
+    value = str(raw or "").strip().casefold()
+    value = re.sub(r"\([^)]*\)", "", value)
+    value = re.sub(r"[\s_\-/\\.]+", "", value)
+    return value

@@ -24,6 +24,16 @@ python -m factory_excel_ops.cli agent-spec --output output/agent_interface.json
 The exported JSON describes supported file extensions, source types, standard
 fields, config files, integration targets, and command entrypoints.
 
+## Config Validation
+
+```powershell
+python -m factory_excel_ops.cli validate-config
+```
+
+This command validates source signatures, field aliases, metric types,
+duplicate metric keys, and references between metric configs and the declared
+profile. Run it before packaging a custom adapter.
+
 ## Analysis Context
 
 ```powershell
@@ -55,7 +65,9 @@ python -m factory_excel_ops.cli run `
   --output <output_dir> `
   --file-types <file_types.json> `
   --field-mapping <field_mapping.json> `
-  --metrics <metrics.json>
+  --metrics <metrics.json> `
+  --min-confidence 0.2 `
+  --max-file-mb 25
 ```
 
 ## Packaging
