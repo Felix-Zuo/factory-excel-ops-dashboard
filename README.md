@@ -122,7 +122,7 @@ adds `src` to the pytest import path.
 - [Roadmap](docs/roadmap.md)
 - [Private adapter guide](docs/private_adapter_guide.md)
 - [Agent interface guide](docs/agent_interface.md)
-- [Bilingual showcase](docs/showcase.html)
+- [Product showcase page](docs/showcase.html)
 
 ## Project Structure
 
