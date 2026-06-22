@@ -120,6 +120,7 @@ adds `src` to the pytest import path.
 - [Threat model](docs/threat_model.md)
 - [GitHub maintenance](docs/github_maintenance.md)
 - [Roadmap](docs/roadmap.md)
+- [Showcase design benchmark](docs/showcase_design_benchmark.md)
 - [Private adapter guide](docs/private_adapter_guide.md)
 - [Agent interface guide](docs/agent_interface.md)
 - [Product showcase page](docs/showcase.html)

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="820" viewBox="0 0 1360 820" role="img" aria-label="Operations Data Workbench product interface">
+  <defs>
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b1220"/>
+      <stop offset=".58" stop-color="#132638"/>
+      <stop offset="1" stop-color="#12312d"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#38b2ac"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <filter id="drop"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#031019" flood-opacity=".26"/></filter>
+  </defs>
+
+  <rect width="1360" height="820" fill="url(#shell)"/>
+  <rect x="70" y="58" width="1220" height="704" rx="8" fill="#f7f9f8" filter="url(#drop)"/>
+  <rect x="70" y="58" width="1220" height="62" rx="8" fill="#101820"/>
+  <circle cx="103" cy="89" r="7" fill="#f87171"/>
+  <circle cx="127" cy="89" r="7" fill="#fbbf24"/>
+  <circle cx="151" cy="89" r="7" fill="#34d399"/>
+  <text x="186" y="96" font-family="Segoe UI, Arial" font-size="19" font-weight="800" fill="#f8fafc">Operations Data Workbench</text>
+  <text x="1088" y="95" font-family="Segoe UI, Arial" font-size="13" fill="#9fb3c8">local-first / synthetic profile</text>
+
+  <rect x="104" y="150" width="212" height="576" rx="8" fill="#ffffff" stroke="#d9e2df"/>
+  <text x="128" y="184" font-family="Segoe UI, Arial" font-size="14" font-weight="800" fill="#475569">SOURCE PROFILE</text>
+  <g font-family="Segoe UI, Arial">
+    <rect x="128" y="214" width="164" height="42" rx="8" fill="#eef8f5" stroke="#b6ded6"/>
+    <circle cx="148" cy="235" r="6" fill="#0f766e"/>
+    <text x="164" y="240" font-size="14" font-weight="700" fill="#17212b">inventory</text>
+    <rect x="128" y="270" width="164" height="42" rx="8" fill="#fff8ed" stroke="#efd4a4"/>
+    <circle cx="148" cy="291" r="6" fill="#b7791f"/>
+    <text x="164" y="296" font-size="14" font-weight="700" fill="#17212b">demand</text>
+    <rect x="128" y="326" width="164" height="42" rx="8" fill="#eef4ff" stroke="#c7d8fb"/>
+    <circle cx="148" cy="347" r="6" fill="#2663a8"/>
+    <text x="164" y="352" font-size="14" font-weight="700" fill="#17212b">fulfillment</text>
+    <rect x="128" y="382" width="164" height="42" rx="8" fill="#f4f3ff" stroke="#d8d4ff"/>
+    <circle cx="148" cy="403" r="6" fill="#6d5bd0"/>
+    <text x="164" y="408" font-size="14" font-weight="700" fill="#17212b">work output</text>
+  </g>
+  <rect x="128" y="474" width="164" height="124" rx="8" fill="#101820"/>
+  <text x="146" y="506" font-family="Consolas, monospace" font-size="13" fill="#9ae6b4">validate-config</text>
+  <text x="146" y="536" font-family="Consolas, monospace" font-size="13" fill="#bfdbfe">9 tests passed</text>
+  <text x="146" y="566" font-family="Consolas, monospace" font-size="13" fill="#fde68a">package clean</text>
+
+  <rect x="350" y="150" width="560" height="576" rx="8" fill="#ffffff" stroke="#d9e2df"/>
+  <text x="382" y="188" font-family="Segoe UI, Arial" font-size="22" font-weight="800" fill="#17212b">Operational Review</text>
+  <text x="382" y="214" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Configurable metrics from normalized spreadsheet records</text>
+  <g font-family="Segoe UI, Arial">
+    <rect x="382" y="250" width="148" height="100" rx="8" fill="#eef8f5" stroke="#b6ded6"/>
+    <text x="402" y="283" font-size="13" font-weight="800" fill="#475569">Tracked items</text>
+    <text x="402" y="326" font-size="34" font-weight="900" fill="#0f766e">1,284</text>
+    <rect x="552" y="250" width="148" height="100" rx="8" fill="#fff8ed" stroke="#efd4a4"/>
+    <text x="572" y="283" font-size="13" font-weight="800" fill="#475569">Demand lines</text>
+    <text x="572" y="326" font-size="34" font-weight="900" fill="#b7791f">316</text>
+    <rect x="722" y="250" width="148" height="100" rx="8" fill="#eef4ff" stroke="#c7d8fb"/>
+    <text x="742" y="283" font-size="13" font-weight="800" fill="#475569">Fulfilled qty</text>
+    <text x="742" y="326" font-size="34" font-weight="900" fill="#2663a8">42.8k</text>
+  </g>
+  <rect x="382" y="388" width="488" height="180" rx="8" fill="#f8fafc" stroke="#d9e2df"/>
+  <polyline points="418,520 486,488 554,502 622,452 690,464 758,418 834,438" fill="none" stroke="url(#teal)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="418,540 486,536 554,512 622,526 690,492 758,506 834,476" fill="none" stroke="url(#blue)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#94a3b8">
+    <circle cx="418" cy="520" r="5"/><circle cx="486" cy="488" r="5"/><circle cx="554" cy="502" r="5"/><circle cx="622" cy="452" r="5"/><circle cx="690" cy="464" r="5"/><circle cx="758" cy="418" r="5"/><circle cx="834" cy="438" r="5"/>
+  </g>
+  <text x="402" y="620" font-family="Segoe UI, Arial" font-size="14" font-weight="800" fill="#475569">Source mix</text>
+  <rect x="402" y="642" width="420" height="14" rx="7" fill="#e2e8f0"/>
+  <rect x="402" y="642" width="154" height="14" rx="7" fill="#0f766e"/>
+  <rect x="556" y="642" width="96" height="14" rx="7" fill="#b7791f"/>
+  <rect x="652" y="642" width="126" height="14" rx="7" fill="#2663a8"/>
+  <rect x="778" y="642" width="44" height="14" rx="7" fill="#6d5bd0"/>
+
+  <rect x="944" y="150" width="312" height="576" rx="8" fill="#ffffff" stroke="#d9e2df"/>
+  <text x="976" y="188" font-family="Segoe UI, Arial" font-size="20" font-weight="800" fill="#17212b">Agent context</text>
+  <text x="976" y="214" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Bounded JSON for review assistants</text>
+  <rect x="976" y="250" width="248" height="236" rx="8" fill="#101820"/>
+  <text x="998" y="284" font-family="Consolas, monospace" font-size="13" fill="#dce7ef">{</text>
+  <text x="1018" y="314" font-family="Consolas, monospace" font-size="13" fill="#9ae6b4">"signals": 12,</text>
+  <text x="1018" y="344" font-family="Consolas, monospace" font-size="13" fill="#bfdbfe">"warnings": 0,</text>
+  <text x="1018" y="374" font-family="Consolas, monospace" font-size="13" fill="#fde68a">"sources": 5,</text>
+  <text x="1018" y="404" font-family="Consolas, monospace" font-size="13" fill="#fca5a5">"private_data": false</text>
+  <text x="998" y="434" font-family="Consolas, monospace" font-size="13" fill="#dce7ef">}</text>
+  <g font-family="Segoe UI, Arial">
+    <rect x="976" y="526" width="248" height="48" rx="8" fill="#eef8f5" stroke="#b6ded6"/>
+    <text x="998" y="556" font-size="15" font-weight="800" fill="#0f766e">Local HTML dashboard</text>
+    <rect x="976" y="592" width="248" height="48" rx="8" fill="#eef4ff" stroke="#c7d8fb"/>
+    <text x="998" y="622" font-size="15" font-weight="800" fill="#2663a8">summary.json</text>
+    <rect x="976" y="658" width="248" height="48" rx="8" fill="#fff8ed" stroke="#efd4a4"/>
+    <text x="998" y="688" font-size="15" font-weight="800" fill="#b7791f">release package</text>
+  </g>
+</svg>
