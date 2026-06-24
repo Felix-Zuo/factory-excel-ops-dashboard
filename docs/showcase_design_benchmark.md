@@ -6,9 +6,6 @@ copying.
 
 ## References
 
-- [Metabase](https://www.metabase.com/): clear hero positioning, open-source
-  proof, product navigation, and a visible path from dashboarding to governed
-  analytics.
 - [Evidence](https://evidence.dev/): product-focused data-app positioning,
   strong emphasis on polished data products, version control, validation, and
   testing.
@@ -17,6 +14,8 @@ copying.
   unit testing, and CI/CD as part of the product story.
 - [Grafana](https://grafana.com/): strong hero, proof surfaces, ecosystem
   positioning, and trust signals around secure and open foundations.
+- [GitHub Docs: status badges](https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge):
+  public repository health signals should be visible from the README.
 
 ## Applied Principles
 
@@ -25,6 +24,8 @@ copying.
 - Turn quality gates into visible trust signals.
 - Separate public reusable core from private adapter details.
 - Present human-readable outputs and automation-ready contracts together.
+- Present code, configuration, outputs, and release checks in one developer
+  surface instead of scattering them across separate notes.
 - Keep roadmap language focused on public core maturity.
 
 ## Non-Goals

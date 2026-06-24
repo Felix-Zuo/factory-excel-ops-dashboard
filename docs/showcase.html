@@ -81,7 +81,7 @@
       color: #ffffff;
       background:
         linear-gradient(90deg, rgba(11, 18, 32, .96) 0%, rgba(11, 18, 32, .88) 45%, rgba(11, 18, 32, .34) 100%),
-        url("assets/workbench-product.svg") center right / cover no-repeat,
+        url("assets/workbench-product.png") center right / cover no-repeat,
         var(--night);
     }
 
@@ -695,6 +695,297 @@
       line-height: 1.35;
     }
 
+    .developer-workbench {
+      overflow: hidden;
+      border: 1px solid #213145;
+      border-radius: 8px;
+      background: #07111c;
+      color: #dce7ef;
+      box-shadow: var(--shadow);
+    }
+
+    .developer-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .44fr);
+      gap: 20px;
+      align-items: end;
+      border-bottom: 1px solid #223448;
+      background: #0d1b29;
+      padding: 24px;
+    }
+
+    .developer-head .kicker {
+      color: #76d9ce;
+    }
+
+    .developer-head h3 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .developer-head p {
+      margin: 0;
+      color: #b9c7d8;
+      line-height: 1.68;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .status-pill {
+      min-width: 0;
+      border: 1px solid #28445c;
+      border-radius: 8px;
+      background: #0a1724;
+      padding: 12px;
+    }
+
+    .status-pill strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .status-pill span {
+      color: #8ea4bb;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .developer-body {
+      display: grid;
+      grid-template-columns: minmax(260px, .36fr) minmax(0, .64fr);
+      gap: 1px;
+      background: #223448;
+    }
+
+    .runbook,
+    .code-stack {
+      min-width: 0;
+      background: #07111c;
+      padding: 22px;
+    }
+
+    .runbook h4,
+    .file-map h4 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .run-steps {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .run-steps li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border: 1px solid #23374d;
+      border-radius: 8px;
+      background: #0a1724;
+      padding: 12px;
+    }
+
+    .step-no {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 8px;
+      background: #123b38;
+      color: #9af4eb;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .run-steps strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1.32;
+    }
+
+    .run-steps span {
+      color: #91a7bd;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .file-map {
+      margin-top: 18px;
+      border: 1px solid #23374d;
+      border-radius: 8px;
+      background: #0a1724;
+      padding: 16px;
+    }
+
+    .file-map-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .file-map-grid a,
+    .file-map-grid span {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #1d2e42;
+      color: #b9c7d8;
+      font-size: 13px;
+      line-height: 1.45;
+      padding: 0 0 8px;
+    }
+
+    .file-map-grid a:last-child,
+    .file-map-grid span:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .file-map-grid em {
+      flex: 0 0 auto;
+      color: #74d9d0;
+      font-style: normal;
+      font-weight: 900;
+    }
+
+    .code-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+      padding: 5px;
+      border: 1px solid #23374d;
+      border-radius: 8px;
+      background: #0a1724;
+    }
+
+    .code-tab {
+      min-height: 36px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: #91a7bd;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 9px 12px;
+    }
+
+    .code-tab.active {
+      background: #d8fff8;
+      color: #09211f;
+    }
+
+    .code-window {
+      overflow: hidden;
+      border: 1px solid #23374d;
+      border-radius: 8px;
+      background: #050d16;
+    }
+
+    .code-panel {
+      display: none;
+      overflow-x: auto;
+      min-height: 392px;
+      margin: 0;
+      color: #dce7ef;
+      font: 13px/1.68 Consolas, "Cascadia Mono", monospace;
+      padding: 16px 0;
+    }
+
+    .code-panel.active {
+      display: block;
+    }
+
+    .code-panel code {
+      display: block;
+      min-width: 640px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      padding: 0;
+    }
+
+    .code-line {
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr);
+      min-height: 22px;
+      padding: 0 18px 0 0;
+    }
+
+    .line-no {
+      color: #52667b;
+      text-align: right;
+      user-select: none;
+    }
+
+    .line-text {
+      min-width: 0;
+      padding-left: 18px;
+      white-space: pre;
+    }
+
+    .code-comment {
+      color: #8ea4bb;
+    }
+
+    .code-key {
+      color: #9ae6b4;
+    }
+
+    .code-value {
+      color: #bfdbfe;
+    }
+
+    .code-accent {
+      color: #fde68a;
+    }
+
+    .artifact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border-top: 1px solid #223448;
+      background: #223448;
+    }
+
+    .artifact-item {
+      min-width: 0;
+      background: #0a1724;
+      padding: 16px;
+    }
+
+    .artifact-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    .artifact-item span {
+      color: #91a7bd;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     .roadmap {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -781,7 +1072,7 @@
         min-height: 580px;
         background:
           linear-gradient(90deg, rgba(11, 18, 32, .97) 0%, rgba(11, 18, 32, .86) 100%),
-          url("assets/workbench-product.svg") center / cover no-repeat,
+          url("assets/workbench-product.png") center / cover no-repeat,
           var(--night);
       }
 
@@ -806,12 +1097,15 @@
       .section-heading,
       .product-system,
       .split,
-      .boundary {
+      .boundary,
+      .developer-head,
+      .developer-body {
         grid-template-columns: 1fr;
       }
 
       .matrix,
-      .proof-strip-inner {
+      .proof-strip-inner,
+      .artifact-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -868,8 +1162,20 @@
       .matrix,
       .proof-strip-inner,
       .mini-metrics,
-      .roadmap {
+      .roadmap,
+      .status-grid,
+      .artifact-strip {
         grid-template-columns: 1fr;
+      }
+
+      .developer-head,
+      .runbook,
+      .code-stack {
+        padding: 18px;
+      }
+
+      .code-tab {
+        flex: 1 1 44%;
       }
 
       .story-list li {
@@ -908,6 +1214,8 @@
           <a class="en" href="#system">System</a>
           <a class="zh" href="#quality">质量</a>
           <a class="en" href="#quality">Quality</a>
+          <a class="zh" href="#handoff">代码</a>
+          <a class="en" href="#handoff">Code</a>
           <a class="zh" href="#roadmap">路线图</a>
           <a class="en" href="#roadmap">Roadmap</a>
           <div class="language-actions" aria-label="Language switcher">
@@ -996,11 +1304,11 @@
           <div>
             <p class="kicker zh">产品定位</p>
             <p class="kicker en">Positioning</p>
-            <h2 class="zh">像数据产品一样展示，而不是像脚本 demo 一样解释</h2>
-            <h2 class="en">Presented as a data product, not a script demo</h2>
+            <h2 class="zh">从导出文件到可复查的运营结论</h2>
+            <h2 class="en">From exported files to reviewable operating signals</h2>
           </div>
-          <p class="zh">顶尖数据工具的页面会先回答三个问题：它解决什么运营场景、用户为什么能信任结果、后续怎么扩展。这个公开展示页把这些答案放到页面主路径里。</p>
-          <p class="en">Strong data-product pages answer three questions early: what operating problem it solves, why the result can be trusted, and how it extends. This showcase now puts those answers directly in the reading path.</p>
+          <p class="zh">这个工作台面向仍然依赖表格导出、共享文件夹和人工报表的运营团队，把来源识别、字段映射、指标计算和复查交接放到同一条本地流程里。</p>
+          <p class="en">The workbench is built for operations teams that still depend on spreadsheet exports, shared folders, and manual reporting. Source profiling, field mapping, metrics, and review handoff stay in one local flow.</p>
         </div>
         <div class="matrix">
           <article class="tile teal">
@@ -1174,47 +1482,182 @@ python scripts/package_project.py --name release-check --output output</code></p
       <section class="section" id="handoff">
         <div class="section-heading">
           <div>
-            <p class="kicker zh">开发者交接面</p>
-            <p class="kicker en">Developer handoff</p>
-            <h2 class="zh">既能给人看，也能给自动化流程读</h2>
-            <h2 class="en">Readable by people and automation</h2>
+            <p class="kicker zh">代码与交付面</p>
+            <p class="kicker en">Code and delivery surface</p>
+            <h2 class="zh">运行、配置、输出和发布路径放在同一张工作台上</h2>
+            <h2 class="en">Run path, config, outputs, and release checks in one workbench</h2>
           </div>
-          <p class="zh">顶尖开源项目会让评估者很快知道如何运行、如何集成、如何扩展。这里把本地看板、JSON 摘要和 integration spec 都放在同一个产品叙事里。</p>
-          <p class="en">Strong open-source projects make it clear how to run, integrate, and extend. This page puts the local dashboard, JSON summary, and integration spec into one product story.</p>
+          <p class="zh">评估者不需要在 README、源码和脚本之间来回猜。页面直接展示最小运行路径、profile 形态、summary 契约和发布门禁。</p>
+          <p class="en">Reviewers do not need to guess across the README, source tree, and scripts. The page shows the minimum run path, profile shape, summary contract, and release gate together.</p>
         </div>
-        <div class="split">
-          <figure class="figure-panel">
-            <img src="assets/data-flow.svg" alt="Spreadsheet-to-dashboard data flow">
-          </figure>
-          <div class="dark-panel">
-            <h3 class="zh">集成命令</h3>
-            <h3 class="en">Integration commands</h3>
-            <p class="zh">从同一份 summary 生成看板和报表上下文，避免人工复制造成的解释偏差。</p>
-            <p class="en">Generate dashboard and reporting context from the same summary to avoid manual-copy drift.</p>
-            <div class="terminal-frame">
-              <div class="terminal-bar">
-                <span>integration surface</span>
-                <span class="terminal-dots" aria-hidden="true"><span class="terminal-dot red"></span><span class="terminal-dot amber"></span><span class="terminal-dot green"></span></span>
-              </div>
-              <pre class="command-block" aria-label="Integration interface commands"><code>python -m factory_excel_ops.cli integration-spec --output output/integration_interface.json
-python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</code></pre>
+        <div class="developer-workbench">
+          <div class="developer-head">
+            <div>
+              <p class="kicker zh">Developer surface</p>
+              <p class="kicker en">Developer surface</p>
+              <h3 class="zh">一个本地优先的数据产品核心</h3>
+              <h3 class="en">A local-first data product core</h3>
+              <p class="zh">命令行负责可重复运行，JSON profile 负责可移植配置，HTML 与 summary.json 负责复查和交接。</p>
+              <p class="en">The CLI keeps runs repeatable, JSON profiles keep configuration portable, and HTML plus summary.json support review and handoff.</p>
             </div>
-            <div class="mini-metrics">
-              <div class="mini-metric">
-                <strong>HTML</strong>
-                <span class="zh">本地看板</span>
-                <span class="en">Local dashboard</span>
+            <div class="status-grid">
+              <div class="status-pill">
+                <strong>3.10-3.12</strong>
+                <span class="zh">CI 版本矩阵</span>
+                <span class="en">CI version matrix</span>
               </div>
-              <div class="mini-metric">
-                <strong>JSON</strong>
-                <span class="zh">摘要契约</span>
-                <span class="en">Summary contract</span>
+              <div class="status-pill">
+                <strong>5</strong>
+                <span class="zh">通用来源类型</span>
+                <span class="en">Generic source types</span>
               </div>
-              <div class="mini-metric">
-                <strong>Review</strong>
-                <span class="zh">分析上下文</span>
-                <span class="en">Analysis context</span>
+              <div class="status-pill">
+                <strong>12</strong>
+                <span class="zh">回归测试</span>
+                <span class="en">Regression tests</span>
               </div>
+              <div class="status-pill">
+                <strong>0</strong>
+                <span class="zh">真实业务数据</span>
+                <span class="en">Real business data</span>
+              </div>
+            </div>
+          </div>
+          <div class="developer-body">
+            <aside class="runbook" aria-label="Run path">
+              <h4 class="zh">运行路径</h4>
+              <h4 class="en">Run path</h4>
+              <ol class="run-steps">
+                <li>
+                  <span class="step-no">01</span>
+                  <span>
+                    <strong class="zh">安装为本地包</strong>
+                    <strong class="en">Install as a local package</strong>
+                    <span class="zh">保持源码、CLI 和测试在同一个开发循环里。</span>
+                    <span class="en">Keep source, CLI, and tests in one development loop.</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="step-no">02</span>
+                  <span>
+                    <strong class="zh">校验 profile</strong>
+                    <strong class="en">Validate profiles</strong>
+                    <span class="zh">在读取数据前检查来源、字段和指标规则。</span>
+                    <span class="en">Check source, field, and metric rules before data processing.</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="step-no">03</span>
+                  <span>
+                    <strong class="zh">生成看板和摘要</strong>
+                    <strong class="en">Build dashboard and summary</strong>
+                    <span class="zh">同一条管线输出 HTML 和可读 JSON。</span>
+                    <span class="en">One pipeline emits HTML and readable JSON.</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="step-no">04</span>
+                  <span>
+                    <strong class="zh">打包前复查</strong>
+                    <strong class="en">Review before packaging</strong>
+                    <span class="zh">发布包门禁排除私有目录、生成输出和二进制包。</span>
+                    <span class="en">Package gates exclude private folders, generated output, and binary bundles.</span>
+                  </span>
+                </li>
+              </ol>
+              <div class="file-map">
+                <h4 class="zh">关键文件</h4>
+                <h4 class="en">Key files</h4>
+                <div class="file-map-grid">
+                  <a href="../src/factory_excel_ops/cli.py">cli.py <em>entry</em></a>
+                  <a href="../src/factory_excel_ops/classifier.py">classifier.py <em>source</em></a>
+                  <a href="../src/factory_excel_ops/metrics.py">metrics.py <em>metric</em></a>
+                  <a href="../src/factory_excel_ops/dashboard.py">dashboard.py <em>view</em></a>
+                </div>
+              </div>
+            </aside>
+            <div class="code-stack">
+              <div class="code-tabs" role="tablist" aria-label="Code examples">
+                <button class="code-tab active" type="button" data-code-tab="run" aria-controls="code-run" aria-selected="true">
+                  <span class="zh">运行</span><span class="en">Run</span>
+                </button>
+                <button class="code-tab" type="button" data-code-tab="profile" aria-controls="code-profile" aria-selected="false">
+                  <span class="zh">Profile</span><span class="en">Profile</span>
+                </button>
+                <button class="code-tab" type="button" data-code-tab="summary" aria-controls="code-summary" aria-selected="false">
+                  <span class="zh">Summary</span><span class="en">Summary</span>
+                </button>
+                <button class="code-tab" type="button" data-code-tab="release" aria-controls="code-release" aria-selected="false">
+                  <span class="zh">发布</span><span class="en">Release</span>
+                </button>
+              </div>
+              <div class="code-window">
+                <pre class="code-panel active" id="code-run" data-code-panel="run" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text"><span class="code-comment"># create an isolated local workspace</span></span></span>
+<span class="code-line"><span class="line-no">02</span><span class="line-text">py -m venv .venv</span></span>
+<span class="code-line"><span class="line-no">03</span><span class="line-text">.\.venv\Scripts\python -m pip install -e ".[dev]"</span></span>
+<span class="code-line"><span class="line-no">04</span><span class="line-text"></span></span>
+<span class="code-line"><span class="line-no">05</span><span class="line-text"><span class="code-comment"># validate config before reading records</span></span></span>
+<span class="code-line"><span class="line-no">06</span><span class="line-text">.\.venv\Scripts\python -m factory_excel_ops.cli validate-config</span></span>
+<span class="code-line"><span class="line-no">07</span><span class="line-text"></span></span>
+<span class="code-line"><span class="line-no">08</span><span class="line-text"><span class="code-comment"># build the local dashboard and summary</span></span></span>
+<span class="code-line"><span class="line-no">09</span><span class="line-text">.\.venv\Scripts\python -m factory_excel_ops.cli run --input sample_data --output output</span></span>
+<span class="code-line"><span class="line-no">10</span><span class="line-text">start output\dashboard.html</span></span></code></pre>
+
+                <pre class="code-panel" id="code-profile" data-code-panel="profile" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text">{</span></span>
+<span class="code-line"><span class="line-no">02</span><span class="line-text">  <span class="code-key">"inventory"</span>: {</span></span>
+<span class="code-line"><span class="line-no">03</span><span class="line-text">    <span class="code-key">"headers"</span>: [<span class="code-value">"item code"</span>, <span class="code-value">"available qty"</span>],</span></span>
+<span class="code-line"><span class="line-no">04</span><span class="line-text">    <span class="code-key">"values"</span>: [<span class="code-value">"stock"</span>, <span class="code-value">"on hand"</span>],</span></span>
+<span class="code-line"><span class="line-no">05</span><span class="line-text">    <span class="code-key">"filename"</span>: [<span class="code-value">"inventory"</span>, <span class="code-value">"stock"</span>]</span></span>
+<span class="code-line"><span class="line-no">06</span><span class="line-text">  },</span></span>
+<span class="code-line"><span class="line-no">07</span><span class="line-text">  <span class="code-key">"demand"</span>: {</span></span>
+<span class="code-line"><span class="line-no">08</span><span class="line-text">    <span class="code-key">"headers"</span>: [<span class="code-value">"required qty"</span>, <span class="code-value">"due date"</span>],</span></span>
+<span class="code-line"><span class="line-no">09</span><span class="line-text">    <span class="code-key">"values"</span>: [<span class="code-value">"forecast"</span>, <span class="code-value">"order"</span>]</span></span>
+<span class="code-line"><span class="line-no">10</span><span class="line-text">  }</span></span>
+<span class="code-line"><span class="line-no">11</span><span class="line-text">}</span></span></code></pre>
+
+                <pre class="code-panel" id="code-summary" data-code-panel="summary" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text">{</span></span>
+<span class="code-line"><span class="line-no">02</span><span class="line-text">  <span class="code-key">"file_count"</span>: <span class="code-accent">5</span>,</span></span>
+<span class="code-line"><span class="line-no">03</span><span class="line-text">  <span class="code-key">"record_count"</span>: <span class="code-accent">14</span>,</span></span>
+<span class="code-line"><span class="line-no">04</span><span class="line-text">  <span class="code-key">"by_source_type"</span>: {</span></span>
+<span class="code-line"><span class="line-no">05</span><span class="line-text">    <span class="code-key">"inventory"</span>: <span class="code-accent">4</span>, <span class="code-key">"demand"</span>: <span class="code-accent">3</span>, <span class="code-key">"fulfillment"</span>: <span class="code-accent">2</span></span></span>
+<span class="code-line"><span class="line-no">06</span><span class="line-text">  },</span></span>
+<span class="code-line"><span class="line-no">07</span><span class="line-text">  <span class="code-key">"metrics"</span>: [</span></span>
+<span class="code-line"><span class="line-no">08</span><span class="line-text">    {<span class="code-key">"key"</span>: <span class="code-value">"inventory_items"</span>, <span class="code-key">"value"</span>: <span class="code-accent">4</span>},</span></span>
+<span class="code-line"><span class="line-no">09</span><span class="line-text">    {<span class="code-key">"key"</span>: <span class="code-value">"shipment_qty"</span>, <span class="code-key">"value"</span>: <span class="code-accent">50</span>}</span></span>
+<span class="code-line"><span class="line-no">10</span><span class="line-text">  ],</span></span>
+<span class="code-line"><span class="line-no">11</span><span class="line-text">  <span class="code-key">"warnings"</span>: []</span></span>
+<span class="code-line"><span class="line-no">12</span><span class="line-text">}</span></span></code></pre>
+
+                <pre class="code-panel" id="code-release" data-code-panel="release" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text">python -m pytest -q</span></span>
+<span class="code-line"><span class="line-no">02</span><span class="line-text">python -m factory_excel_ops.cli validate-config</span></span>
+<span class="code-line"><span class="line-no">03</span><span class="line-text">python -m factory_excel_ops.cli run --input sample_data --output output</span></span>
+<span class="code-line"><span class="line-no">04</span><span class="line-text">python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</span></span>
+<span class="code-line"><span class="line-no">05</span><span class="line-text">python scripts/package_project.py --name factory-excel-ops-dashboard-v0.2.2 --output output</span></span>
+<span class="code-line"><span class="line-no">06</span><span class="line-text"></span></span>
+<span class="code-line"><span class="line-no">07</span><span class="line-text"><span class="code-comment"># package gate: no private folders, generated output, workbooks, executables, or nested archives</span></span></span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="artifact-strip" aria-label="Generated artifacts">
+            <div class="artifact-item">
+              <strong>dashboard.html</strong>
+              <span class="zh">本地复查看板</span>
+              <span class="en">Local review dashboard</span>
+            </div>
+            <div class="artifact-item">
+              <strong>summary.json</strong>
+              <span class="zh">指标和来源摘要</span>
+              <span class="en">Metrics and source summary</span>
+            </div>
+            <div class="artifact-item">
+              <strong>integration_interface.json</strong>
+              <span class="zh">集成契约</span>
+              <span class="en">Integration contract</span>
+            </div>
+            <div class="artifact-item">
+              <strong>release package</strong>
+              <span class="zh">可复查交付包</span>
+              <span class="en">Reviewable delivery bundle</span>
             </div>
           </div>
         </div>
@@ -1266,16 +1709,16 @@ python -m factory_excel_ops.cli analysis-context --summary output/summary.json -
       </section>
 
       <section class="final-band">
-        <h2 class="zh">公开展示页现在对齐成熟产品叙事</h2>
-        <h2 class="en">The showcase now follows a mature product narrative</h2>
-        <p class="zh">页面展示的是一个可运行、可验证、可扩展的本地优先运营数据产品核心；它避免暴露私有项目细节，也避免把产品价值藏在零散说明文档里。</p>
-        <p class="en">The page presents a runnable, verifiable, extensible local-first operations data product core. It avoids exposing private project detail and avoids hiding product value across scattered docs.</p>
+        <h2 class="zh">面向公开复用的运营数据工作台</h2>
+        <h2 class="en">An operations data workbench built for public reuse</h2>
+        <p class="zh">这个公开核心保留了可运行代码、通用 profile、测试、质量门禁和交付说明；需要接入真实业务时，只替换配置和私有适配层。</p>
+        <p class="en">The public core keeps runnable code, generic profiles, tests, quality gates, and delivery notes. Real business adoption happens by replacing configuration and private adapter layers.</p>
         <nav class="doc-links" aria-label="Product documents">
           <a href="../README.md">README</a>
           <a href="architecture.md">Architecture</a>
           <a href="quality_gates.md">Quality gates</a>
           <a href="data_safety_checklist.md">Data safety</a>
-          <a href="showcase_design_benchmark.md">Design benchmark</a>
+          <a href="showcase_design_benchmark.md">Product notes</a>
           <a href="roadmap.md">Roadmap</a>
         </nav>
       </section>
@@ -1286,6 +1729,8 @@ python -m factory_excel_ops.cli analysis-context --summary output/summary.json -
     const page = document.documentElement;
     const body = document.body;
     const languageButtons = document.querySelectorAll("[data-set-lang]");
+    const codeTabs = document.querySelectorAll("[data-code-tab]");
+    const codePanels = document.querySelectorAll("[data-code-panel]");
 
     function setLanguage(language) {
       body.dataset.lang = language;
@@ -1299,6 +1744,21 @@ python -m factory_excel_ops.cli analysis-context --summary output/summary.json -
 
     languageButtons.forEach((button) => {
       button.addEventListener("click", () => setLanguage(button.dataset.setLang));
+    });
+
+    function setCodeTab(tabName) {
+      codeTabs.forEach((button) => {
+        const isActive = button.dataset.codeTab === tabName;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", String(isActive));
+      });
+      codePanels.forEach((panel) => {
+        panel.classList.toggle("active", panel.dataset.codePanel === tabName);
+      });
+    }
+
+    codeTabs.forEach((button) => {
+      button.addEventListener("click", () => setCodeTab(button.dataset.codeTab));
     });
   </script>
 </body>

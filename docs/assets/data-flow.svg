@@ -26,5 +26,5 @@
     <text x="946" y="222" text-anchor="middle" font-size="13" fill="#b9c7dc">HTML + JSON</text>
   </g>
   <path d="M664 270 C664 338 820 342 946 270" fill="none" stroke="#26b981" stroke-width="5" stroke-dasharray="10 12"/>
-  <text x="760" y="350" font-family="Segoe UI, Arial" font-size="16" font-weight="700" fill="#26b981">analysis context for intelligent review</text>
+  <text x="760" y="350" font-family="Segoe UI, Arial" font-size="16" font-weight="700" fill="#26b981">structured review package</text>
 </svg>

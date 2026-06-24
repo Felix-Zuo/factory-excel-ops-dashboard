@@ -43,7 +43,7 @@
   </g>
   <rect x="128" y="474" width="164" height="124" rx="8" fill="#101820"/>
   <text x="146" y="506" font-family="Consolas, monospace" font-size="13" fill="#9ae6b4">validate-config</text>
-  <text x="146" y="536" font-family="Consolas, monospace" font-size="13" fill="#bfdbfe">9 tests passed</text>
+  <text x="146" y="536" font-family="Consolas, monospace" font-size="13" fill="#bfdbfe">12 tests passed</text>
   <text x="146" y="566" font-family="Consolas, monospace" font-size="13" fill="#fde68a">package clean</text>
 
   <rect x="350" y="150" width="560" height="576" rx="8" fill="#ffffff" stroke="#d9e2df"/>

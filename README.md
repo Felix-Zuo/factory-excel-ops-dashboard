@@ -5,14 +5,19 @@
 ![License](https://img.shields.io/badge/license-MIT-0f766e)
 ![Mode](https://img.shields.io/badge/mode-local--first-334155)
 
+[Product page](https://felix-zuo.github.io/factory-excel-ops-dashboard/showcase.html)
+· [Architecture](docs/architecture.md)
+· [Quality gates](docs/quality_gates.md)
+· [Roadmap](docs/roadmap.md)
+
 Local-first spreadsheet operations workbench for teams that still run critical
 processes through Excel, CSV exports, shared folders, and manual reporting.
 
 The project classifies incoming files, maps noisy headers into a standard data
 model, computes configurable metrics, and exports a standalone HTML dashboard
-plus JSON summaries for reporting and workflow automation. The public repository uses
+plus JSON summaries for reporting and workflow automation. It ships with
 synthetic data and generic operations terminology so it can be adapted beyond a
-single factory, product line, or private workbook template.
+single factory, product line, or workbook template.
 
 ## What It Does
 
@@ -24,17 +29,12 @@ single factory, product line, or private workbook template.
 - Provides an integration interface for reporting and workflow handoff.
 - Keeps private adapters, real exports, logs, and packages outside Git.
 
-## Public Boundary
+## Data Boundary
 
-This repository is a sanitized showcase and reusable toolkit. It is informed by
-private spreadsheet-operations work, but it does not contain private workbooks,
-customer names, supplier names, BOMs, production logs, desktop binaries, or
-company-specific adapter rules.
-
-The version history documents public productization decisions and sanitized
-capabilities that were folded into this generic toolkit. It is not meant to
-pretend that every private feature, operator workflow, or internal deployment is
-present in this public repository.
+The repository includes reusable code, synthetic fixtures, generic profiles,
+tests, documentation, and packaging checks. Real exports, customer or supplier
+records, BOMs, production logs, desktop binaries, internal deployment paths, and
+company-specific adapter rules stay outside the public core.
 
 ## Quick Start
 
@@ -123,7 +123,7 @@ adds `src` to the pytest import path.
 - [Showcase design benchmark](docs/showcase_design_benchmark.md)
 - [Private adapter guide](docs/private_adapter_guide.md)
 - [Integration interface guide](docs/integration_interface.md)
-- [Product showcase page](docs/showcase.html)
+- [Product page](docs/showcase.html)
 
 ## Project Structure
 
@@ -150,8 +150,9 @@ Generated packages belong in `output/` or another ignored folder.
 
 ## Current Version
 
-`0.2.1` adds config validation, CI, Dependabot, safer classification confidence
-handling, richer project governance, and a cleaner GitHub maintenance surface.
+`0.2.2` publishes the neutral public integration surface, upgrades the product
+page, and keeps the release package boundary focused on reusable source,
+synthetic fixtures, documentation, and validation gates.
 
 ## License
 

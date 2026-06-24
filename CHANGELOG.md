@@ -3,7 +3,14 @@
 All notable public changes to Factory Excel Ops Dashboard are recorded here.
 The project uses semantic versions while it is still pre-1.0.
 
-## Unreleased
+## [0.2.2] - 2026-06-24
+
+### Added
+
+- Upgraded the product page with a code-and-delivery workbench, including run
+  path, profile shape, summary contract, release gate, key files, and generated
+  artifact surface.
+- Added a public product-page entry point for GitHub Pages.
 
 ### Changed
 
@@ -13,6 +20,16 @@ The project uses semantic versions while it is still pre-1.0.
   handoff.
 - Removed public showcase wording that made the project look like a generated
   demo instead of a maintained data product.
+- Reworked README data-boundary language so the public repository reads like a
+  reusable toolkit instead of a private-project explanation.
+
+### Verified
+
+- `python -m pytest -q`
+- `python -m factory_excel_ops.cli validate-config`
+- `python -m factory_excel_ops.cli run --input sample_data --output output`
+- `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json`
+- `python scripts\package_project.py --name factory-excel-ops-dashboard-v0.2.2 --output output`
 
 ## [0.2.1] - 2026-06-19
 

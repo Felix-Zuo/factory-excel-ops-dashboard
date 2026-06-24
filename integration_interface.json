@@ -1,6 +1,6 @@
 {
   "name": "Factory Excel Ops Dashboard",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "purpose": "Classify spreadsheet exports, normalize fields, compute configurable operations metrics, and export a local dashboard.",
   "entrypoints": [
     {

@@ -1,4 +1,5 @@
 import json
+import re
 import unittest
 from dataclasses import asdict
 from pathlib import Path
@@ -140,6 +141,35 @@ class DemoPipelineTest(unittest.TestCase):
         self.assertIn("review_sections", context)
         self.assertIn("review_rules", context)
         self.assertNotIn("role", context)
+
+    def test_public_text_surface_stays_neutral(self):
+        public_paths = [
+            ROOT / "README.md",
+            ROOT / "integration_interface.json",
+            ROOT / "docs" / "showcase.html",
+            ROOT / "docs" / "index.html",
+            ROOT / "docs" / "showcase_design_benchmark.md",
+            ROOT / "docs" / "assets" / "data-flow.svg",
+            ROOT / "docs" / "assets" / "workbench-product.svg",
+        ]
+        text = "\n".join(path.read_text(encoding="utf-8") for path in public_paths)
+        patterns = [
+            r"\b" + "a" + "i" + r"\b",
+            "open" + "ai",
+            "chat" + "gpt",
+            "cop" + "ilot",
+            "assis" + "tant",
+            "ag" + "ent",
+            r"\b" + "ll" + "m" + r"\b",
+            "智" + "能" + "体",
+        ]
+
+        for pattern in patterns:
+            self.assertIsNone(re.search(pattern, text, flags=re.IGNORECASE), pattern)
+
+        showcase = (ROOT / "docs" / "showcase.html").read_text(encoding="utf-8")
+        self.assertIn('data-code-tab="run"', showcase)
+        self.assertIn("release package", showcase)
 
 
 if __name__ == "__main__":
