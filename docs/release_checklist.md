@@ -7,7 +7,7 @@ Use this checklist before tagging or pushing a public showcase update.
 - Update `VERSION`.
 - Update `pyproject.toml`.
 - Update `src/factory_excel_ops/__init__.py`.
-- Update `agent_interface.json`.
+- Update `integration_interface.json`.
 - Add a `CHANGELOG.md` entry.
 
 ## Validation

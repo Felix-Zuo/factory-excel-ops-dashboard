@@ -3,6 +3,17 @@
 All notable public changes to Factory Excel Ops Dashboard are recorded here.
 The project uses semantic versions while it is still pre-1.0.
 
+## Unreleased
+
+### Changed
+
+- Renamed the public integration surface to `integration_interface.json` and
+  `integration-spec`.
+- Reframed structured review output as reporting context for local workflow
+  handoff.
+- Removed public showcase wording that made the project look like a generated
+  demo instead of a maintained data product.
+
 ## [0.2.1] - 2026-06-19
 
 ### Added
@@ -42,8 +53,8 @@ The project uses semantic versions while it is still pre-1.0.
 - Added configurable metric profiles through `config/sample_metrics.json`.
 - Added generic operations source types: `inventory`, `demand`,
   `fulfillment`, `replenishment`, and `work_output`.
-- Added summary metric objects to `summary.json` for dashboards and analysis
-  agents.
+- Added summary metric objects to `summary.json` for dashboards and reporting
+  context.
 - Added public product materials: evolution history, architecture,
   configuration cookbook, roadmap, and data safety checklist.
 - Added GitHub issue templates and a pull request template.
@@ -55,7 +66,7 @@ The project uses semantic versions while it is still pre-1.0.
 - Updated sample data to use synthetic SKU, account, partner, and work-center
   terminology instead of private-product-shaped examples.
 - Updated dashboard cards to render configured metrics instead of fixed labels.
-- Updated analysis-agent context so it does not assume one industry workflow.
+- Updated reporting context so it does not assume one industry workflow.
 - Improved header matching for spacing, separators, casing, and unit suffixes.
 
 ### Fixed
@@ -88,5 +99,5 @@ The project uses semantic versions while it is still pre-1.0.
 
 - Initial sanitized public toolkit baseline.
 - CSV/XLSX ingestion, content-based file classification, field mapping,
-  summary generation, HTML dashboard export, and agent interface.
+  summary generation, HTML dashboard export, and integration interface.
 - Synthetic sample data and public privacy boundaries.

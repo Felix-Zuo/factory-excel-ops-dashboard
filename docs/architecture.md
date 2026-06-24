@@ -26,8 +26,8 @@ flowchart LR
 | `ingest.py` | Convert classified rows into `StandardRecord` objects. |
 | `metrics.py` | Execute configurable metric specs. |
 | `dashboard.py` | Export a standalone local HTML dashboard. |
-| `analysis_agent.py` | Build a bounded context payload for reporting assistants. |
-| `agent_interface.py` | Expose a machine-readable integration contract. |
+| `analysis_context.py` | Build a bounded context payload for reporting workflows. |
+| `integration_interface.py` | Expose a machine-readable integration contract. |
 
 ## Config Contract
 

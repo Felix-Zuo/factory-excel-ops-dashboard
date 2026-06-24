@@ -11,7 +11,7 @@ update is considered ready.
 | Unit tests | `python -m pytest -q` | Protect classifier, field mapping, metrics, packaging, and validation behavior. |
 | Config validation | `python -m factory_excel_ops.cli validate-config` | Catch broken profiles before any spreadsheet is processed. |
 | Demo run | `python -m factory_excel_ops.cli run --input sample_data --output output` | Confirm the public workflow still produces `summary.json` and `dashboard.html`. |
-| Agent context | `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json` | Confirm downstream automation payloads still work. |
+| Reporting context | `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json` | Confirm downstream reporting payloads still work. |
 | Package safety | `python scripts\package_project.py --name release-check --output output` | Confirm packages exclude private data, generated output, and local artifacts. |
 
 ## CI Coverage

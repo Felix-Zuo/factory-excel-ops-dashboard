@@ -46,14 +46,14 @@ Public carry-over:
 ## Stage 4: Summary, Dashboard, And Review Loop
 
 The useful output is not a perfect replica of every workbook. It is a compact
-set of metrics, warnings, and traceable source counts that a human or agent can
+set of metrics, warnings, and traceable source counts that a reviewer can
 review quickly.
 
 Public carry-over:
 
-- `summary.json` is the source of truth for dashboard and agent context.
+- `summary.json` is the source of truth for dashboard and reporting context.
 - The HTML dashboard is standalone and local-first.
-- `analysis-context` creates a bounded payload for reporting assistants.
+- `analysis-context` creates a bounded payload for reporting workflows.
 
 ## Stage 5: Generalized Operations Profile
 

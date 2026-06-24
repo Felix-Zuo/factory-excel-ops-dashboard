@@ -1,4 +1,4 @@
-"""Build structured context for an operations analysis agent."""
+"""Build structured reporting context from a dashboard summary."""
 
 from __future__ import annotations
 
@@ -8,17 +8,17 @@ from typing import Any
 
 
 def build_analysis_context(summary_path: Path, output_path: Path) -> dict[str, Any]:
-    """Convert a dashboard summary into a compact analysis-agent payload."""
+    """Convert a dashboard summary into a compact reporting payload."""
 
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     metrics = summary.get("metrics") or []
     metric_keys = [metric.get("key") for metric in metrics if metric.get("key")]
     context = {
         "schema": "factory_excel_ops.analysis_context.v1",
-        "role": "operations_analysis_agent",
+        "context_type": "operations_review_context",
         "objective": "Explain operational signals, data quality risks, and recommended follow-up checks.",
         "input_summary": summary,
-        "analysis_sections": [
+        "review_sections": [
             {
                 "id": "data_coverage",
                 "title": "Data Coverage",
@@ -38,7 +38,7 @@ def build_analysis_context(summary_path: Path, output_path: Path) -> dict[str, A
                 "expected_output": "Recommend the next spreadsheet, mapping, or metric checks to improve confidence.",
             },
         ],
-        "guardrails": [
+        "review_rules": [
             "Use the supplied summary as the source of truth.",
             "Separate confirmed facts from suggested follow-up checks.",
             "Do not invent source rows that are not present in the summary.",

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Operations Data Workbench | factory-excel-ops-dashboard</title>
-  <meta name="description" content="A local-first spreadsheet operations workbench for configurable source mapping, metrics, dashboards, quality gates, and agent-ready summaries.">
+  <meta name="description" content="A local-first spreadsheet operations workbench for configurable source mapping, metrics, dashboards, quality gates, and reporting-ready summaries.">
   <style>
     :root {
       --canvas: #f5f6f2;
@@ -526,12 +526,58 @@
       line-height: 1.7;
     }
 
+    .terminal-frame {
+      overflow: hidden;
+      border: 1px solid #2b3a4c;
+      border-radius: 8px;
+      background: #07111c;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid #263649;
+      background: #0d1b29;
+      color: #9fb3c8;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 10px 13px;
+      text-transform: uppercase;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .terminal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+      background: #64748b;
+    }
+
+    .terminal-dot.red {
+      background: #f87171;
+    }
+
+    .terminal-dot.amber {
+      background: #fbbf24;
+    }
+
+    .terminal-dot.green {
+      background: #34d399;
+    }
+
     .command-block {
       overflow-x: auto;
       max-width: 100%;
       margin: 0;
-      border: 1px solid #2b3a4c;
-      border-radius: 8px;
+      border: 0;
+      border-radius: 0;
       background: #07111c;
       color: #dce7ef;
       font: 14px/1.72 Consolas, "Cascadia Mono", monospace;
@@ -876,8 +922,8 @@
         <div class="announcement en">Public core: synthetic data, local runtime, configurable profiles</div>
         <h1 id="page-title-zh" class="zh">为表格密集型运营团队打造的数据工作台</h1>
         <h1 id="page-title-en" class="en">A data workbench for spreadsheet-heavy operations teams</h1>
-        <p class="lead zh">把 Excel、CSV 导出和共享目录里的运营数据，转换为可验证的来源识别、统一字段模型、指标摘要、本地看板和智能体上下文。公开版本保持通用，不绑定某个工厂、品类或内部模板。</p>
-        <p class="lead en">Turn Excel, CSV exports, and shared-folder operations data into verified source classification, a unified field model, metric summaries, local dashboards, and agent-ready context. The public edition stays generic instead of binding itself to one factory, product category, or private template.</p>
+        <p class="lead zh">把 Excel、CSV 导出和共享目录里的运营数据，转换为可验证的来源识别、统一字段模型、指标摘要、本地看板和报表上下文。公开版本保持通用，不绑定某个工厂、品类或内部模板。</p>
+        <p class="lead en">Turn Excel, CSV exports, and shared-folder operations data into verified source classification, a unified field model, metric summaries, local dashboards, and reporting-ready context. The public edition stays generic instead of binding itself to one factory, product category, or private template.</p>
         <div class="hero-actions">
           <a class="button-link primary zh" href="#system">查看产品系统</a>
           <a class="button-link primary en" href="#system">View product system</a>
@@ -936,8 +982,8 @@
           <div class="proof-value en">Excludes private inputs and generated output</div>
         </div>
         <div class="proof-item">
-          <div class="proof-label zh">Agent contract</div>
-          <div class="proof-label en">Agent contract</div>
+          <div class="proof-label zh">Integration contract</div>
+          <div class="proof-label en">Integration contract</div>
           <div class="proof-value zh">可审计 summary 与 analysis context</div>
           <div class="proof-value en">Auditable summary and analysis context</div>
         </div>
@@ -978,8 +1024,8 @@
           <article class="tile blue">
             <h3 class="zh">从看板到行动</h3>
             <h3 class="en">Dashboard to action</h3>
-            <p class="zh">结构化摘要可交给报告助手或工作流智能体，继续生成风险说明和检查建议。</p>
-            <p class="en">Structured summaries can feed reporting assistants or workflow agents for risk notes and next checks.</p>
+            <p class="zh">结构化摘要可进入报表、检查清单或工作流交接，继续沉淀风险说明和复查建议。</p>
+            <p class="en">Structured summaries can feed reports, checklists, or workflow handoff packages for risk notes and next checks.</p>
           </article>
         </div>
       </section>
@@ -992,8 +1038,8 @@
             <h2 class="zh">公开核心由四层组成，每一层都能独立审计</h2>
             <h2 class="en">The public core has four auditable layers</h2>
           </div>
-          <p class="zh">页面主视觉不再是抽象插图，而是展示真实产品结构：来源 profile、指标看板、质量门禁和智能体上下文。</p>
-          <p class="en">The primary visual is no longer abstract. It shows the actual product structure: source profiles, metric dashboard, quality gates, and agent context.</p>
+          <p class="zh">页面主视觉不再是抽象插图，而是展示真实产品结构：来源 profile、指标看板、质量门禁和报表上下文。</p>
+          <p class="en">The primary visual is no longer abstract. It shows the actual product structure: source profiles, metric dashboard, quality gates, and review context.</p>
         </div>
         <div class="product-system">
           <figure class="figure-panel">
@@ -1083,11 +1129,17 @@
             <h3 class="en">Public release gate</h3>
             <p class="zh">这些命令既是本地验证路径，也是 CI 里的核心行为。展示页展示的是能被重复验证的工程状态。</p>
             <p class="en">These commands are both the local verification path and the core CI behavior. The page shows an engineering state that can be repeated.</p>
-            <pre class="command-block" aria-label="Quality gate commands"><code>python -m pytest -q
+            <div class="terminal-frame">
+              <div class="terminal-bar">
+                <span>release gate</span>
+                <span class="terminal-dots" aria-hidden="true"><span class="terminal-dot red"></span><span class="terminal-dot amber"></span><span class="terminal-dot green"></span></span>
+              </div>
+              <pre class="command-block" aria-label="Quality gate commands"><code>python -m pytest -q
 python -m factory_excel_ops.cli validate-config
 python -m factory_excel_ops.cli run --input sample_data --output output
 python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json
 python scripts/package_project.py --name release-check --output output</code></pre>
+            </div>
           </div>
         </div>
       </section>
@@ -1100,8 +1152,8 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h2 class="zh">公开版本像产品核心，不像私有项目截图</h2>
             <h2 class="en">The public edition behaves like a product core, not a private-project screenshot</h2>
           </div>
-          <p class="zh">页面强调的是可移植结构：profile、pipeline、dashboard、agent handoff。真实业务导出、内部字段规则和部署细节保持在公开边界之外。</p>
-          <p class="en">The page emphasizes portable structure: profile, pipeline, dashboard, and agent handoff. Real business exports, internal field rules, and deployment details stay outside the public boundary.</p>
+          <p class="zh">页面强调的是可移植结构：profile、pipeline、dashboard、reporting handoff。真实业务导出、内部字段规则和部署细节保持在公开边界之外。</p>
+          <p class="en">The page emphasizes portable structure: profile, pipeline, dashboard, and reporting handoff. Real business exports, internal field rules, and deployment details stay outside the public boundary.</p>
         </div>
         <div class="boundary">
           <div class="boundary-main">
@@ -1127,8 +1179,8 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h2 class="zh">既能给人看，也能给自动化流程读</h2>
             <h2 class="en">Readable by people and automation</h2>
           </div>
-          <p class="zh">顶尖开源项目会让评估者很快知道如何运行、如何集成、如何扩展。这里把本地看板、JSON 摘要和 agent spec 都放在同一个产品叙事里。</p>
-          <p class="en">Strong open-source projects make it clear how to run, integrate, and extend. This page puts the local dashboard, JSON summary, and agent spec into one product story.</p>
+          <p class="zh">顶尖开源项目会让评估者很快知道如何运行、如何集成、如何扩展。这里把本地看板、JSON 摘要和 integration spec 都放在同一个产品叙事里。</p>
+          <p class="en">Strong open-source projects make it clear how to run, integrate, and extend. This page puts the local dashboard, JSON summary, and integration spec into one product story.</p>
         </div>
         <div class="split">
           <figure class="figure-panel">
@@ -1137,10 +1189,16 @@ python scripts/package_project.py --name release-check --output output</code></p
           <div class="dark-panel">
             <h3 class="zh">集成命令</h3>
             <h3 class="en">Integration commands</h3>
-            <p class="zh">从同一份 summary 生成看板和智能体上下文，避免人工复制造成的解释偏差。</p>
-            <p class="en">Generate dashboard and agent context from the same summary to avoid manual-copy drift.</p>
-            <pre class="command-block" aria-label="Agent interface commands"><code>python -m factory_excel_ops.cli agent-spec --output output/agent_interface.json
+            <p class="zh">从同一份 summary 生成看板和报表上下文，避免人工复制造成的解释偏差。</p>
+            <p class="en">Generate dashboard and reporting context from the same summary to avoid manual-copy drift.</p>
+            <div class="terminal-frame">
+              <div class="terminal-bar">
+                <span>integration surface</span>
+                <span class="terminal-dots" aria-hidden="true"><span class="terminal-dot red"></span><span class="terminal-dot amber"></span><span class="terminal-dot green"></span></span>
+              </div>
+              <pre class="command-block" aria-label="Integration interface commands"><code>python -m factory_excel_ops.cli integration-spec --output output/integration_interface.json
 python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</code></pre>
+            </div>
             <div class="mini-metrics">
               <div class="mini-metric">
                 <strong>HTML</strong>
@@ -1153,7 +1211,7 @@ python -m factory_excel_ops.cli analysis-context --summary output/summary.json -
                 <span class="en">Summary contract</span>
               </div>
               <div class="mini-metric">
-                <strong>Agent</strong>
+                <strong>Review</strong>
                 <span class="zh">分析上下文</span>
                 <span class="en">Analysis context</span>
               </div>

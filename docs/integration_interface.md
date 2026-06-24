@@ -1,6 +1,7 @@
-# Agent Interface
+# Integration Interface
 
-This project exposes a small integration contract for automation tools.
+This project exposes a small integration contract for local automation tools
+and reporting workflows.
 
 ## Main Command
 
@@ -18,7 +19,7 @@ Expected result:
 ## Capability Discovery
 
 ```powershell
-python -m factory_excel_ops.cli agent-spec --output output/agent_interface.json
+python -m factory_excel_ops.cli integration-spec --output output/integration_interface.json
 ```
 
 The exported JSON describes supported file extensions, source types, standard
@@ -40,8 +41,8 @@ profile. Run it before packaging a custom adapter.
 python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json
 ```
 
-This command turns the computed summary into a structured payload for an
-analysis agent, reporting assistant, or workflow orchestrator.
+This command turns the computed summary into a structured payload for reporting
+review, workflow handoff, or scheduled quality checks.
 
 ## Adapter Pattern
 

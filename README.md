@@ -10,7 +10,7 @@ processes through Excel, CSV exports, shared folders, and manual reporting.
 
 The project classifies incoming files, maps noisy headers into a standard data
 model, computes configurable metrics, and exports a standalone HTML dashboard
-plus JSON summaries that automation agents can read. The public repository uses
+plus JSON summaries for reporting and workflow automation. The public repository uses
 synthetic data and generic operations terminology so it can be adapted beyond a
 single factory, product line, or private workbook template.
 
@@ -21,7 +21,7 @@ single factory, product line, or private workbook template.
 - Supports configurable source types, field aliases, and metric profiles.
 - Computes stock, demand, fulfillment, replenishment, and work-output metrics.
 - Exports a local HTML dashboard and machine-readable `summary.json`.
-- Provides an agent interface for reporting bots or workflow assistants.
+- Provides an integration interface for reporting and workflow handoff.
 - Keeps private adapters, real exports, logs, and packages outside Git.
 
 ## Public Boundary
@@ -82,21 +82,21 @@ python -m factory_excel_ops.cli run `
   --metrics config\sample_metrics.json
 ```
 
-## Agent Interface
+## Integration Interface
 
 Automation tools can inspect the project contract:
 
 ```powershell
-python -m factory_excel_ops.cli agent-spec --output output\agent_interface.json
+python -m factory_excel_ops.cli integration-spec --output output\integration_interface.json
 ```
 
-Generate structured context for an operations analysis assistant:
+Generate structured context for an operations review workflow:
 
 ```powershell
 python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json
 ```
 
-The static interface file is also available at `agent_interface.json`.
+The static interface file is also available at `integration_interface.json`.
 
 ## Validation
 
@@ -122,14 +122,14 @@ adds `src` to the pytest import path.
 - [Roadmap](docs/roadmap.md)
 - [Showcase design benchmark](docs/showcase_design_benchmark.md)
 - [Private adapter guide](docs/private_adapter_guide.md)
-- [Agent interface guide](docs/agent_interface.md)
+- [Integration interface guide](docs/integration_interface.md)
 - [Product showcase page](docs/showcase.html)
 
 ## Project Structure
 
 ```text
 factory-excel-ops-dashboard/
-  agent_interface.json     Machine-readable integration contract
+  integration_interface.json Machine-readable integration contract
   config/                 Example source, field, and metric profiles
   docs/                   Product, adapter, architecture, and safety notes
   sample_data/            Synthetic demo data only

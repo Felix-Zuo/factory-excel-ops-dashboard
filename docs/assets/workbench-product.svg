@@ -74,8 +74,8 @@
   <rect x="778" y="642" width="44" height="14" rx="7" fill="#6d5bd0"/>
 
   <rect x="944" y="150" width="312" height="576" rx="8" fill="#ffffff" stroke="#d9e2df"/>
-  <text x="976" y="188" font-family="Segoe UI, Arial" font-size="20" font-weight="800" fill="#17212b">Agent context</text>
-  <text x="976" y="214" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Bounded JSON for review assistants</text>
+  <text x="976" y="188" font-family="Segoe UI, Arial" font-size="20" font-weight="800" fill="#17212b">Review context</text>
+  <text x="976" y="214" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Bounded JSON for review workflows</text>
   <rect x="976" y="250" width="248" height="236" rx="8" fill="#101820"/>
   <text x="998" y="284" font-family="Consolas, monospace" font-size="13" fill="#dce7ef">{</text>
   <text x="1018" y="314" font-family="Consolas, monospace" font-size="13" fill="#9ae6b4">"signals": 12,</text>

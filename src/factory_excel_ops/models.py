@@ -43,7 +43,7 @@ class StandardRecord:
 
 @dataclass(frozen=True)
 class SummaryMetric:
-    """One configured metric exported to dashboards and analysis agents."""
+    """One configured metric exported to dashboards and reporting payloads."""
 
     key: str
     label: str
