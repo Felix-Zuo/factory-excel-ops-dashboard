@@ -36,3 +36,5 @@ Review any hits before pushing.
 - Push after tests and data-safety checks pass.
 - Keep repository topics and description aligned with the current product
   boundary.
+- Keep `docs/.nojekyll` in place for the static GitHub Pages site.
+- Confirm the Pages source is `main` / `docs` and the product page returns 200.

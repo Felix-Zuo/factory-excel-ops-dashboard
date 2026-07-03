@@ -3,6 +3,18 @@
 All notable public changes to Factory Excel Ops Dashboard are recorded here.
 The project uses semantic versions while it is still pre-1.0.
 
+## Unreleased
+
+### Added
+
+- Added GitHub Pages static-site marker and social preview metadata for the
+  product page.
+- Added a regression check for public page metadata and the Pages entry point.
+
+### Changed
+
+- Expanded the release checklist with GitHub Pages verification steps.
+
 ## [0.2.2] - 2026-06-24
 
 ### Added

@@ -171,6 +171,17 @@ class DemoPipelineTest(unittest.TestCase):
         self.assertIn('data-code-tab="run"', showcase)
         self.assertIn("release package", showcase)
 
+    def test_public_pages_have_share_metadata(self):
+        showcase = (ROOT / "docs" / "showcase.html").read_text(encoding="utf-8")
+        index = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+
+        self.assertTrue((ROOT / "docs" / ".nojekyll").exists())
+        self.assertIn('rel="canonical"', showcase)
+        self.assertIn('property="og:image"', showcase)
+        self.assertIn('name="twitter:card"', showcase)
+        self.assertIn("workbench-product.png", showcase)
+        self.assertIn("url=showcase.html", index)
+
 
 if __name__ == "__main__":
     unittest.main()
