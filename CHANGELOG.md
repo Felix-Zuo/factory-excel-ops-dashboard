@@ -1,6 +1,6 @@
 # Changelog
 
-All notable public changes to Factory Excel Ops Dashboard are recorded here.
+All notable changes to Factory Excel Ops Dashboard are recorded here.
 The project uses semantic versions while it is still pre-1.0.
 
 ## Unreleased
@@ -9,11 +9,13 @@ The project uses semantic versions while it is still pre-1.0.
 
 - Added GitHub Pages static-site marker and social preview metadata for the
   product page.
-- Added a regression check for public page metadata and the Pages entry point.
+- Added a regression check for product-page metadata and the Pages entry point.
 
 ### Changed
 
 - Expanded the release checklist with GitHub Pages verification steps.
+- Refined README, product page, and product-evolution copy so the GitHub-facing
+  surface reads more like a maintained workbench than a packaging note.
 
 ## [0.2.2] - 2026-06-24
 
@@ -22,18 +24,18 @@ The project uses semantic versions while it is still pre-1.0.
 - Upgraded the product page with a code-and-delivery workbench, including run
   path, profile shape, summary contract, release gate, key files, and generated
   artifact surface.
-- Added a public product-page entry point for GitHub Pages.
+- Added a product-page entry point for GitHub Pages.
 
 ### Changed
 
-- Renamed the public integration surface to `integration_interface.json` and
+- Renamed the integration surface to `integration_interface.json` and
   `integration-spec`.
 - Reframed structured review output as reporting context for local workflow
   handoff.
-- Removed public showcase wording that made the project look like a generated
-  demo instead of a maintained data product.
-- Reworked README data-boundary language so the public repository reads like a
-  reusable toolkit instead of a private-project explanation.
+- Removed wording that made the project look like a throwaway example instead
+  of a maintained data product.
+- Reworked README data-boundary language so the repository reads like a
+  reusable toolkit instead of a project-specific explanation.
 
 ### Verified
 
@@ -49,7 +51,7 @@ The project uses semantic versions while it is still pre-1.0.
 
 - Added `validate-config` CLI command for source, field, and metric profile
   validation.
-- Added GitHub Actions CI for tests, config validation, demo generation,
+- Added GitHub Actions CI for tests, config validation, sample generation,
   analysis-context generation, package creation, and package safety checks.
 - Added Dependabot configuration for Python and GitHub Actions dependencies.
 - Added `.editorconfig` and Python `dev` optional dependencies.
@@ -57,7 +59,7 @@ The project uses semantic versions while it is still pre-1.0.
 ### Changed
 
 - Classification now normalizes header tokens before scoring, so headers such
-  as `Item Code` and `Available Qty (EA)` match public profile signatures.
+  as `Item Code` and `Available Qty (EA)` match default profile signatures.
 - The run command now validates config before processing and prints data
   warnings directly in CLI output.
 - File ingestion now skips low-confidence classifications by default.
@@ -84,26 +86,26 @@ The project uses semantic versions while it is still pre-1.0.
   `fulfillment`, `replenishment`, and `work_output`.
 - Added summary metric objects to `summary.json` for dashboards and reporting
   context.
-- Added public product materials: evolution history, architecture,
+- Added product materials: evolution history, architecture,
   configuration cookbook, roadmap, and data safety checklist.
 - Added GitHub issue templates and a pull request template.
 
 ### Changed
 
-- Reframed the demo from a fixed manufacturing dashboard into a reusable
+- Reframed the sample workflow from a fixed manufacturing dashboard into a reusable
   spreadsheet operations workbench.
-- Updated sample data to use synthetic SKU, account, partner, and work-center
-  terminology instead of private-product-shaped examples.
+- Updated sample data to use generic SKU, account, partner, and work-center
+  terminology instead of one-category-shaped examples.
 - Updated dashboard cards to render configured metrics instead of fixed labels.
 - Updated reporting context so it does not assume one industry workflow.
 - Improved header matching for spacing, separators, casing, and unit suffixes.
 
 ### Fixed
 
-- Prevented the packaging helper from including ignored private data folders,
+- Prevented the packaging helper from including ignored sensitive data folders,
   executable packages, Excel workbooks, or non-sample CSV files.
 - Removed a risky default alias overlap where `completed_qty` could be treated
-  as both fulfillment and work output in the public config.
+  as both fulfillment and work output in the default config.
 
 ### Verified
 
@@ -126,7 +128,7 @@ The project uses semantic versions while it is still pre-1.0.
 
 ### Added
 
-- Initial sanitized public toolkit baseline.
+- Initial reusable toolkit baseline.
 - CSV/XLSX ingestion, content-based file classification, field mapping,
   summary generation, HTML dashboard export, and integration interface.
-- Synthetic sample data and public privacy boundaries.
+- Sample fixture data and privacy boundaries.

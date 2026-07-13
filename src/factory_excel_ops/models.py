@@ -1,8 +1,8 @@
 """Shared data models for normalized factory spreadsheet records.
 
-The public project keeps the model intentionally small. Company-specific
-projects can extend these records through configuration instead of hard-coding
-private sheet names or internal identifiers.
+The workbench keeps the model intentionally small. Local projects can extend
+these records through configuration instead of hard-coding sheet names or
+internal identifiers.
 """
 
 from __future__ import annotations
@@ -57,7 +57,7 @@ class SummaryMetric:
 class DashboardSummary:
     """Computed result exported to JSON and HTML.
 
-    The named quantity fields remain for compatibility with earlier demo
+    The named quantity fields remain for compatibility with earlier sample
     versions. New profiles should read the configured ``metrics`` list.
     """
 

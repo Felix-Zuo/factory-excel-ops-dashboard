@@ -1,4 +1,4 @@
-"""Ingest files, normalize rows, and compute public-demo summaries."""
+"""Ingest files, normalize rows, and compute workbench summaries."""
 
 from __future__ import annotations
 

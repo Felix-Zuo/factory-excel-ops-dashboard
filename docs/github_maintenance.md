@@ -22,7 +22,7 @@ Recommended labels:
 
 Use milestones to group work into product-ready themes:
 
-- `v0.2.x Stabilization`: polish current public profile, CI, validation, and
+- `v0.2.x Stabilization`: polish current default profile, CI, validation, and
   data safety.
 - `v0.3 Profile Maturity`: source audit, profile validator expansion, and
   richer metrics.
@@ -37,12 +37,12 @@ Good issues are small and outcome-focused:
 - "Warn when two source signatures tie"
 - "Add CSV export for metric cards"
 
-Avoid issues that require private data:
+Avoid issues that require sensitive source data:
 
 - real workbook names
 - real customer or supplier examples
-- screenshots with private rows
-- deployment paths from a private machine
+- screenshots with sensitive rows
+- deployment paths from a local machine
 
 ## Release Hygiene
 

@@ -1,7 +1,7 @@
 # Architecture
 
 Factory Excel Ops Dashboard is intentionally small. The core package should
-remain reusable while private projects add adapters around it.
+remain reusable while local projects add adapters around it.
 
 ## Pipeline
 
@@ -31,7 +31,7 @@ flowchart LR
 
 ## Config Contract
 
-The public profile is composed of three JSON files:
+The default profile is composed of three JSON files:
 
 | File | Purpose |
 | --- | --- |
@@ -39,12 +39,12 @@ The public profile is composed of three JSON files:
 | `config/sample_field_mapping.json` | Raw header aliases. |
 | `config/sample_metrics.json` | Dashboard and summary metric definitions. |
 
-Private deployments should copy these files into an adapter repository or local
+Local deployments should copy these files into an adapter repository or local
 ignored folder, then run the CLI with explicit config paths.
 
 ## Metric Types
 
-Supported public metric types:
+Supported metric types:
 
 - `sum`: sum one normalized numeric field.
 - `count`: count records for a source filter.
@@ -72,10 +72,10 @@ Good extensions:
 - Better local readers with explicit file limits.
 - Additional generated artifacts based on `summary.json`.
 
-Avoid in the public core:
+Avoid in the reusable core:
 
 - Company-specific workbook names.
 - Customer or supplier logic.
-- Hard-coded private source fields.
+- Hard-coded source fields from one internal workflow.
 - Direct network uploads.
 - Desktop binaries or bundled runtimes.

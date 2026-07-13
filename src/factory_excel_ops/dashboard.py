@@ -64,7 +64,7 @@ def export_dashboard(summary: DashboardSummary, output_path: Path) -> Path:
 <body>
   <header>
     <h1>Excel Operations Data Workbench</h1>
-    <p>Local-first demo using synthetic spreadsheet operations data.</p>
+    <p>Local-first run using sample spreadsheet operations data.</p>
   </header>
   <main>
     <div class="grid">{card_html}</div>

@@ -16,5 +16,5 @@
 ## Data Safety
 
 - [ ] No real customer, supplier, employee, order, BOM, shipment, finance, HR, production, or procurement data.
-- [ ] No private workbook names, logs, diagnostics, packaged executables, or local output artifacts.
-- [ ] Any new fixtures are synthetic and documented.
+- [ ] No sensitive workbook names, logs, diagnostics, packaged executables, or local output artifacts.
+- [ ] Any new fixtures are sample-based and documented.

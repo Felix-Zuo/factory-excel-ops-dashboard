@@ -1,15 +1,15 @@
 # Contributing
 
 Contributions are welcome when they keep the project generic, local-first, and
-safe for public use.
+safe to share.
 
 ## Rules
 
 - Do not commit real company exports.
 - Do not commit customer, supplier, employee, order, BOM, shipment, finance,
   HR, production, procurement, or service data.
-- Add synthetic fixtures for tests.
-- Keep private adapters outside this public repository.
+- Add sample fixtures for tests.
+- Keep local adapters and sensitive source rules outside this repository.
 - Add a regression test when changing classification or field mapping behavior.
 
 ## Development

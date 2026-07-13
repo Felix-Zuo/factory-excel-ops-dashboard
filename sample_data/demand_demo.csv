@@ -1,4 +1,0 @@
-order_id,account,item_code,demand_qty,due_date
-REQ-001,Demo Account A,SKU-1001,80,2026-07-05
-REQ-002,Demo Account B,SKU-1002,35,2026-07-12
-REQ-003,Demo Account C,SKU-1003,20,2026-07-15

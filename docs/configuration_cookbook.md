@@ -1,11 +1,11 @@
 # Configuration Cookbook
 
-Use this guide when adapting the public toolkit to a new spreadsheet workflow.
+Use this guide when adapting the toolkit to a new spreadsheet workflow.
 
 ## 1. Define Source Types
 
-Create source types based on the role a file plays, not the exact private
-workbook name.
+Create source types based on the role a file plays, not the exact workbook
+name.
 
 Good:
 
@@ -23,8 +23,8 @@ Avoid:
 
 ```json
 {
-  "line_3_private_june_file": {
-    "headers": ["private_internal_header"],
+  "line_3_june_file": {
+    "headers": ["internal_template_header"],
     "filename": ["real_customer_file_name"]
   }
 }
@@ -64,7 +64,7 @@ Metrics should be small, auditable, and easy to explain:
 
 ```powershell
 python -m factory_excel_ops.cli run `
-  --input demo_input `
+  --input sample_input `
   --output output `
   --file-types config\maintenance_file_types.json `
   --field-mapping config\maintenance_field_mapping.json `
@@ -85,7 +85,7 @@ Check:
 
 - Source type names are generic.
 - No real customer, supplier, employee, order, or workbook names are committed.
-- Sample data is synthetic.
+- Sample data is generic and intentionally small.
 - Metrics have clear source fields and units.
 - Unknown files produce warnings instead of being forced into a type.
-- Packaging excludes private input folders and non-sample spreadsheets.
+- Packaging excludes local input folders and non-sample spreadsheets.

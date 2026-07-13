@@ -1,4 +1,4 @@
-"""Command line interface for the public demo."""
+"""Command line interface for the sample workflow."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from .validation import ValidationResult, validate_profile
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the spreadsheet operations demo pipeline.")
+    parser = argparse.ArgumentParser(description="Run the spreadsheet operations sample pipeline.")
     subcommands = parser.add_subparsers(dest="command", required=True)
 
     run = subcommands.add_parser("run", help="Ingest files and export dashboard.")

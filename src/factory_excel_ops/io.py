@@ -1,4 +1,4 @@
-"""Small spreadsheet readers used by the public demo.
+"""Small spreadsheet readers used by the sample workflow.
 
 CSV is supported without dependencies. XLSX is supported through openpyxl when
 installed. The reader returns dictionaries keyed by the header row.

@@ -78,9 +78,9 @@
     "config/sample_metrics.json"
   ],
   "packaging_notes": [
-    "Keep private adapters separate from the core package.",
+    "Keep local adapters separate from the core package.",
     "Load local field mappings and metric profiles from config before running.",
-    "Use sample_data only for demos and tests.",
+    "Use sample_data only for sample runs and tests.",
     "Write generated reports to output or another ignored folder.",
     "Use scripts/package_project.py to create a clean handoff package."
   ],

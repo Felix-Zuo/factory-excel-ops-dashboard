@@ -1,6 +1,6 @@
 # Release Checklist
 
-Use this checklist before tagging or pushing a public showcase update.
+Use this checklist before tagging or pushing a GitHub-facing update.
 
 ## Version
 
@@ -25,7 +25,7 @@ python scripts\package_project.py --name factory-excel-ops-dashboard-release-che
 ```powershell
 git status -sb
 git ls-files
-rg -n "password|secret|token|private_brand" --glob "!**/.git/**" --glob "!output/**"
+rg -n "password|secret|token|internal_brand" --glob "!**/.git/**" --glob "!output/**"
 ```
 
 Review any hits before pushing.

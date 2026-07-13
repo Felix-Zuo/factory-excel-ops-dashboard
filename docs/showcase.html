@@ -243,6 +243,8 @@
       font-size: 58px;
       line-height: 1.04;
       letter-spacing: 0;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
     }
 
     .lead {
@@ -251,6 +253,7 @@
       color: #d7e3ef;
       font-size: 19px;
       line-height: 1.72;
+      overflow-wrap: anywhere;
     }
 
     .hero-actions {
@@ -1131,6 +1134,33 @@
         min-height: 560px;
       }
 
+      .topbar {
+        gap: 16px;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+        font-size: 14px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .brand-subtitle {
+        font-size: 12px;
+      }
+
+      .top-links {
+        gap: 0;
+      }
+
       .top-links a {
         display: none;
       }
@@ -1144,11 +1174,12 @@
       }
 
       .hero-copy {
-        padding: 44px 0 32px;
+        padding: 38px 0 32px;
       }
 
       h1 {
-        font-size: 34px;
+        font-size: 31px;
+        line-height: 1.13;
       }
 
       h2 {
@@ -1157,6 +1188,7 @@
 
       .lead {
         font-size: 16px;
+        line-height: 1.62;
       }
 
       .hero-actions {
@@ -1208,6 +1240,31 @@
         border-bottom: 1px solid var(--line);
       }
     }
+
+    @media (max-width: 420px) {
+      .shell {
+        padding: 0 18px;
+      }
+
+      .hero {
+        min-height: 548px;
+      }
+
+      .announcement {
+        width: 100%;
+        justify-content: center;
+        font-size: 12px;
+        padding: 9px 10px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+
+      .lead {
+        font-size: 15px;
+      }
+    }
   </style>
 </head>
 <body class="lang-block" data-lang="zh">
@@ -1238,12 +1295,12 @@
       </nav>
 
       <section class="hero-copy" aria-labelledby="page-title-zh">
-        <div class="announcement zh">公开核心：合成数据、本地运行、可配置 profile</div>
-        <div class="announcement en">Public core: synthetic data, local runtime, configurable profiles</div>
+        <div class="announcement zh">本地运行 · 可配置 profile · 可复查输出</div>
+        <div class="announcement en">Local runtime · configurable profiles · review-ready outputs</div>
         <h1 id="page-title-zh" class="zh">为表格密集型运营团队打造的数据工作台</h1>
         <h1 id="page-title-en" class="en">A data workbench for spreadsheet-heavy operations teams</h1>
-        <p class="lead zh">把 Excel、CSV 导出和共享目录里的运营数据，转换为可验证的来源识别、统一字段模型、指标摘要、本地看板和报表上下文。公开版本保持通用，不绑定某个工厂、品类或内部模板。</p>
-        <p class="lead en">Turn Excel, CSV exports, and shared-folder operations data into verified source classification, a unified field model, metric summaries, local dashboards, and reporting-ready context. The public edition stays generic instead of binding itself to one factory, product category, or private template.</p>
+        <p class="lead zh">把 Excel、CSV 导出和共享目录里的运营数据，转换为可验证的来源识别、统一字段模型、指标摘要、本地看板和报表上下文。配置层保持通用，便于迁移到不同团队、品类或工作簿结构。</p>
+        <p class="lead en">Turn Excel, CSV exports, and shared-folder operations data into verified source classification, a unified field model, metric summaries, local dashboards, and reporting-ready context. The configuration layer stays portable across teams, categories, and workbook structures.</p>
         <div class="hero-actions">
           <a class="button-link primary zh" href="#system">查看产品系统</a>
           <a class="button-link primary en" href="#system">View product system</a>
@@ -1299,7 +1356,7 @@
           <div class="proof-label zh">Release package</div>
           <div class="proof-label en">Release package</div>
           <div class="proof-value zh">排除私有输入和生成输出</div>
-          <div class="proof-value en">Excludes private inputs and generated output</div>
+          <div class="proof-value en">Excludes sensitive inputs and generated output</div>
         </div>
         <div class="proof-item">
           <div class="proof-label zh">Integration contract</div>
@@ -1355,11 +1412,11 @@
           <div>
             <p class="kicker zh">产品系统</p>
             <p class="kicker en">Product system</p>
-            <h2 class="zh">公开核心由四层组成，每一层都能独立审计</h2>
-            <h2 class="en">The public core has four auditable layers</h2>
+            <h2 class="zh">工作台由四层组成，每一层都能独立审计</h2>
+            <h2 class="en">The workbench has four auditable layers</h2>
           </div>
-          <p class="zh">页面主视觉不再是抽象插图，而是展示真实产品结构：来源 profile、指标看板、质量门禁和报表上下文。</p>
-          <p class="en">The primary visual is no longer abstract. It shows the actual product structure: source profiles, metric dashboard, quality gates, and review context.</p>
+          <p class="zh">主视觉展示的是产品结构本身：来源 profile、指标看板、质量门禁和报表上下文，而不是与业务无关的装饰图。</p>
+          <p class="en">The primary visual shows the product structure itself: source profiles, metric dashboard, quality gates, and review context.</p>
         </div>
         <div class="product-system">
           <figure class="figure-panel">
@@ -1372,7 +1429,7 @@
                 <h3 class="zh">Profile 层</h3>
                 <h3 class="en">Profile layer</h3>
                 <p class="zh">来源签名、字段别名和指标口径都在配置中表达，避免把私有模板固化到代码。</p>
-                <p class="en">Source signatures, field aliases, and metric definitions live in config, not private templates embedded in code.</p>
+                <p class="en">Source signatures, field aliases, and metric definitions live in config, not workbook templates embedded in code.</p>
               </div>
             </li>
             <li>
@@ -1414,8 +1471,8 @@
             <h2 class="zh">把工程证据放在展示页面上</h2>
             <h2 class="en">Put engineering evidence on the page</h2>
           </div>
-          <p class="zh">优秀数据产品不会只展示漂亮图表，还会说明数据边界、发布检查和可维护性。这里展示公开版本真实具备的质量面。</p>
-          <p class="en">Strong data products do not only show attractive charts; they expose boundaries, release checks, and maintainability. This section shows the real public quality surface.</p>
+          <p class="zh">优秀数据产品不会只展示漂亮图表，还会说明数据边界、发布检查和可维护性。这里把可重复验证的质量面直接放在页面上。</p>
+          <p class="en">Strong data products do not only show attractive charts; they expose boundaries, release checks, and maintainability. This section keeps repeatable quality evidence visible.</p>
         </div>
         <div class="split">
           <div class="quality-table">
@@ -1440,14 +1497,14 @@
             <div class="quality-row">
               <div class="quality-key zh">CI 矩阵</div>
               <div class="quality-key en">CI matrix</div>
-              <div class="quality-value zh">GitHub Actions 在 Python 3.10、3.11、3.12 上执行测试、demo 管线、analysis context 和打包检查。</div>
-              <div class="quality-value en">GitHub Actions runs tests, demo pipeline, analysis context, and package checks on Python 3.10, 3.11, and 3.12.</div>
+              <div class="quality-value zh">GitHub Actions 在 Python 3.10、3.11、3.12 上执行测试、样例管线、analysis context 和打包检查。</div>
+              <div class="quality-value en">GitHub Actions runs tests, sample pipeline, analysis context, and package checks on Python 3.10, 3.11, and 3.12.</div>
             </div>
           </div>
           <div class="dark-panel">
-            <h3 class="zh">公开发布门禁</h3>
+            <h3 class="zh">发布门禁</h3>
             <h3 class="en">Public release gate</h3>
-            <p class="zh">这些命令既是本地验证路径，也是 CI 里的核心行为。展示页展示的是能被重复验证的工程状态。</p>
+            <p class="zh">这些命令既是本地验证路径，也是 CI 里的核心行为。页面展示的是能被重复验证的工程状态。</p>
             <p class="en">These commands are both the local verification path and the core CI behavior. The page shows an engineering state that can be repeated.</p>
             <div class="terminal-frame">
               <div class="terminal-bar">
@@ -1467,24 +1524,24 @@ python scripts/package_project.py --name release-check --output output</code></p
       <section class="section">
         <div class="section-heading">
           <div>
-            <p class="kicker zh">通用化边界</p>
-            <p class="kicker en">Generalization boundary</p>
-            <h2 class="zh">公开版本像产品核心，不像私有项目截图</h2>
-            <h2 class="en">The public edition behaves like a product core, not a private-project screenshot</h2>
+            <p class="kicker zh">数据边界</p>
+            <p class="kicker en">Data boundary</p>
+            <h2 class="zh">产品核心可复用，业务适配留在本地</h2>
+            <h2 class="en">Reusable product core, local business adapters</h2>
           </div>
-          <p class="zh">页面强调的是可移植结构：profile、pipeline、dashboard、reporting handoff。真实业务导出、内部字段规则和部署细节保持在公开边界之外。</p>
-          <p class="en">The page emphasizes portable structure: profile, pipeline, dashboard, and reporting handoff. Real business exports, internal field rules, and deployment details stay outside the public boundary.</p>
+          <p class="zh">页面强调的是可移植结构：profile、pipeline、dashboard、reporting handoff。真实业务导出、内部字段规则和部署细节保留在使用方自己的环境里。</p>
+          <p class="en">The page emphasizes portable structure: profile, pipeline, dashboard, and reporting handoff. Real exports, internal field rules, and deployment detail stay in the user's own environment.</p>
         </div>
         <div class="boundary">
           <div class="boundary-main">
-            <h3 class="zh">公开仓库不包含</h3>
-            <h3 class="en">Not in the public repository</h3>
+            <h3 class="zh">仓库不包含</h3>
+            <h3 class="en">Not included</h3>
             <p class="zh">真实 ERP/WMS/MES 导出、客户或供应商记录、员工或订单数据、BOM、发运、财务、人事数据、私有工作簿模板、桌面二进制包、内部部署路径或操作日志。</p>
-            <p class="en">No real ERP/WMS/MES exports, customer or supplier records, employee or order data, BOMs, shipment, finance, HR data, private workbook templates, desktop binaries, internal deployment paths, or operator logs.</p>
+            <p class="en">No real ERP/WMS/MES exports, customer or supplier records, employee or order data, BOMs, shipment, finance, HR data, local workbook templates, desktop binaries, internal deployment paths, or operator logs.</p>
           </div>
           <div class="boundary-note">
-            <h3 class="zh">公开仓库保留</h3>
-            <h3 class="en">Kept in public</h3>
+            <h3 class="zh">仓库保留</h3>
+            <h3 class="en">Included</h3>
             <p class="zh">可复用的分类、映射、指标、看板、分析上下文、测试、配置样例、文档和发布安全门禁。</p>
             <p class="en">Reusable classification, mapping, metrics, dashboards, analysis context, tests, sample configs, docs, and release safety gates.</p>
           </div>
@@ -1573,7 +1630,7 @@ python scripts/package_project.py --name release-check --output output</code></p
                     <strong class="zh">打包前复查</strong>
                     <strong class="en">Review before packaging</strong>
                     <span class="zh">发布包门禁排除私有目录、生成输出和二进制包。</span>
-                    <span class="en">Package gates exclude private folders, generated output, and binary bundles.</span>
+                    <span class="en">Package gates exclude sensitive folders, generated output, and binary bundles.</span>
                   </span>
                 </li>
               </ol>
@@ -1646,7 +1703,7 @@ python scripts/package_project.py --name release-check --output output</code></p
 <span class="code-line"><span class="line-no">04</span><span class="line-text">python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</span></span>
 <span class="code-line"><span class="line-no">05</span><span class="line-text">python scripts/package_project.py --name factory-excel-ops-dashboard-v0.2.2 --output output</span></span>
 <span class="code-line"><span class="line-no">06</span><span class="line-text"></span></span>
-<span class="code-line"><span class="line-no">07</span><span class="line-text"><span class="code-comment"># package gate: no private folders, generated output, workbooks, executables, or nested archives</span></span></span></code></pre>
+<span class="code-line"><span class="line-no">07</span><span class="line-text"><span class="code-comment"># package gate: no sensitive folders, generated output, workbooks, executables, or nested archives</span></span></span></code></pre>
               </div>
             </div>
           </div>
@@ -1683,8 +1740,8 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h2 class="zh">后续优化围绕可审计、可配置、可交付</h2>
             <h2 class="en">Next work focuses on auditability, configurability, and delivery readiness</h2>
           </div>
-          <p class="zh">路线图展示的是公开核心的演进方向，而不是私有业务功能清单。</p>
-          <p class="en">The roadmap shows public-core evolution, not a list of private business features.</p>
+          <p class="zh">路线图聚焦可复用引擎、profile 成熟度和本地交付能力，而不是某个团队的业务功能清单。</p>
+          <p class="en">The roadmap focuses on reusable engine work, profile maturity, and local delivery readiness instead of one team's business feature list.</p>
         </div>
         <div class="roadmap">
           <article class="roadmap-stage now">
@@ -1692,7 +1749,7 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h3 class="en">0.2.x Stabilization</h3>
             <ul>
               <li class="zh">保持默认 profile 通用且合成。</li>
-              <li class="en">Keep the default profile generic and synthetic.</li>
+              <li class="en">Keep the default profile generic and sample-backed.</li>
               <li class="zh">强化来源审计和包内容检查。</li>
               <li class="en">Improve source audit and package checks.</li>
             </ul>
@@ -1712,7 +1769,7 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h3 class="en">0.4 Workflow Readiness</h3>
             <ul>
               <li class="zh">增加合成适配器测试夹具。</li>
-              <li class="en">Add synthetic adapter fixture tests.</li>
+              <li class="en">Add adapter fixture tests.</li>
               <li class="zh">提供本地看板服务和发布检查命令。</li>
               <li class="en">Add local dashboard serving and release checks.</li>
             </ul>
@@ -1721,10 +1778,10 @@ python scripts/package_project.py --name release-check --output output</code></p
       </section>
 
       <section class="final-band">
-        <h2 class="zh">面向公开复用的运营数据工作台</h2>
-        <h2 class="en">An operations data workbench built for public reuse</h2>
-        <p class="zh">这个公开核心保留了可运行代码、通用 profile、测试、质量门禁和交付说明；需要接入真实业务时，只替换配置和私有适配层。</p>
-        <p class="en">The public core keeps runnable code, generic profiles, tests, quality gates, and delivery notes. Real business adoption happens by replacing configuration and private adapter layers.</p>
+        <h2 class="zh">可运行、可验证、可迁移的运营数据工作台</h2>
+        <h2 class="en">Runnable, verifiable, and portable operations data workbench</h2>
+        <p class="zh">代码、profile、测试、质量门禁和交付说明保持在同一套产品结构里；接入真实业务时，重点替换配置和本地适配层。</p>
+        <p class="en">Code, profiles, tests, quality gates, and delivery notes stay in one product structure. Real business adoption mainly replaces configuration and local adapter layers.</p>
         <nav class="doc-links" aria-label="Product documents">
           <a href="../README.md">README</a>
           <a href="architecture.md">Architecture</a>

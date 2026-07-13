@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a reproducible issue in the public toolkit.
+description: Report a reproducible issue in the reusable toolkit.
 title: "[Bug]: "
 labels: ["bug"]
 body:
@@ -14,7 +14,7 @@ body:
     id: steps
     attributes:
       label: Steps to reproduce
-      description: Use synthetic data or a minimized fixture.
+      description: Use sample data or a minimized fixture.
       value: |
         1.
         2.

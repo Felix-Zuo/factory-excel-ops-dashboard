@@ -39,7 +39,7 @@ jobs:
       - name: Test
         run: python -m pytest -q
 
-      - name: Run demo pipeline
+      - name: Run sample pipeline
         run: python -m factory_excel_ops.cli run --input sample_data --output output
 
       - name: Build analysis context

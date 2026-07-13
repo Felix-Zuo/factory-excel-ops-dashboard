@@ -20,13 +20,13 @@ Look for:
 ## Search Check
 
 ```powershell
-rg -n "customer|supplier|employee|invoice|password|secret|token|private_brand" `
+rg -n "customer|supplier|employee|invoice|password|secret|token|internal_brand" `
   --glob "!**/.git/**" `
   --glob "!**/.venv/**" `
   --glob "!output/**"
 ```
 
-Expected result: only generic documentation language or intentionally synthetic
+Expected result: only generic documentation language or intentionally sample
 sample names.
 
 ## Package Check

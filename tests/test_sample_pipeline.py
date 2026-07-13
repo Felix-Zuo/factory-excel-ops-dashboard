@@ -17,8 +17,8 @@ from factory_excel_ops.validation import validate_profile
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class DemoPipelineTest(unittest.TestCase):
-    def test_demo_files_classify_and_summarize(self):
+class SamplePipelineTest(unittest.TestCase):
+    def test_sample_files_classify_and_summarize(self):
         classifier = FileClassifier.from_json(ROOT / "config" / "sample_file_types.json")
         mapper = FieldMapper.from_json(ROOT / "config" / "sample_field_mapping.json")
         metric_specs = load_metric_specs(ROOT / "config" / "sample_metrics.json")
@@ -69,7 +69,7 @@ class DemoPipelineTest(unittest.TestCase):
         self.assertEqual(normalized["source_date"], "2026-07-20")
 
     def test_classifier_normalizes_header_noise(self):
-        path = ROOT / "sample_data" / "inventory_demo.csv"
+        path = ROOT / "sample_data" / "inventory_sample.csv"
         classifier = FileClassifier({
             "inventory": {
                 "headers": ["Item Code", "Available Qty (EA)"],
@@ -94,7 +94,7 @@ class DemoPipelineTest(unittest.TestCase):
         mapper = FieldMapper.from_json(ROOT / "config" / "sample_field_mapping.json")
 
         records, warnings = ingest_paths(
-            [ROOT / "sample_data" / "inventory_demo.csv"],
+            [ROOT / "sample_data" / "inventory_sample.csv"],
             classifier,
             mapper,
             min_confidence=0.2,
@@ -170,6 +170,21 @@ class DemoPipelineTest(unittest.TestCase):
         showcase = (ROOT / "docs" / "showcase.html").read_text(encoding="utf-8")
         self.assertIn('data-code-tab="run"', showcase)
         self.assertIn("release package", showcase)
+
+    def test_public_surfaces_read_like_a_product(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        showcase = (ROOT / "docs" / "showcase.html").read_text(encoding="utf-8")
+
+        self.assertIn("docs/assets/workbench-product.png", readme)
+        self.assertNotIn("Public core", showcase)
+        self.assertNotIn("public " + "edition", showcase)
+        self.assertNotIn("private" + "-project", showcase)
+        self.assertNotIn("公开" + "核心", showcase)
+        self.assertNotIn("公开" + "版本", showcase)
+        self.assertNotIn("项目" + "截图", showcase)
+        self.assertNotIn("synthetic " + "demo", readme.lower())
+        self.assertNotIn("public " + "demo", readme.lower())
+        self.assertNotIn("sanit" + "ized", readme.lower())
 
     def test_public_pages_have_share_metadata(self):
         showcase = (ROOT / "docs" / "showcase.html").read_text(encoding="utf-8")

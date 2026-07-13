@@ -15,7 +15,7 @@ body:
     id: source_types
     attributes:
       label: Source types
-      description: List the source types and representative synthetic headers.
+      description: List the source types and representative sample headers.
     validations:
       required: true
   - type: textarea
@@ -28,7 +28,7 @@ body:
     attributes:
       label: Boundary
       options:
-        - label: All examples are synthetic or anonymized.
+        - label: All examples are sample data or minimized fixtures.
           required: true
-        - label: No private workbook names or company-specific identifiers are included.
+        - label: No sensitive workbook names or company-specific identifiers are included.
           required: true

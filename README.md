@@ -10,14 +10,16 @@
 · [Quality gates](docs/quality_gates.md)
 · [Roadmap](docs/roadmap.md)
 
+![Operations Data Workbench preview](docs/assets/workbench-product.png)
+
 Local-first spreadsheet operations workbench for teams that still run critical
 processes through Excel, CSV exports, shared folders, and manual reporting.
 
 The project classifies incoming files, maps noisy headers into a standard data
 model, computes configurable metrics, and exports a standalone HTML dashboard
-plus JSON summaries for reporting and workflow automation. It ships with
-synthetic data and generic operations terminology so it can be adapted beyond a
-single factory, product line, or workbook template.
+plus JSON summaries for reporting and workflow handoff. It ships with generic
+operations terminology and sample fixtures so it can be adapted beyond a single
+factory, product line, or workbook template.
 
 ## What It Does
 
@@ -27,14 +29,14 @@ single factory, product line, or workbook template.
 - Computes stock, demand, fulfillment, replenishment, and work-output metrics.
 - Exports a local HTML dashboard and machine-readable `summary.json`.
 - Provides an integration interface for reporting and workflow handoff.
-- Keeps private adapters, real exports, logs, and packages outside Git.
+- Keeps local adapters, real exports, logs, and generated packages outside Git.
 
 ## Data Boundary
 
-The repository includes reusable code, synthetic fixtures, generic profiles,
+The repository includes reusable code, sample fixtures, generic profiles,
 tests, documentation, and packaging checks. Real exports, customer or supplier
 records, BOMs, production logs, desktop binaries, internal deployment paths, and
-company-specific adapter rules stay outside the public core.
+company-specific adapter rules stay outside this repository.
 
 ## Quick Start
 
@@ -54,15 +56,15 @@ Open the generated dashboard:
 start output\dashboard.html
 ```
 
-For a quick Windows demo after installation:
+For a quick Windows sample run after installation:
 
 ```powershell
-.\scripts\run_demo.cmd
+.\scripts\run_sample.cmd
 ```
 
 ## Configuration Profile
 
-The default public profile is intentionally generic:
+The default profile is intentionally generic:
 
 - `config/sample_file_types.json`: source signatures for `inventory`,
   `demand`, `fulfillment`, `replenishment`, and `work_output`.
@@ -112,7 +114,7 @@ adds `src` to the pytest import path.
 
 ## Product Materials
 
-- [Public evolution](docs/product_evolution.md)
+- [Evolution notes](docs/product_evolution.md)
 - [Architecture](docs/architecture.md)
 - [Configuration cookbook](docs/configuration_cookbook.md)
 - [Data safety checklist](docs/data_safety_checklist.md)
@@ -120,8 +122,8 @@ adds `src` to the pytest import path.
 - [Threat model](docs/threat_model.md)
 - [GitHub maintenance](docs/github_maintenance.md)
 - [Roadmap](docs/roadmap.md)
-- [Showcase design benchmark](docs/showcase_design_benchmark.md)
-- [Private adapter guide](docs/private_adapter_guide.md)
+- [Product page benchmark](docs/showcase_design_benchmark.md)
+- [Adapter integration guide](docs/adapter_integration_guide.md)
 - [Integration interface guide](docs/integration_interface.md)
 - [Product page](docs/showcase.html)
 
@@ -132,10 +134,10 @@ factory-excel-ops-dashboard/
   integration_interface.json Machine-readable integration contract
   config/                 Example source, field, and metric profiles
   docs/                   Product, adapter, architecture, and safety notes
-  sample_data/            Synthetic demo data only
+  sample_data/            Sample fixture data only
   scripts/                Demo runner and clean package helper
   src/factory_excel_ops/  Reusable Python package
-  tests/                  Regression tests for the public demo
+  tests/                  Regression tests for the sample workflow
 ```
 
 ## Packaging
@@ -150,9 +152,9 @@ Generated packages belong in `output/` or another ignored folder.
 
 ## Current Version
 
-`0.2.2` publishes the neutral public integration surface, upgrades the product
-page, and keeps the release package boundary focused on reusable source,
-synthetic fixtures, documentation, and validation gates.
+`0.2.2` refines the integration surface, upgrades the product page, and keeps
+the release package boundary focused on reusable source, sample fixtures,
+documentation, and validation gates.
 
 ## License
 

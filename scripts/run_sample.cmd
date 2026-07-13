@@ -5,4 +5,4 @@ set PYTHONPATH=%CD%\src
 python -m factory_excel_ops.cli run --input sample_data --output output
 echo.
 echo Dashboard written to output\dashboard.html
-pause
+if /i "%FACTORY_EXCEL_OPS_PAUSE%"=="1" pause

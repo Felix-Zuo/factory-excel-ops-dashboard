@@ -1,3 +1,0 @@
-fulfillment_id,account,item_code,fulfilled_qty,fulfillment_date,status
-FUL-001,Demo Account A,SKU-1001,40,2026-07-03,BOOKED
-FUL-002,Demo Account B,SKU-1002,10,2026-07-09,COMPLETED

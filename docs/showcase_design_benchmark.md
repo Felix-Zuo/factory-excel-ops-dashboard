@@ -1,6 +1,6 @@
 # Showcase Design Benchmark
 
-This note records the public design references used to shape the showcase page.
+This note records the design references used to shape the product page.
 It is intentionally about page strategy and information architecture, not visual
 copying.
 
@@ -15,21 +15,22 @@ copying.
 - [Grafana](https://grafana.com/): strong hero, proof surfaces, ecosystem
   positioning, and trust signals around secure and open foundations.
 - [GitHub Docs: status badges](https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge):
-  public repository health signals should be visible from the README.
+  repository health signals should be visible from the README.
 
 ## Applied Principles
 
 - Lead with a product identity instead of a project explanation.
 - Show a product interface immediately in the first viewport.
 - Turn quality gates into visible trust signals.
-- Separate public reusable core from private adapter details.
+- Separate reusable core behavior from local adapter details.
 - Present human-readable outputs and automation-ready contracts together.
 - Present code, configuration, outputs, and release checks in one developer
   surface instead of scattering them across separate notes.
-- Keep roadmap language focused on public core maturity.
+- Keep roadmap language focused on reusable core maturity.
 
 ## Non-Goals
 
 - No copied brand visuals, logos, testimonials, claims, or customer proof.
 - No fabricated usage numbers, teams, companies, or security certifications.
-- No private workbook names, screenshots, source paths, or business records.
+- No workbook names, screenshots, source paths, or business records from a
+  specific internal workflow.

@@ -1,4 +1,4 @@
-"""Validate public profile configuration before running the pipeline."""
+"""Validate profile configuration before running the pipeline."""
 
 from __future__ import annotations
 
