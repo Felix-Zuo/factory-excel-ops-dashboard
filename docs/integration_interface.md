@@ -35,6 +35,25 @@ This command validates source signatures, field aliases, metric types,
 duplicate metric keys, and references between metric configs and the declared
 profile. Run it before packaging a custom adapter.
 
+## Table Adaptation
+
+```powershell
+python -m factory_excel_ops.cli adapt --input <input_dir> --output <profile_dir>
+```
+
+Expected result:
+
+```text
+<profile_dir>/file_types.json
+<profile_dir>/field_mapping.json
+<profile_dir>/metrics.json
+<profile_dir>/adaptation_report.json
+```
+
+The generated configs can be passed directly to `run`. Boundary help is
+disabled by default. If it is enabled, the API key is read from an environment
+variable and is not written to generated files.
+
 ## Analysis Context
 
 ```powershell

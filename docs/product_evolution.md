@@ -68,6 +68,22 @@ These names work for manufacturing, maintenance parts, warehouse operations,
 field service, project delivery, sample rooms, repair queues, and other
 spreadsheet-heavy workflows.
 
+## Stage 6: Adapt-First Onboarding
+
+The v0.3 beta line adds a profile builder for unfamiliar folders. Instead of
+asking the user to hand-write JSON before the first run, `adapt` inspects
+headers, file names, and column shapes, then writes file type, field mapping,
+metric, and review-report files.
+
+Design decisions:
+
+- Local code makes the first mapping decision.
+- Optional model help is limited to low-confidence boundary cases.
+- API keys are read from environment variables and are not written to generated
+  profiles.
+- Generated configs must pass `validate-config` before the run command uses
+  them.
+
 ## Data Boundary
 
 - Real ERP/WMS/MES exports.

@@ -89,12 +89,33 @@
     }
 
     .hero {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       min-height: 610px;
       color: #ffffff;
       background:
         linear-gradient(90deg, rgba(11, 18, 32, .96) 0%, rgba(11, 18, 32, .88) 45%, rgba(11, 18, 32, .34) 100%),
         url("assets/workbench-product.png") center right / cover no-repeat,
         var(--night);
+    }
+
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .1) 1px, transparent 1px);
+      background-size: 58px 58px;
+      content: "";
+      mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .7) 42%, transparent 78%);
+      opacity: .16;
+    }
+
+    .hero .shell {
+      position: relative;
+      z-index: 1;
     }
 
     .topbar {
@@ -274,17 +295,23 @@
       font-weight: 900;
       line-height: 1.2;
       padding: 12px 17px;
+      transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
     }
 
     .button-link.primary {
       border-color: #c4f7f0;
       background: #c4f7f0;
       color: #09211f;
+      box-shadow: 0 10px 24px rgba(33, 236, 218, .2);
     }
 
     .button-link.secondary {
       background: rgba(255, 255, 255, .08);
       color: #ffffff;
+    }
+
+    .button-link:hover {
+      transform: translateY(-2px);
     }
 
     .hero-proof {
@@ -470,12 +497,31 @@
     }
 
     .tile {
+      position: relative;
+      overflow: hidden;
       min-width: 0;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--paper);
       padding: 20px;
       box-shadow: 0 10px 24px rgba(18, 34, 45, .06);
+    }
+
+    .tile::after {
+      position: absolute;
+      inset: auto 16px 14px 16px;
+      height: 2px;
+      background: currentColor;
+      content: "";
+      opacity: .16;
+      transform: scaleX(.32);
+      transform-origin: left;
+      transition: transform .24s ease, opacity .24s ease;
+    }
+
+    .tile:hover::after {
+      opacity: .42;
+      transform: scaleX(1);
     }
 
     .tile.teal {
@@ -510,6 +556,107 @@
 
     .tile p {
       margin-bottom: 0;
+    }
+
+    .adapt-lane {
+      display: grid;
+      grid-template-columns: minmax(0, .58fr) minmax(320px, .42fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .adapt-track {
+      display: grid;
+      gap: 12px;
+      counter-reset: adapt-step;
+    }
+
+    .adapt-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(18, 34, 45, .06);
+    }
+
+    .adapt-step::before {
+      counter-increment: adapt-step;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 8px;
+      background: #0f766e;
+      color: #ffffff;
+      content: counter(adapt-step, decimal-leading-zero);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .adapt-step h3 {
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-size: 19px;
+      line-height: 1.28;
+    }
+
+    .adapt-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.66;
+    }
+
+    .adapt-panel {
+      min-width: 0;
+      border: 1px solid #23374d;
+      border-radius: 8px;
+      background: #07111c;
+      color: #dce7ef;
+      box-shadow: var(--shadow);
+    }
+
+    .adapt-panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid #223448;
+      background: #0d1b29;
+      padding: 16px;
+    }
+
+    .adapt-panel-head strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    .adapt-panel-head span {
+      color: #8ea4bb;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .adapt-badge {
+      align-self: start;
+      border: 1px solid #2d5a68;
+      border-radius: 8px;
+      background: #0f2b35;
+      color: #a7f3d0;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 7px 9px;
+      white-space: nowrap;
+    }
+
+    .adapt-panel .command-block {
+      min-height: 220px;
     }
 
     .split {
@@ -976,7 +1123,7 @@
 
     .artifact-strip {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1px;
       border-top: 1px solid #223448;
       background: #223448;
@@ -1041,6 +1188,28 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.65;
+    }
+
+    .proof-item,
+    .tile,
+    .story-list li,
+    .quality-row,
+    .roadmap-stage,
+    .artifact-item,
+    .adapt-step {
+      transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+    }
+
+    .proof-item:hover,
+    .tile:hover,
+    .story-list li:hover,
+    .quality-row:hover,
+    .roadmap-stage:hover,
+    .artifact-item:hover,
+    .adapt-step:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 18px 38px rgba(18, 34, 45, .12);
+      transform: translateY(-3px);
     }
 
     .final-band {
@@ -1110,6 +1279,7 @@
       }
 
       .section-heading,
+      .adapt-lane,
       .product-system,
       .split,
       .boundary,
@@ -1204,6 +1374,7 @@
       }
 
       .matrix,
+      .adapt-lane,
       .proof-strip-inner,
       .mini-metrics,
       .roadmap,
@@ -1265,6 +1436,34 @@
         font-size: 15px;
       }
     }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-copy {
+        animation: reveal-up .62s ease both;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity .52s ease, transform .52s ease;
+      }
+    }
+
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body class="lang-block" data-lang="zh">
@@ -1279,8 +1478,8 @@
           </span>
         </a>
         <div class="top-links">
-          <a class="zh" href="#system">系统</a>
-          <a class="en" href="#system">System</a>
+          <a class="zh" href="#adapt">适配</a>
+          <a class="en" href="#adapt">Adapt</a>
           <a class="zh" href="#quality">质量</a>
           <a class="en" href="#quality">Quality</a>
           <a class="zh" href="#handoff">代码</a>
@@ -1295,15 +1494,15 @@
       </nav>
 
       <section class="hero-copy" aria-labelledby="page-title-zh">
-        <div class="announcement zh">本地运行 · 可配置 profile · 可复查输出</div>
-        <div class="announcement en">Local runtime · configurable profiles · review-ready outputs</div>
-        <h1 id="page-title-zh" class="zh">为表格密集型运营团队打造的数据工作台</h1>
-        <h1 id="page-title-en" class="en">A data workbench for spreadsheet-heavy operations teams</h1>
-        <p class="lead zh">把 Excel、CSV 导出和共享目录里的运营数据，转换为可验证的来源识别、统一字段模型、指标摘要、本地看板和报表上下文。配置层保持通用，便于迁移到不同团队、品类或工作簿结构。</p>
-        <p class="lead en">Turn Excel, CSV exports, and shared-folder operations data into verified source classification, a unified field model, metric summaries, local dashboards, and reporting-ready context. The configuration layer stays portable across teams, categories, and workbook structures.</p>
+        <div class="announcement zh">0.3 beta · 先适配再运行 · Key 不进配置</div>
+        <div class="announcement en">0.3 beta · adapt first · keys stay out of configs</div>
+        <h1 id="page-title-zh" class="zh">乱表格进来，清楚的运营结果出去</h1>
+        <h1 id="page-title-en" class="en">Messy spreadsheets in, reviewable operating signals out</h1>
+        <p class="lead zh">我把它做成一个本地收口台：先用代码读表头、看文件、生成可跑的 profile；遇到含糊字段，再让配置好的模型搭一把手。最后输出的是看板、summary 和可复查报告，不是又一堆靠人猜的 Excel。</p>
+        <p class="lead en">A local workbench for the messy middle: code reads headers, files, and column shapes first, then a configured model endpoint can help with edge mappings. The output is a dashboard, summary, and reviewable profile instead of another pile of guesswork.</p>
         <div class="hero-actions">
-          <a class="button-link primary zh" href="#system">查看产品系统</a>
-          <a class="button-link primary en" href="#system">View product system</a>
+          <a class="button-link primary zh" href="#adapt">查看适配流程</a>
+          <a class="button-link primary en" href="#adapt">View adaptation flow</a>
           <a class="button-link secondary zh" href="#handoff">查看集成接口</a>
           <a class="button-link secondary en" href="#handoff">View integration surface</a>
         </div>
@@ -1317,8 +1516,8 @@
           <div>
             <dt class="zh">产品口径</dt>
             <dt class="en">Product scope</dt>
-            <dd class="zh">来源、字段、指标配置化</dd>
-            <dd class="en">Configurable sources, fields, metrics</dd>
+            <dd class="zh">来源、字段、指标可生成</dd>
+            <dd class="en">Generated sources, fields, metrics</dd>
           </div>
           <div>
             <dt class="zh">工程门禁</dt>
@@ -1329,8 +1528,8 @@
           <div>
             <dt class="zh">交付物</dt>
             <dt class="en">Outputs</dt>
-            <dd class="zh">HTML 看板 + JSON 上下文</dd>
-            <dd class="en">HTML dashboard + JSON context</dd>
+            <dd class="zh">看板 + profile + 复查报告</dd>
+            <dd class="en">Dashboard + profile + report</dd>
           </div>
         </dl>
       </section>
@@ -1353,16 +1552,16 @@
           <div class="proof-value en">5 generic operations sources</div>
         </div>
         <div class="proof-item">
-          <div class="proof-label zh">Release package</div>
-          <div class="proof-label en">Release package</div>
-          <div class="proof-value zh">排除私有输入和生成输出</div>
-          <div class="proof-value en">Excludes sensitive inputs and generated output</div>
+          <div class="proof-label zh">Adapt command</div>
+          <div class="proof-label en">Adapt command</div>
+          <div class="proof-value zh">生成可运行 profile</div>
+          <div class="proof-value en">Builds runnable profiles</div>
         </div>
         <div class="proof-item">
           <div class="proof-label zh">Integration contract</div>
           <div class="proof-label en">Integration contract</div>
-          <div class="proof-value zh">可审计 summary 与 analysis context</div>
-          <div class="proof-value en">Auditable summary and analysis context</div>
+          <div class="proof-value zh">summary、看板、复查报告</div>
+          <div class="proof-value en">Summary, dashboard, report</div>
         </div>
       </div>
     </section>
@@ -1373,37 +1572,103 @@
           <div>
             <p class="kicker zh">产品定位</p>
             <p class="kicker en">Positioning</p>
-            <h2 class="zh">从导出文件到可复查的运营结论</h2>
-            <h2 class="en">From exported files to reviewable operating signals</h2>
+            <h2 class="zh">它不是替你画图，是替你把表格先收拾明白</h2>
+            <h2 class="en">Not just charts; it gets the tables under control first</h2>
           </div>
-          <p class="zh">这个工作台面向仍然依赖表格导出、共享文件夹和人工报表的运营团队，把来源识别、字段映射、指标计算和复查交接放到同一条本地流程里。</p>
-          <p class="en">The workbench is built for operations teams that still depend on spreadsheet exports, shared folders, and manual reporting. Source profiling, field mapping, metrics, and review handoff stay in one local flow.</p>
+          <p class="zh">我不喜欢把“后续可配置”写成一句空话，所以这里把适配、运行、校验和打包做成一条能重复执行的链路。换团队、换品类、换表头，都先从 profile 开始。</p>
+          <p class="en">The point is not a pretty chart with vague promises. Adaptation, execution, validation, and packaging are one repeatable chain. New team, category, or headers: start with a profile.</p>
         </div>
         <div class="matrix">
           <article class="tile teal">
-            <h3 class="zh">从文件到来源</h3>
-            <h3 class="en">Files to sources</h3>
-            <p class="zh">内容画像基于表头、样本值、字段组合和弱文件名线索，不依赖脆弱的文件名约定。</p>
-            <p class="en">Source profiling uses headers, sample values, field combinations, and weak filename hints.</p>
+            <h3 class="zh">先接住乱文件</h3>
+            <h3 class="en">Catch the messy folder</h3>
+            <p class="zh">CSV、XLSX、XLSM 都能进来；文件名只是弱线索，不把命运交给命名规范。</p>
+            <p class="en">CSV, XLSX, and XLSM can enter. File names are weak hints, not the whole story.</p>
           </article>
           <article class="tile green">
-            <h3 class="zh">从表头到模型</h3>
-            <h3 class="en">Headers to model</h3>
-            <p class="zh">字段映射屏蔽大小写、空格、分隔符、单位等噪声，让不同导出能进入同一个契约。</p>
-            <p class="en">Field mapping absorbs case, spacing, separator, and unit noise into one contract.</p>
+            <h3 class="zh">代码先判断</h3>
+            <h3 class="en">Code makes the first call</h3>
+            <p class="zh">表头、字段形态、来源线索先走本地规则，能确定的就不外发。</p>
+            <p class="en">Headers, column shapes, and source hints are handled locally before any outside help is considered.</p>
           </article>
           <article class="tile amber">
-            <h3 class="zh">从记录到指标</h3>
-            <h3 class="en">Records to metrics</h3>
-            <p class="zh">指标口径由 JSON profile 管理，便于跨库存、需求、履约、补给和产出场景复用。</p>
-            <p class="en">Metric definitions live in JSON profiles for reuse across inventory, demand, fulfillment, replenishment, and output.</p>
+            <h3 class="zh">边界再求助</h3>
+            <h3 class="en">Ask for help at the edge</h3>
+            <p class="zh">只有低置信度表才会走模型辅助，而且默认只给表头和字段形态，不塞整包数据。</p>
+            <p class="en">Only low-confidence tables use model help, and the default payload is headers plus column shapes.</p>
           </article>
           <article class="tile blue">
-            <h3 class="zh">从看板到行动</h3>
-            <h3 class="en">Dashboard to action</h3>
-            <p class="zh">结构化摘要可进入报表、检查清单或工作流交接，继续沉淀风险说明和复查建议。</p>
-            <p class="en">Structured summaries can feed reports, checklists, or workflow handoff packages for risk notes and next checks.</p>
+            <h3 class="zh">最后可运行</h3>
+            <h3 class="en">End with runnable config</h3>
+            <p class="zh">产物不是 PPT：file_types、field_mapping、metrics 和报告都能被下一条命令使用。</p>
+            <p class="en">The output is not a slide: file types, field mapping, metrics, and report feed the next command.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section" id="adapt">
+        <div class="section-heading">
+          <div>
+            <p class="kicker zh">表格适配</p>
+            <p class="kicker en">Table adaptation</p>
+            <h2 class="zh">新来的表格，先让它自己长出 profile</h2>
+            <h2 class="en">Let a new spreadsheet folder grow its own profile first</h2>
+          </div>
+          <p class="zh">这就是 0.3 beta 的核心：不是假装所有表头都很标准，而是承认现实很乱，然后把“猜、改、跑、复查”收成一条可追踪流程。</p>
+          <p class="en">This is the core of 0.3 beta: do not pretend every header is clean. Accept the mess, then turn guessing, editing, running, and review into a traceable flow.</p>
+        </div>
+        <div class="adapt-lane">
+          <div class="adapt-track">
+            <article class="adapt-step">
+              <div>
+                <h3 class="zh">扫描文件夹</h3>
+                <h3 class="en">Scan the folder</h3>
+                <p class="zh">读取 CSV/XLSX/XLSM，记录表头、文件名和列形态，避免一上来就把业务数据搬出去。</p>
+                <p class="en">Read CSV/XLSX/XLSM headers, file names, and column shapes without moving business data out first.</p>
+              </div>
+            </article>
+            <article class="adapt-step">
+              <div>
+                <h3 class="zh">生成三份配置</h3>
+                <h3 class="en">Generate three configs</h3>
+                <p class="zh">自动写出 file_types、field_mapping、metrics，能直接交给现有 run 命令。</p>
+                <p class="en">Write file_types, field_mapping, and metrics that the existing run command can use directly.</p>
+              </div>
+            </article>
+            <article class="adapt-step">
+              <div>
+                <h3 class="zh">低置信度才走外部模型</h3>
+                <h3 class="en">Use a model only when confidence is low</h3>
+                <p class="zh">API Key 只从环境变量读取；生成文件里不保存 Key，不默认发送原始行数据。</p>
+                <p class="en">The API key is read from the environment; generated files do not store keys or raw rows by default.</p>
+              </div>
+            </article>
+          </div>
+          <div class="adapt-panel">
+            <div class="adapt-panel-head">
+              <div>
+                <strong>adapt → validate → run</strong>
+                <span class="zh">接入一批新表格的最短路径</span>
+                <span class="en">Shortest path for a new spreadsheet folder</span>
+              </div>
+              <span class="adapt-badge">0.3 beta</span>
+            </div>
+            <pre class="command-block" aria-label="Adaptation commands"><code>python -m factory_excel_ops.cli adapt `
+  --input incoming_exports `
+  --output output\incoming_profile
+
+python -m factory_excel_ops.cli validate-config `
+  --file-types output\incoming_profile\file_types.json `
+  --field-mapping output\incoming_profile\field_mapping.json `
+  --metrics output\incoming_profile\metrics.json
+
+python -m factory_excel_ops.cli run `
+  --input incoming_exports `
+  --output output\incoming_run `
+  --file-types output\incoming_profile\file_types.json `
+  --field-mapping output\incoming_profile\field_mapping.json `
+  --metrics output\incoming_profile\metrics.json</code></pre>
+          </div>
         </div>
       </section>
 
@@ -1479,14 +1744,14 @@
             <div class="quality-row">
               <div class="quality-key zh">配置校验</div>
               <div class="quality-key en">Config validation</div>
-              <div class="quality-value zh">运行前检查来源画像、字段别名和指标规则，防止坏 profile 进入处理阶段。</div>
-              <div class="quality-value en">Checks source profiles, field aliases, and metric rules before processing starts.</div>
+              <div class="quality-value zh">运行前检查来源画像、字段别名和指标规则；adapt 生成的 profile 也必须过这一关。</div>
+              <div class="quality-value en">Checks source profiles, field aliases, and metric rules; adapted profiles must pass the same gate.</div>
             </div>
             <div class="quality-row">
               <div class="quality-key zh">低置信度保护</div>
               <div class="quality-key en">Confidence guard</div>
-              <div class="quality-value zh">不确定来源会进入警告路径，而不是静默当作正确文件处理。</div>
-              <div class="quality-value en">Uncertain sources produce warnings instead of being silently accepted.</div>
+              <div class="quality-value zh">不确定来源会进入警告路径；需要外部模型辅助时，也会写进 adaptation report。</div>
+              <div class="quality-value en">Uncertain sources produce warnings; model-assisted boundary handling is recorded in the adaptation report.</div>
             </div>
             <div class="quality-row">
               <div class="quality-key zh">包内容门禁</div>
@@ -1497,8 +1762,8 @@
             <div class="quality-row">
               <div class="quality-key zh">CI 矩阵</div>
               <div class="quality-key en">CI matrix</div>
-              <div class="quality-value zh">GitHub Actions 在 Python 3.10、3.11、3.12 上执行测试、样例管线、analysis context 和打包检查。</div>
-              <div class="quality-value en">GitHub Actions runs tests, sample pipeline, analysis context, and package checks on Python 3.10, 3.11, and 3.12.</div>
+              <div class="quality-value zh">GitHub Actions 在 Python 3.10、3.11、3.12 上执行测试、样例管线、adapt 配置生成、analysis context 和打包检查。</div>
+              <div class="quality-value en">GitHub Actions runs tests, sample pipeline, adapted profile generation, analysis context, and package checks on Python 3.10, 3.11, and 3.12.</div>
             </div>
           </div>
           <div class="dark-panel">
@@ -1511,9 +1776,10 @@
                 <span>release gate</span>
                 <span class="terminal-dots" aria-hidden="true"><span class="terminal-dot red"></span><span class="terminal-dot amber"></span><span class="terminal-dot green"></span></span>
               </div>
-              <pre class="command-block" aria-label="Quality gate commands"><code>python -m pytest -q
+<pre class="command-block" aria-label="Quality gate commands"><code>python -m pytest -q
 python -m factory_excel_ops.cli validate-config
 python -m factory_excel_ops.cli run --input sample_data --output output
+python -m factory_excel_ops.cli adapt --input sample_data --output output/adapted_profile
 python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json
 python scripts/package_project.py --name release-check --output output</code></pre>
             </div>
@@ -1529,8 +1795,8 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h2 class="zh">产品核心可复用，业务适配留在本地</h2>
             <h2 class="en">Reusable product core, local business adapters</h2>
           </div>
-          <p class="zh">页面强调的是可移植结构：profile、pipeline、dashboard、reporting handoff。真实业务导出、内部字段规则和部署细节保留在使用方自己的环境里。</p>
-          <p class="en">The page emphasizes portable structure: profile, pipeline, dashboard, and reporting handoff. Real exports, internal field rules, and deployment detail stay in the user's own environment.</p>
+          <p class="zh">页面强调的是可移植结构：profile、pipeline、dashboard、reporting handoff。真实业务导出、内部字段规则、API Key 和部署细节保留在使用方自己的环境里。</p>
+          <p class="en">The page emphasizes portable structure: profile, pipeline, dashboard, and reporting handoff. Real exports, internal field rules, API keys, and deployment detail stay in the user's own environment.</p>
         </div>
         <div class="boundary">
           <div class="boundary-main">
@@ -1553,21 +1819,21 @@ python scripts/package_project.py --name release-check --output output</code></p
           <div>
             <p class="kicker zh">代码与交付面</p>
             <p class="kicker en">Code and delivery surface</p>
-            <h2 class="zh">运行、配置、输出和发布路径放在同一张工作台上</h2>
-            <h2 class="en">Run path, config, outputs, and release checks in one workbench</h2>
+              <h2 class="zh">适配、运行、输出和发布路径放在同一张工作台上</h2>
+              <h2 class="en">Adaptation, run path, outputs, and release checks in one workbench</h2>
           </div>
-          <p class="zh">评估者不需要在 README、源码和脚本之间来回猜。页面直接展示最小运行路径、profile 形态、summary 契约和发布门禁。</p>
-          <p class="en">Reviewers do not need to guess across the README, source tree, and scripts. The page shows the minimum run path, profile shape, summary contract, and release gate together.</p>
+          <p class="zh">评估者不需要在 README、源码和脚本之间来回猜。页面直接展示 adapt 命令、最小运行路径、summary 契约和发布门禁。</p>
+          <p class="en">Reviewers do not need to guess across the README, source tree, and scripts. The page shows the adapt command, minimum run path, summary contract, and release gate together.</p>
         </div>
         <div class="developer-workbench">
           <div class="developer-head">
             <div>
               <p class="kicker zh">Developer surface</p>
               <p class="kicker en">Developer surface</p>
-              <h3 class="zh">一个本地优先的数据产品核心</h3>
-              <h3 class="en">A local-first data product core</h3>
-              <p class="zh">命令行负责可重复运行，JSON profile 负责可移植配置，HTML 与 summary.json 负责复查和交接。</p>
-              <p class="en">The CLI keeps runs repeatable, JSON profiles keep configuration portable, and HTML plus summary.json support review and handoff.</p>
+              <h3 class="zh">一个能自己长 profile 的本地工作台</h3>
+              <h3 class="en">A local workbench that can grow its own profiles</h3>
+              <p class="zh">命令行负责适配和运行，JSON profile 负责可移植配置，HTML、summary.json 和 adaptation report 负责复查和交接。</p>
+              <p class="en">The CLI handles adaptation and runs, JSON profiles keep configuration portable, and HTML, summary.json, plus adaptation reports support review and handoff.</p>
             </div>
             <div class="status-grid">
               <div class="status-pill">
@@ -1581,7 +1847,7 @@ python scripts/package_project.py --name release-check --output output</code></p
                 <span class="en">Generic source types</span>
               </div>
               <div class="status-pill">
-                <strong>12</strong>
+                <strong>16</strong>
                 <span class="zh">回归测试</span>
                 <span class="en">Regression tests</span>
               </div>
@@ -1600,10 +1866,10 @@ python scripts/package_project.py --name release-check --output output</code></p
                 <li>
                   <span class="step-no">01</span>
                   <span>
-                    <strong class="zh">安装为本地包</strong>
-                    <strong class="en">Install as a local package</strong>
-                    <span class="zh">保持源码、CLI 和测试在同一个开发循环里。</span>
-                    <span class="en">Keep source, CLI, and tests in one development loop.</span>
+                    <strong class="zh">先生成 profile</strong>
+                    <strong class="en">Generate the profile first</strong>
+                    <span class="zh">对新表格先跑 adapt，把可疑判断写进报告。</span>
+                    <span class="en">Run adapt on new folders and keep uncertain calls in the report.</span>
                   </span>
                 </li>
                 <li>
@@ -1639,9 +1905,9 @@ python scripts/package_project.py --name release-check --output output</code></p
                 <h4 class="en">Key files</h4>
                 <div class="file-map-grid">
                   <a href="../src/factory_excel_ops/cli.py">cli.py <em>entry</em></a>
+                  <a href="../src/factory_excel_ops/adapter_builder.py">adapter_builder.py <em>adapt</em></a>
                   <a href="../src/factory_excel_ops/classifier.py">classifier.py <em>source</em></a>
                   <a href="../src/factory_excel_ops/metrics.py">metrics.py <em>metric</em></a>
-                  <a href="../src/factory_excel_ops/dashboard.py">dashboard.py <em>view</em></a>
                 </div>
               </div>
             </aside>
@@ -1649,6 +1915,9 @@ python scripts/package_project.py --name release-check --output output</code></p
               <div class="code-tabs" role="tablist" aria-label="Code examples">
                 <button class="code-tab active" type="button" data-code-tab="run" aria-controls="code-run" aria-selected="true">
                   <span class="zh">运行</span><span class="en">Run</span>
+                </button>
+                <button class="code-tab" type="button" data-code-tab="adapt" aria-controls="code-adapt" aria-selected="false">
+                  <span class="zh">适配</span><span class="en">Adapt</span>
                 </button>
                 <button class="code-tab" type="button" data-code-tab="profile" aria-controls="code-profile" aria-selected="false">
                   <span class="zh">Profile</span><span class="en">Profile</span>
@@ -1671,6 +1940,17 @@ python scripts/package_project.py --name release-check --output output</code></p
 <span class="code-line"><span class="line-no">08</span><span class="line-text"><span class="code-comment"># build the local dashboard and summary</span></span></span>
 <span class="code-line"><span class="line-no">09</span><span class="line-text">.\.venv\Scripts\python -m factory_excel_ops.cli run --input sample_data --output output</span></span>
 <span class="code-line"><span class="line-no">10</span><span class="line-text">start output\dashboard.html</span></span></code></pre>
+
+                <pre class="code-panel" id="code-adapt" data-code-panel="adapt" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text"><span class="code-comment"># build a runnable profile from unfamiliar tables</span></span></span>
+<span class="code-line"><span class="line-no">02</span><span class="line-text">python -m factory_excel_ops.cli adapt --input incoming_exports --output output\incoming_profile</span></span>
+<span class="code-line"><span class="line-no">03</span><span class="line-text"></span></span>
+<span class="code-line"><span class="line-no">04</span><span class="line-text"><span class="code-comment"># optional boundary help reads keys from environment variables</span></span></span>
+<span class="code-line"><span class="line-no">05</span><span class="line-text">$env:FACTORY_EXCEL_OPS_API_KEY = <span class="code-value">"&lt;your key&gt;"</span></span></span>
+<span class="code-line"><span class="line-no">06</span><span class="line-text">$env:FACTORY_EXCEL_OPS_MODEL_ENDPOINT = <span class="code-value">"https://your-provider.example/v1/chat/completions"</span></span></span>
+<span class="code-line"><span class="line-no">07</span><span class="line-text">$env:FACTORY_EXCEL_OPS_MODEL = <span class="code-value">"&lt;model name&gt;"</span></span></span>
+<span class="code-line"><span class="line-no">08</span><span class="line-text">python -m factory_excel_ops.cli adapt --input incoming_exports --output output\incoming_profile --enable-model-assist</span></span>
+<span class="code-line"><span class="line-no">09</span><span class="line-text"></span></span>
+<span class="code-line"><span class="line-no">10</span><span class="line-text"><span class="code-comment"># generated: file_types.json, field_mapping.json, metrics.json, adaptation_report.json</span></span></span></code></pre>
 
                 <pre class="code-panel" id="code-profile" data-code-panel="profile" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text">{</span></span>
 <span class="code-line"><span class="line-no">02</span><span class="line-text">  <span class="code-key">"inventory"</span>: {</span></span>
@@ -1700,10 +1980,11 @@ python scripts/package_project.py --name release-check --output output</code></p
                 <pre class="code-panel" id="code-release" data-code-panel="release" role="tabpanel"><code><span class="code-line"><span class="line-no">01</span><span class="line-text">python -m pytest -q</span></span>
 <span class="code-line"><span class="line-no">02</span><span class="line-text">python -m factory_excel_ops.cli validate-config</span></span>
 <span class="code-line"><span class="line-no">03</span><span class="line-text">python -m factory_excel_ops.cli run --input sample_data --output output</span></span>
-<span class="code-line"><span class="line-no">04</span><span class="line-text">python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</span></span>
-<span class="code-line"><span class="line-no">05</span><span class="line-text">python scripts/package_project.py --name factory-excel-ops-dashboard-v0.2.2 --output output</span></span>
-<span class="code-line"><span class="line-no">06</span><span class="line-text"></span></span>
-<span class="code-line"><span class="line-no">07</span><span class="line-text"><span class="code-comment"># package gate: no sensitive folders, generated output, workbooks, executables, or nested archives</span></span></span></code></pre>
+<span class="code-line"><span class="line-no">04</span><span class="line-text">python -m factory_excel_ops.cli adapt --input sample_data --output output\adapted_profile</span></span>
+<span class="code-line"><span class="line-no">05</span><span class="line-text">python -m factory_excel_ops.cli analysis-context --summary output/summary.json --output output/analysis_context.json</span></span>
+<span class="code-line"><span class="line-no">06</span><span class="line-text">python scripts/package_project.py --name factory-excel-ops-dashboard-v0.3.0-beta.1 --output output</span></span>
+<span class="code-line"><span class="line-no">07</span><span class="line-text"></span></span>
+<span class="code-line"><span class="line-no">08</span><span class="line-text"><span class="code-comment"># package gate: no sensitive folders, generated output, workbooks, executables, or nested archives</span></span></span></code></pre>
               </div>
             </div>
           </div>
@@ -1724,6 +2005,11 @@ python scripts/package_project.py --name release-check --output output</code></p
               <span class="en">Integration contract</span>
             </div>
             <div class="artifact-item">
+              <strong>adaptation_report.json</strong>
+              <span class="zh">适配复查报告</span>
+              <span class="en">Adaptation review report</span>
+            </div>
+            <div class="artifact-item">
               <strong>release package</strong>
               <span class="zh">可复查交付包</span>
               <span class="en">Reviewable delivery bundle</span>
@@ -1737,26 +2023,26 @@ python scripts/package_project.py --name release-check --output output</code></p
           <div>
             <p class="kicker zh">产品路线图</p>
             <p class="kicker en">Product roadmap</p>
-            <h2 class="zh">后续优化围绕可审计、可配置、可交付</h2>
-            <h2 class="en">Next work focuses on auditability, configurability, and delivery readiness</h2>
+            <h2 class="zh">路线图不靠喊口号，按可运行能力往前推</h2>
+            <h2 class="en">The roadmap moves by runnable capability, not slogans</h2>
           </div>
-          <p class="zh">路线图聚焦可复用引擎、profile 成熟度和本地交付能力，而不是某个团队的业务功能清单。</p>
-          <p class="en">The roadmap focuses on reusable engine work, profile maturity, and local delivery readiness instead of one team's business feature list.</p>
+          <p class="zh">0.3 beta 已经把“任意表格先适配”落到命令行、测试和 CI。后续继续围绕审计表、导出能力和本地服务打磨。</p>
+          <p class="en">0.3 beta turns table adaptation into CLI, tests, and CI. Next work tightens audit tables, exports, and local serving.</p>
         </div>
         <div class="roadmap">
           <article class="roadmap-stage now">
-            <h3 class="zh">0.2.x 稳定化</h3>
-            <h3 class="en">0.2.x Stabilization</h3>
+            <h3 class="zh">0.3 beta 当前</h3>
+            <h3 class="en">0.3 beta Now</h3>
             <ul>
-              <li class="zh">保持默认 profile 通用且合成。</li>
-              <li class="en">Keep the default profile generic and sample-backed.</li>
-              <li class="zh">强化来源审计和包内容检查。</li>
-              <li class="en">Improve source audit and package checks.</li>
+              <li class="zh">adapt 生成可运行 profile。</li>
+              <li class="en">adapt generates runnable profiles.</li>
+              <li class="zh">Key 只走环境变量，不进入生成配置。</li>
+              <li class="en">Keys stay in environment variables, not generated configs.</li>
             </ul>
           </article>
           <article class="roadmap-stage next">
-            <h3 class="zh">0.3 Profile Maturity</h3>
-            <h3 class="en">0.3 Profile Maturity</h3>
+            <h3 class="zh">0.3.x Profile Maturity</h3>
+            <h3 class="en">0.3.x Profile Maturity</h3>
             <ul>
               <li class="zh">导出来源审计表。</li>
               <li class="en">Export source audit tables.</li>
@@ -1768,8 +2054,8 @@ python scripts/package_project.py --name release-check --output output</code></p
             <h3 class="zh">0.4 Workflow Readiness</h3>
             <h3 class="en">0.4 Workflow Readiness</h3>
             <ul>
-              <li class="zh">增加合成适配器测试夹具。</li>
-              <li class="en">Add adapter fixture tests.</li>
+              <li class="zh">增加更多行业无关的适配器夹具。</li>
+              <li class="en">Add more industry-neutral adapter fixtures.</li>
               <li class="zh">提供本地看板服务和发布检查命令。</li>
               <li class="en">Add local dashboard serving and release checks.</li>
             </ul>
@@ -1778,15 +2064,17 @@ python scripts/package_project.py --name release-check --output output</code></p
       </section>
 
       <section class="final-band">
-        <h2 class="zh">可运行、可验证、可迁移的运营数据工作台</h2>
-        <h2 class="en">Runnable, verifiable, and portable operations data workbench</h2>
-        <p class="zh">代码、profile、测试、质量门禁和交付说明保持在同一套产品结构里；接入真实业务时，重点替换配置和本地适配层。</p>
-        <p class="en">Code, profiles, tests, quality gates, and delivery notes stay in one product structure. Real business adoption mainly replaces configuration and local adapter layers.</p>
+        <h2 class="zh">表格再乱，也要留下可复查的处理链路</h2>
+        <h2 class="en">However messy the sheets are, the workflow stays reviewable</h2>
+        <p class="zh">代码、profile、适配报告、测试、质量门禁和交付说明保持在同一套产品结构里；接入真实业务时，重点替换配置和本地适配层。</p>
+        <p class="en">Code, profiles, adaptation reports, tests, quality gates, and delivery notes stay in one product structure. Real business adoption mainly replaces configuration and local adapter layers.</p>
         <nav class="doc-links" aria-label="Product documents">
           <a href="../README.md">README</a>
           <a href="architecture.md">Architecture</a>
+          <a href="table_adaptation.md">Table adaptation</a>
           <a href="quality_gates.md">Quality gates</a>
           <a href="data_safety_checklist.md">Data safety</a>
+          <a href="version_history.md">Version history</a>
           <a href="showcase_design_benchmark.md">Product notes</a>
           <a href="roadmap.md">Roadmap</a>
         </nav>
@@ -1829,6 +2117,20 @@ python scripts/package_project.py --name release-check --output output</code></p
     codeTabs.forEach((button) => {
       button.addEventListener("click", () => setCodeTab(button.dataset.codeTab));
     });
+
+    const revealTargets = document.querySelectorAll(".proof-item, .tile, .adapt-step, .story-list li, .quality-row, .roadmap-stage, .artifact-item");
+    if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches && "IntersectionObserver" in window) {
+      revealTargets.forEach((target) => target.classList.add("reveal"));
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealTargets.forEach((target) => revealObserver.observe(target));
+    }
   </script>
 </body>
 </html>

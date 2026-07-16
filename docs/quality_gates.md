@@ -11,6 +11,7 @@ is considered ready.
 | Unit tests | `python -m pytest -q` | Protect classifier, field mapping, metrics, packaging, and validation behavior. |
 | Config validation | `python -m factory_excel_ops.cli validate-config` | Catch broken profiles before any spreadsheet is processed. |
 | Sample run | `python -m factory_excel_ops.cli run --input sample_data --output output` | Confirm the sample workflow still produces `summary.json` and `dashboard.html`. |
+| Adapted profile | `python -m factory_excel_ops.cli adapt --input sample_data --output output\adapted_profile` | Confirm the profile builder writes runnable configs and a review report. |
 | Reporting context | `python -m factory_excel_ops.cli analysis-context --summary output\summary.json --output output\analysis_context.json` | Confirm downstream reporting payloads still work. |
 | Package safety | `python scripts\package_project.py --name release-check --output output` | Confirm packages exclude sensitive data, generated output, and local artifacts. |
 
@@ -22,7 +23,8 @@ The GitHub Actions workflow runs on:
 - pull requests targeting `main`
 - manual `workflow_dispatch`
 
-It tests Python `3.10`, `3.11`, and `3.12`, then checks package contents for:
+It tests Python `3.10`, `3.11`, and `3.12`, generates an adapted profile, then
+checks package contents for:
 
 - sensitive input folders
 - generated output folders

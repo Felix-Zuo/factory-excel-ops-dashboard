@@ -15,7 +15,7 @@ def default_integration_interface() -> dict[str, object]:
         return json.loads(static_path.read_text(encoding="utf-8"))
     return {
         "name": "Factory Excel Ops Dashboard",
-        "version": "0.2.2",
+        "version": "0.3.0-beta.1",
         "entrypoints": [
             {
                 "name": "run_pipeline",

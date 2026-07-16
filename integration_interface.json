@@ -1,6 +1,6 @@
 {
   "name": "Factory Excel Ops Dashboard",
-  "version": "0.2.2",
+  "version": "0.3.0-beta.1",
   "purpose": "Classify spreadsheet exports, normalize fields, compute configurable operations metrics, and export a local dashboard.",
   "entrypoints": [
     {
@@ -25,6 +25,24 @@
       "command": "python -m factory_excel_ops.cli validate-config --file-types <file_types_json> --field-mapping <field_mapping_json> --metrics <metrics_json>",
       "outputs": {
         "status": "Exit code 0 when config is valid, 2 when errors are found."
+      }
+    },
+    {
+      "name": "adapt_tables",
+      "command": "python -m factory_excel_ops.cli adapt --input <input_dir> --output <profile_dir>",
+      "inputs": {
+        "input_dir": "Folder containing unfamiliar CSV or XLSX files.",
+        "profile_dir": "Folder where generated configs and adaptation_report.json will be written.",
+        "enable_model_assist": "Optional boundary help for low-confidence tables. Disabled by default.",
+        "api_key_env": "Environment variable that contains the API key. Defaults to FACTORY_EXCEL_OPS_API_KEY.",
+        "model_endpoint": "Optional HTTP model endpoint. Can also be set through FACTORY_EXCEL_OPS_MODEL_ENDPOINT.",
+        "model": "Optional model name. Can also be set through FACTORY_EXCEL_OPS_MODEL."
+      },
+      "outputs": {
+        "file_types": "<profile_dir>/file_types.json",
+        "field_mapping": "<profile_dir>/field_mapping.json",
+        "metrics": "<profile_dir>/metrics.json",
+        "adaptation_report": "<profile_dir>/adaptation_report.json"
       }
     },
     {
@@ -75,11 +93,16 @@
   "config_files": [
     "config/sample_file_types.json",
     "config/sample_field_mapping.json",
-    "config/sample_metrics.json"
+    "config/sample_metrics.json",
+    "<profile_dir>/file_types.json",
+    "<profile_dir>/field_mapping.json",
+    "<profile_dir>/metrics.json"
   ],
   "packaging_notes": [
     "Keep local adapters separate from the core package.",
     "Load local field mappings and metric profiles from config before running.",
+    "Use adapt before run when a folder contains unfamiliar table headers.",
+    "Store API keys in environment variables; generated profile files never contain keys.",
     "Use sample_data only for sample runs and tests.",
     "Write generated reports to output or another ignored folder.",
     "Use scripts/package_project.py to create a clean handoff package."

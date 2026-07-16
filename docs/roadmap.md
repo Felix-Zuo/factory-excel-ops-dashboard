@@ -2,19 +2,19 @@
 
 This roadmap keeps reusable core work separate from local adapter work.
 
-## Now: 0.2.x Stabilization
+## Now: 0.3.0 Beta
 
-- Keep the default profile generic and based on sample fixtures.
-- Add tests for any new metric type.
-- Improve source audit visibility for unknown or low-confidence files.
+- Generate runnable profiles from unfamiliar spreadsheet folders.
+- Keep API keys in environment variables and out of generated configs.
+- Record low-confidence mapping decisions in `adaptation_report.json`.
 - Keep package safety checks strict.
-- Document adapter patterns instead of committing local adapter files.
 
 ## Next: 0.3.x Profile Maturity
 
 - Export a source audit table that shows matched headers and missing fields.
 - Add optional CSV export for metric cards and source counts.
 - Add a small HTML table explorer based only on normalized sample records.
+- Add more industry-neutral adapter fixtures.
 
 ## Later: 0.4.x Workflow Readiness
 

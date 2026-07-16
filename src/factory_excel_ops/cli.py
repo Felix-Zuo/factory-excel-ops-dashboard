@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from dataclasses import asdict
 from pathlib import Path
 
 from .analysis_context import build_analysis_context
+from .adapter_builder import ModelAssistConfig, build_adaptation_profile
 from .classifier import FileClassifier
 from .dashboard import export_dashboard
 from .field_mapper import FieldMapper
@@ -43,6 +45,17 @@ def main() -> int:
     validate.add_argument("--field-mapping", type=Path, default=Path("config/sample_field_mapping.json"))
     validate.add_argument("--metrics", type=Path, default=Path("config/sample_metrics.json"))
 
+    adapt = subcommands.add_parser("adapt", help="Create runnable configs from unfamiliar spreadsheets.")
+    adapt.add_argument("--input", required=True, type=Path, help="Input folder with CSV/XLSX files.")
+    adapt.add_argument("--output", required=True, type=Path, help="Folder for generated configs and report.")
+    adapt.add_argument("--max-sample-rows", type=int, default=12, help="Rows inspected per file.")
+    adapt.add_argument("--min-local-confidence", type=float, default=0.55, help="Confidence threshold before boundary help is considered.")
+    adapt.add_argument("--enable-model-assist", action="store_true", help="Use a configured model endpoint for low-confidence tables.")
+    adapt.add_argument("--api-key-env", default="FACTORY_EXCEL_OPS_API_KEY", help="Environment variable that contains the API key.")
+    adapt.add_argument("--model-endpoint", default="", help="Chat-completions-style HTTP endpoint.")
+    adapt.add_argument("--model", default="", help="Model name accepted by the configured endpoint.")
+    adapt.add_argument("--model-timeout", type=int, default=20, help="Model request timeout in seconds.")
+
     args = parser.parse_args()
     if args.command == "run":
         return _run(args)
@@ -56,6 +69,8 @@ def main() -> int:
         return 0
     if args.command == "validate-config":
         return _validate_config(args)
+    if args.command == "adapt":
+        return _adapt(args)
     return 2
 
 
@@ -111,6 +126,41 @@ def _validate_config(args: argparse.Namespace) -> int:
         print("Config validation: OK")
         return 0
     return 2
+
+
+def _adapt(args: argparse.Namespace) -> int:
+    input_dir: Path = args.input
+    if not input_dir.exists() or not input_dir.is_dir():
+        print(f"Input folder not found: {input_dir}")
+        return 2
+
+    model_config = ModelAssistConfig(
+        enabled=bool(args.enable_model_assist),
+        api_key_env=str(args.api_key_env),
+        endpoint=str(args.model_endpoint or os.environ.get("FACTORY_EXCEL_OPS_MODEL_ENDPOINT", "")),
+        model=str(args.model or os.environ.get("FACTORY_EXCEL_OPS_MODEL", "")),
+        timeout_seconds=int(args.model_timeout),
+    )
+    try:
+        result = build_adaptation_profile(
+            input_dir,
+            args.output,
+            model_config=model_config,
+            max_sample_rows=max(1, int(args.max_sample_rows)),
+            min_local_confidence=float(args.min_local_confidence),
+        )
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"Adapt error: {exc}")
+        return 2
+
+    print(f"Adapted files: {len(result.files)}")
+    print(f"File types: {args.output / 'file_types.json'}")
+    print(f"Field mapping: {args.output / 'field_mapping.json'}")
+    print(f"Metrics: {args.output / 'metrics.json'}")
+    print(f"Report: {args.output / 'adaptation_report.json'}")
+    for warning in result.warnings:
+        print(f"Adapt warning: {warning}")
+    return 0
 
 
 def _filter_by_size(paths: list[Path], max_file_mb: float) -> tuple[list[Path], list[str]]:

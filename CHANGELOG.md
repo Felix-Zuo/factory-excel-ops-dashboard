@@ -3,19 +3,23 @@
 All notable changes to Factory Excel Ops Dashboard are recorded here.
 The project uses semantic versions while it is still pre-1.0.
 
-## Unreleased
+## [0.3.0-beta.1] - 2026-07-16
 
 ### Added
 
-- Added GitHub Pages static-site marker and social preview metadata for the
-  product page.
-- Added a regression check for product-page metadata and the Pages entry point.
+- Added `adapt`, a code-first profile builder that turns unfamiliar CSV/XLSX
+  folders into runnable `file_types`, `field_mapping`, and `metrics` configs.
+- Added optional model-assisted boundary handling for low-confidence tables,
+  with API keys read from environment variables instead of generated files.
+- Added `docs/table_adaptation.md` and `docs/version_history.md`.
+- Added regression tests for generated profiles and missing-key boundary flow.
 
 ### Changed
 
-- Expanded the release checklist with GitHub Pages verification steps.
-- Refined README, product page, and product-evolution copy so the GitHub-facing
-  surface reads more like a maintained workbench than a packaging note.
+- Expanded CI so generated adapted profiles are validated on every push.
+- Refreshed README and integration docs around the new adapt-first workflow.
+- Refreshed the product page with stronger card motion and sharper product
+  language.
 
 ## [0.2.2] - 2026-06-24
 
